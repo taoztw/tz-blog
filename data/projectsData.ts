@@ -1,17 +1,15 @@
 interface Project {
-  title: string,
-  description: string,
-  href?: string,
-  imgSrc?: string,
+  title: string
+  description: string
+  href?: string
+  imgSrc?: string
 }
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
+    title: 'the wild oasis website',
+    description: `udemy 课程， next14 `,
+    imgSrc: '/static/images/projects/the_wild_oasis.png',
     href: 'https://www.google.com',
   },
   {
