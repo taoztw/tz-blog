@@ -1,0 +1,314 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Tz Blog</title>
+      <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
+      <description>博客记录学习和生活。</description>
+      <language>zh-cn</language>
+      <managingEditor>tztw4723@gmail.com (Tz)</managingEditor>
+      <webMaster>tztw4723@gmail.com (Tz)</webMaster>
+      <lastBuildDate>Tue, 17 Aug 2021 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/tags/tech/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-08-17-linux常用命令</guid>
+    <title>linux常用命令</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-08-17-linux常用命令</link>
+    <description>这篇文章主要介绍了一些常用的Linux命令行操作。文章涵盖了端口管理、文件处理、压缩解压、FTP下载等多个方面的命令示例。此外,还包含了一个简短的Python代码片段,用于修改目录下的文件名。</description>
+    <pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-11-22-常用正则_python_re</guid>
+    <title>常用正则_python_re</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-11-22-常用正则_python_re</link>
+    <description>这篇文章介绍了使用Python的re模块进行文本处理的几个实用技巧。主要包括移除标点符号、拆分连在一起的英文句子、匹配特殊符号以及替换多余空格等操作，展示了正则表达式在文本清理和格式化中的应用。</description>
+    <pubDate>Mon, 22 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-12-24-MAC问题列表</guid>
+    <title>MAC问题列表</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-12-24-MAC问题列表</link>
+    <description>这篇文章介绍了两个技术问题的解决方法。第一个是解决Mac系统上文件损坏的问题，通过在终端中输入特定命令来移除应用程序的隔离属性。第二个是关于Docker中docker.raw文件占用空间过大的问题，文章提供了一张图片展示如何调整相关设置。</description>
+    <pubDate>Fri, 24 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2022-04-20-python_cookbook</guid>
+    <title>python_cookbook</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2022-04-20-python_cookbook</link>
+    <description>Python文件操作和多进程编程的一些技巧。文章讨论了如何处理文件读取时的换行符和编码错误，介绍了Python的-u选项用于关闭输出缓冲，并提供了设置pip源的方法。最后，文章展示了一个使用多进程写文件的Python代码示例。</description>
+    <pubDate>Wed, 20 Apr 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2023-08-14-设计资源网站</guid>
+    <title>设计资源网站</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2023-08-14-设计资源网站</link>
+    <description>这篇文章介绍了多个有用的设计资源网站,包括占位符图片、用户头像、图标和网站配色等。文章还提到了一些CSS相关的资源链接,为网页设计和开发提供了便利工具。</description>
+    <pubDate>Mon, 14 Aug 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2020-01-19-PyTorch矩阵乘法</guid>
+    <title>PyTorch矩阵乘法</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2020-01-19-PyTorch矩阵乘法</link>
+    <description>这篇文章介绍了PyTorch中不同类型的乘法操作及其特性。文章详细解释了element-wise乘法（*）、矩阵乘法（@）、mm()、bmm()、mul()和matmul()等函数的用法和区别。同时，文章还讨论了这些操作对广播（broadcast）的支持情况，并简要说明了广播的规则。</description>
+    <pubDate>Sun, 19 Jan 2020 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2021-08-23-ubuntu18.04_GPU环境搭建</guid>
+    <title>ubuntu18.04_GPU环境搭建</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2021-08-23-ubuntu18.04_GPU环境搭建</link>
+    <description>在Linux系统上安装GPU驱动、CUDA和PyTorch的步骤和注意事项。文章详细说明了安装NVIDIA驱动、CUDA工具包的过程,以及可能遇到的问题和解决方法。此外,还提供了验证安装是否成功的方法,以及更换pip源和apt源的相关信息。</description>
+    <pubDate>Mon, 23 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-19-cudnn_安装</guid>
+    <title>cudnn_安装</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-19-cudnn_安装</link>
+    <description>本文介绍了cuDNN的安装步骤,包括下载对应版本压缩包、解压文件、配置环境变量、复制头文件等操作。文章还提供了查看cuDNN版本的方法,以及CUDA、NVIDIA驱动和cuDNN之间的版本兼容性查询链接。</description>
+    <pubDate>Wed, 19 Jan 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-25-xml文件修复</guid>
+    <title>xml文件修复</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-25-xml文件修复</link>
+    <description>这段代码使用BeautifulSoup库解析XML文件。它打开指定路径的文件，读取内容，并使用BeautifulSoup将其解析为格式化的XML结构。</description>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-gcc双版本安装</guid>
+    <title>gcc双版本安装</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-gcc双版本安装</link>
+    <description>这篇文章介绍了如何在Linux系统上安装和配置GCC 5.5.0版本。文章详细说明了下载、编译和安装GCC 5.5.0的步骤，以及如何使用update-alternatives命令配置多个GCC版本，使系统能够同时支持GCC 4.8.5和5.5.0版本。</description>
+    <pubDate>Sat, 19 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-安装tesseract和Detectron2参考网址</guid>
+    <title>安装tesseract和Detectron2参考网址</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-安装tesseract和Detectron2参考网址</link>
+    <description>这篇文章主要介绍了在测试Layout Parser功能时需要安装和使用Detectron2和Tesseract。文章提供了相关的安装文档链接,并详细说明了在CentOS 7系统上安装Tesseract时可能遇到的问题及解决方法,特别是libtool版本不匹配的错误处理。</description>
+    <pubDate>Sat, 19 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-04-14-nginx设置tensorboard转发服务_</guid>
+    <title>nginx设置tensorboard转发服务_</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-04-14-nginx设置tensorboard转发服务_</link>
+    <description>本文介绍了如何配置Nginx和启动TensorBoard以实现远程访问。文章包括Nginx配置示例、TensorBoard启动命令，以及访问TensorBoard时需要注意的URL格式。</description>
+    <pubDate>Thu, 14 Apr 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-03-30-asyncio笔记</guid>
+    <title>asyncio笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-03-30-asyncio笔记</link>
+    <description>Python中asyncio模块的核心概念和使用方法。文章详细解释了事件循环、协程、任务和Future等重要概念,并通过代码示例展示了如何创建和运行异步任务。此外,文章还讨论了yield和yield from在实现协程中的作用,以及它们与asyncio的关系。</description>
+    <pubDate>Thu, 30 Mar 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-爬虫-HTTP基础、加密、js调试</guid>
+    <title>爬虫-HTTP基础、加密、js调试</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-爬虫-HTTP基础、加密、js调试</link>
+    <description>HTTP协议的发展历程,从HTTP 0.9到HTTP 2.0,以及HTTPS协议的工作原理。文章还简要介绍了Squid代理服务器的搭建,以及常见的加密算法如MD5、AES、RSA等。最后,文章讨论了前端JavaScript调试的一些技巧。</description>
+    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-领域驱动设计-1</guid>
+    <title>领域驱动设计-1</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-领域驱动设计-1</link>
+    <description>这篇文章介绍了领域驱动设计(DDD)的核心概念和方法。文章强调了用户故事、通用语言、战略设计和战术设计在DDD中的重要性,并详细讲解了如何通过Domain Storytelling分析用户故事、建立通用语言、进行领域划分和识别限界上下文。文章还介绍了上下文映射的概念,展示了如何在实践中应用这些DDD方法。</description>
+    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-高性能计算-basic</guid>
+    <title>高性能计算-basic</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-高性能计算-basic</link>
+    <description>SIMD（单指令多数据）和SIMT（单指令多线程）两种并行计算技术，对比了它们在数组相加等任务中的应用和优缺点。文章还讨论了SIMD和SIMT在GPU架构中的实现，以及它们在提高计算效率和灵活性方面的作用。最后，文章探讨了这些技术在深度学习等领域的应用前景。</description>
+    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-05-Compare_text_</guid>
+    <title>Compare_text_</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-05-Compare_text_</link>
+    <description>使用Python的difflib库生成两个序列之间的差异，并以类似Word的track change方式展示。文章提供了一个Python代码示例，展示了如何使用SequenceMatcher类来比较两个字符串，并根据不同的样式选项生成带有HTML标记的差异结果。</description>
+    <pubDate>Fri, 05 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-python-视频处理</guid>
+    <title>python-视频处理</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-python-视频处理</link>
+    <description>这篇文章介绍了如何对视频进行笔记，包括解析字幕、提取图片和音频。文章提供了两段Python代码，分别用于将MP4文件转换为MP3音频文件和从视频中提取图片帧。</description>
+    <pubDate>Mon, 22 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-协同编辑-笔记_01</guid>
+    <title>协同编辑-笔记_01</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-协同编辑-笔记_01</link>
+    <description>这篇文章介绍了协同编辑的几种主要技术方法，包括编辑锁、GNU diff-patch、Myer&#39;s diff-patch和Operational Transformation (OT)。文章详细解释了OT的工作原理，并根据不同的应用场景和需求，给出了选择协同编辑技术的建议。</description>
+    <pubDate>Mon, 22 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-11-Driver_CUDA_CUDNN_TensorRT关系</guid>
+    <title>Driver_CUDA_CUDNN_TensorRT关系</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-11-Driver_CUDA_CUDNN_TensorRT关系</link>
+    <description>这篇文章主要介绍了CUDA、CUDNN和TensorRT之间的关系，以及如何选择和安装这些组件的版本。文章指出CUDA版本通常与新一代显卡架构相对应，并建议根据显卡选择合适的CUDA版本。同时，文章还提供了TensorRT的推荐版本以及与CUDA和CUDNN的兼容性信息，并给出了安装过程中的一些注意事项。</description>
+    <pubDate>Mon, 11 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-JS基础</guid>
+    <title>JS基础</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-JS基础</link>
+    <description>JavaScript的一些基础知识和概念。</description>
+    <pubDate>Mon, 18 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-golang-基础-1</guid>
+    <title>golang-基础-1</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-golang-基础-1</link>
+    <description>这篇文章主要介绍了Go语言的基础语法和特性。文章涵盖了main函数、包声明、字符串处理、基本数据类型、变量声明、方法定义、fmt格式化输出、数组和切片的使用，以及控制结构如for循环、if-else语句和switch语句。文章强调了Go语言的一些独特特性，如rune类型、多返回值函数和切片操作。</description>
+    <pubDate>Mon, 18 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-28-Git_基础</guid>
+    <title>Git_基础</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-28-Git_基础</link>
+    <description>介绍了Git的基本概念和常用操作。</description>
+    <pubDate>Thu, 28 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-10-20-sql_mysql_常用操作</guid>
+    <title>sql_mysql_常用操作</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-10-20-sql_mysql_常用操作</link>
+    <description>MySQL数据库的基本操作和使用方法</description>
+    <pubDate>Fri, 20 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-如何全面提升架构设计的质量</guid>
+    <title>如何全面提升架构设计的质量</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-如何全面提升架构设计的质量</link>
+    <description>这篇文章讨论了软件架构设计中的几个关键方面,包括低成本、安全性、可测试性、可维护性和可观测性。文章强调了在设计架构时需要权衡各种因素,如成本与性能之间的平衡,以及安全性的不同层面。同时,文章指出可观测性是可测试性和可维护性的基础,对于设计良好的架构至关重要。</description>
+    <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构基础知识</guid>
+    <title>架构基础知识</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构基础知识</link>
+    <description>这篇文章主要介绍了软件架构设计的概念、原则和方法。文章强调了架构设计应遵循合适、简单和演化三大原则,并通过具体案例说明了如何应用这些原则进行实际的架构设计。文章还指出,架构设计应该面向复杂度,根据系统的实际需求和团队能力来选择合适的架构方案,而不是盲目追求高大上的架构。</description>
+    <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构设计复杂度模型</guid>
+    <title>架构设计复杂度模型</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构设计复杂度模型</link>
+    <description>这篇文章主要讨论了软件架构设计中的三个关键方面:可扩展性、高性能和高可用性。文章介绍了通过拆分和复用来提高系统的可扩展性,通过单机优化和集群设计来实现高性能,以及通过冗余和复制等方式来保证系统的高可用性。文章还提出了&quot;鸡蛋篮子&quot;理论,强调了在架构设计中合理分配和分解任务的重要性。</description>
+    <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-15-微信红包高性能复杂度分析</guid>
+    <title>微信红包高性能复杂度分析</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-15-微信红包高性能复杂度分析</link>
+    <description>这篇文章主要讨论了微信红包系统的高性能复杂度分析和成本约束。文章介绍了2014年微信红包的使用数据，并详细分析了发红包、抢红包和看红包的架构设计。同时，文章还探讨了整体架构的设计思路，以及如何在保证高性能的同时进行成本优化。</description>
+    <pubDate>Wed, 15 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-03-rollup</guid>
+    <title>rollup</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-03-rollup</link>
+    <description>rollup是一个小巧的JavaScript模块打包工具，适合用于库应用的构建。它基于ES6模块，可以将小块代码编译成大块复杂的代码，有效减少文件请求大小。rollup支持多种打包格式，包括amd、cjs、es、iife和umd，可以根据不同需求选择合适的格式。</description>
+    <pubDate>Sun, 03 Dec 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-16-python_多进程为什么慢</guid>
+    <title>python_多进程为什么慢</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-16-python_多进程为什么慢</link>
+    <description>这篇文章主要介绍了使用Python进行并行处理以提高质数计算效率的几种方法。文章比较了串行处理、简单并行处理、数据分块并行处理以及使用multiprocessing.Pool的并行处理方法，并分析了各种方法的性能差异。最终结论是，对于大规模数据，合适的并行处理方法可以显著提高计算效率。</description>
+    <pubDate>Sat, 16 Dec 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+    </channel>
+  </rss>

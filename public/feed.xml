@@ -1,0 +1,1094 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Tz Blog</title>
+      <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
+      <description>博客记录学习和生活。</description>
+      <language>zh-cn</language>
+      <managingEditor>tztw4723@gmail.com (Tz)</managingEditor>
+      <webMaster>tztw4723@gmail.com (Tz)</webMaster>
+      <lastBuildDate>Wed, 10 Jan 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2024-01-10-Refactoring_UI</guid>
+    <title>Refactoring_UI</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2024-01-10-Refactoring_UI</link>
+    <description>这篇文章主要讨论了网页设计的各个方面，包括功能优先、层次结构、布局与间距、文字设计、色彩运用、创造深度感以及图像处理等。文章强调了从功能出发、建立系统化的设计方法、注重视觉层次和可读性、合理使用色彩和阴影来创造深度，以及在细节上精益求精的重要性。最后，文章鼓励设计师跳出框架思维，创造性地解决设计问题。</description>
+    <pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-16-python_多进程为什么慢</guid>
+    <title>python_多进程为什么慢</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-16-python_多进程为什么慢</link>
+    <description>这篇文章主要介绍了使用Python进行并行处理以提高质数计算效率的几种方法。文章比较了串行处理、简单并行处理、数据分块并行处理以及使用multiprocessing.Pool的并行处理方法，并分析了各种方法的性能差异。最终结论是，对于大规模数据，合适的并行处理方法可以显著提高计算效率。</description>
+    <pubDate>Sat, 16 Dec 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-03-rollup</guid>
+    <title>rollup</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-12-03-rollup</link>
+    <description>rollup是一个小巧的JavaScript模块打包工具，适合用于库应用的构建。它基于ES6模块，可以将小块代码编译成大块复杂的代码，有效减少文件请求大小。rollup支持多种打包格式，包括amd、cjs、es、iife和umd，可以根据不同需求选择合适的格式。</description>
+    <pubDate>Sun, 03 Dec 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-15-微信红包高性能复杂度分析</guid>
+    <title>微信红包高性能复杂度分析</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-15-微信红包高性能复杂度分析</link>
+    <description>这篇文章主要讨论了微信红包系统的高性能复杂度分析和成本约束。文章介绍了2014年微信红包的使用数据，并详细分析了发红包、抢红包和看红包的架构设计。同时，文章还探讨了整体架构的设计思路，以及如何在保证高性能的同时进行成本优化。</description>
+    <pubDate>Wed, 15 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-如何全面提升架构设计的质量</guid>
+    <title>如何全面提升架构设计的质量</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-如何全面提升架构设计的质量</link>
+    <description>这篇文章讨论了软件架构设计中的几个关键方面,包括低成本、安全性、可测试性、可维护性和可观测性。文章强调了在设计架构时需要权衡各种因素,如成本与性能之间的平衡,以及安全性的不同层面。同时,文章指出可观测性是可测试性和可维护性的基础,对于设计良好的架构至关重要。</description>
+    <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构基础知识</guid>
+    <title>架构基础知识</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构基础知识</link>
+    <description>这篇文章主要介绍了软件架构设计的概念、原则和方法。文章强调了架构设计应遵循合适、简单和演化三大原则,并通过具体案例说明了如何应用这些原则进行实际的架构设计。文章还指出,架构设计应该面向复杂度,根据系统的实际需求和团队能力来选择合适的架构方案,而不是盲目追求高大上的架构。</description>
+    <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构设计复杂度模型</guid>
+    <title>架构设计复杂度模型</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-11-14-架构设计复杂度模型</link>
+    <description>这篇文章主要讨论了软件架构设计中的三个关键方面:可扩展性、高性能和高可用性。文章介绍了通过拆分和复用来提高系统的可扩展性,通过单机优化和集群设计来实现高性能,以及通过冗余和复制等方式来保证系统的高可用性。文章还提出了&quot;鸡蛋篮子&quot;理论,强调了在架构设计中合理分配和分解任务的重要性。</description>
+    <pubDate>Tue, 14 Nov 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-10-20-sql_mysql_常用操作</guid>
+    <title>sql_mysql_常用操作</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-10-20-sql_mysql_常用操作</link>
+    <description>MySQL数据库的基本操作和使用方法</description>
+    <pubDate>Fri, 20 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-JS_基础2</guid>
+    <title>JS_基础2</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-JS_基础2</link>
+    <description>这篇文章主要介绍了ES6及之后版本的一些新特性,包括let/const声明、模板字符串、对象和数组的新语法等。同时还讨论了浏览器的进程模型、渲染主线程的工作原理,以及JavaScript中的异步编程、Promise规范和async/await语法。</description>
+    <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-css样式</guid>
+    <title>css样式</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-css样式</link>
+    <description>这篇文章主要介绍了CSS3在不同浏览器中的实现和前缀使用情况。文章提到了浏览器厂商前缀的使用，如-webkit、-moz等，以及CSS预处理器和后处理器的概念。此外，文章还简要介绍了一些常用的CSS属性和技巧，如盒模型、浮动和文字居中等。</description>
+    <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-前端工程化</guid>
+    <title>前端工程化</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-前端工程化</link>
+    <description>前端工程化的概念和实践。文章讨论了软件工程学在解决软件开发问题中的应用,并详细介绍了模块化、包管理、Monorepo、Less预处理器和Webpack等前端工程化的关键技术和工具。文章强调了这些技术在提高开发效率、代码质量和项目可维护性方面的重要作用。</description>
+    <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-28-Git_基础</guid>
+    <title>Git_基础</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-28-Git_基础</link>
+    <description>介绍了Git的基本概念和常用操作。</description>
+    <pubDate>Thu, 28 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-JS基础</guid>
+    <title>JS基础</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-JS基础</link>
+    <description>JavaScript的一些基础知识和概念。</description>
+    <pubDate>Mon, 18 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-golang-基础-1</guid>
+    <title>golang-基础-1</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-18-golang-基础-1</link>
+    <description>这篇文章主要介绍了Go语言的基础语法和特性。文章涵盖了main函数、包声明、字符串处理、基本数据类型、变量声明、方法定义、fmt格式化输出、数组和切片的使用，以及控制结构如for循环、if-else语句和switch语句。文章强调了Go语言的一些独特特性，如rune类型、多返回值函数和切片操作。</description>
+    <pubDate>Mon, 18 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-11-Driver_CUDA_CUDNN_TensorRT关系</guid>
+    <title>Driver_CUDA_CUDNN_TensorRT关系</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-09-11-Driver_CUDA_CUDNN_TensorRT关系</link>
+    <description>这篇文章主要介绍了CUDA、CUDNN和TensorRT之间的关系，以及如何选择和安装这些组件的版本。文章指出CUDA版本通常与新一代显卡架构相对应，并建议根据显卡选择合适的CUDA版本。同时，文章还提供了TensorRT的推荐版本以及与CUDA和CUDNN的兼容性信息，并给出了安装过程中的一些注意事项。</description>
+    <pubDate>Mon, 11 Sep 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2023-08-14-设计资源网站</guid>
+    <title>设计资源网站</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2023-08-14-设计资源网站</link>
+    <description>这篇文章介绍了多个有用的设计资源网站,包括占位符图片、用户头像、图标和网站配色等。文章还提到了一些CSS相关的资源链接,为网页设计和开发提供了便利工具。</description>
+    <pubDate>Mon, 14 Aug 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-07-02-马毅-_从人工智能到自主智能_演讲记录</guid>
+    <title>马毅-_从人工智能到自主智能_演讲记录</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-07-02-马毅-_从人工智能到自主智能_演讲记录</link>
+    <description>人工智能向自主智能的发展趋势。文章回顾了人工智能的历史发展,指出过去十年的AI主要集中在感知和预测方面,而未来的发展方向是从黑盒到白盒、从开环到闭环、从人工到自主和自然。文章还提出了通用计算机制的目标,即适用于所有规模智能系统的机制。</description>
+    <pubDate>Sun, 02 Jul 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-22-微软中国CTO_韦青_工程师思维-笔记</guid>
+    <title>微软中国CTO_韦青_工程师思维-笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-22-微软中国CTO_韦青_工程师思维-笔记</link>
+    <description>韦青演讲</description>
+    <pubDate>Mon, 22 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-python-视频处理</guid>
+    <title>python-视频处理</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-python-视频处理</link>
+    <description>这篇文章介绍了如何对视频进行笔记，包括解析字幕、提取图片和音频。文章提供了两段Python代码，分别用于将MP4文件转换为MP3音频文件和从视频中提取图片帧。</description>
+    <pubDate>Mon, 22 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-协同编辑-笔记_01</guid>
+    <title>协同编辑-笔记_01</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-22-协同编辑-笔记_01</link>
+    <description>这篇文章介绍了协同编辑的几种主要技术方法，包括编辑锁、GNU diff-patch、Myer&#39;s diff-patch和Operational Transformation (OT)。文章详细解释了OT的工作原理，并根据不同的应用场景和需求，给出了选择协同编辑技术的建议。</description>
+    <pubDate>Mon, 22 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-21-王坚_天津人工智能主题演讲-2023</guid>
+    <title>王坚_天津人工智能主题演讲-2023</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-21-王坚_天津人工智能主题演讲-2023</link>
+    <description>人工智能的创新过程和历史发展。文章强调创新是一个需要积累的完整系统，并通过GPU技术的演进和人工智能应用的发展来说明这一点。文章还指出，未来人工智能的发展方向将从资源消耗转向提高效率。</description>
+    <pubDate>Sun, 21 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-05-14-让LLM精确计算两数之和</guid>
+    <title>让LLM精确计算两数之和</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-05-14-让LLM精确计算两数之和</link>
+    <description>如何使用LLM(大型语言模型)来精确计算两个数的和。文章展示了两种方法:使用LLM chain和LLM agent,通过调用Python代码或预定义的工具函数来实现准确计算。此外,文章还简要提到了其他相关工具,如语音转文本、语音合成和图像生成等。</description>
+    <pubDate>Sun, 14 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-癌症-Note</guid>
+    <title>癌症-Note</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-癌症-Note</link>
+    <description>这篇文章主要讨论了癌症的发病率、致癌因素以及治疗方法。文章指出癌症源于基因突变，发病率随年龄增长而上升，并介绍了几种主要的抗癌方法，包括手术、化疗药物和免疫疗法。文章还强调了癌细胞与免疫系统之间的&quot;密码战&quot;，以及靶向药物和免疫疗法在这场战斗中的作用。</description>
+    <pubDate>Fri, 12 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-量子力学&相对论&量子计算&芯片-Note</guid>
+    <title>量子力学&amp;相对论&amp;量子计算&amp;芯片-Note</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-量子力学&相对论&量子计算&芯片-Note</link>
+    <description>这篇文章主要介绍了现代物理学的两大支柱:量子力学和相对论,以及它们在微观和宏观世界的应用。文章还讨论了量子计算和半导体芯片等前沿技术领域,指出这些技术都是建立在量子力学基础之上的。最后文章提到,虽然中国在芯片领域投入巨大,但与国际巨头相比仍有差距。</description>
+    <pubDate>Fri, 12 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-05-05-prompt_example</guid>
+    <title>prompt_example</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-05-05-prompt_example</link>
+    <description>这篇文章总结了ChatGPT提示工程的几种常见技巧和应用场景。主要包括结构化输出、文本摘要、信息提取、情感分析、主题推断以及文本转换(如翻译、语气调整、格式转换等)。这些技巧可以帮助用户更有效地利用ChatGPT完成各种自然语言处理任务。</description>
+    <pubDate>Fri, 05 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-05-Compare_text_</guid>
+    <title>Compare_text_</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-05-05-Compare_text_</link>
+    <description>使用Python的difflib库生成两个序列之间的差异，并以类似Word的track change方式展示。文章提供了一个Python代码示例，展示了如何使用SequenceMatcher类来比较两个字符串，并根据不同的样式选项生成带有HTML标记的差异结果。</description>
+    <pubDate>Fri, 05 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-04-26-LLaMA_记录</guid>
+    <title>LLaMA_记录</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-04-26-LLaMA_记录</link>
+    <description>这篇文章介绍了LLaMA模型的训练方法和性能评估结果。LLaMA采用开源数据训练了7B到65B参数的模型,在多个任务上表现优异,13B模型超过GPT-3,65B模型与PaLM 540B相当。文章还指出,在给定计算预算下,在更多数据上训练较小模型比训练最大模型能获得更好的性能。</description>
+    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-爬虫-HTTP基础、加密、js调试</guid>
+    <title>爬虫-HTTP基础、加密、js调试</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-爬虫-HTTP基础、加密、js调试</link>
+    <description>HTTP协议的发展历程,从HTTP 0.9到HTTP 2.0,以及HTTPS协议的工作原理。文章还简要介绍了Squid代理服务器的搭建,以及常见的加密算法如MD5、AES、RSA等。最后,文章讨论了前端JavaScript调试的一些技巧。</description>
+    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-领域驱动设计-1</guid>
+    <title>领域驱动设计-1</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-领域驱动设计-1</link>
+    <description>这篇文章介绍了领域驱动设计(DDD)的核心概念和方法。文章强调了用户故事、通用语言、战略设计和战术设计在DDD中的重要性,并详细讲解了如何通过Domain Storytelling分析用户故事、建立通用语言、进行领域划分和识别限界上下文。文章还介绍了上下文映射的概念,展示了如何在实践中应用这些DDD方法。</description>
+    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-高性能计算-basic</guid>
+    <title>高性能计算-basic</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-04-26-高性能计算-basic</link>
+    <description>SIMD（单指令多数据）和SIMT（单指令多线程）两种并行计算技术，对比了它们在数组相加等任务中的应用和优缺点。文章还讨论了SIMD和SIMT在GPU架构中的实现，以及它们在提高计算效率和灵活性方面的作用。最后，文章探讨了这些技术在深度学习等领域的应用前景。</description>
+    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-03-30-asyncio笔记</guid>
+    <title>asyncio笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2023-03-30-asyncio笔记</link>
+    <description>Python中asyncio模块的核心概念和使用方法。文章详细解释了事件循环、协程、任务和Future等重要概念,并通过代码示例展示了如何创建和运行异步任务。此外,文章还讨论了yield和yield from在实现协程中的作用,以及它们与asyncio的关系。</description>
+    <pubDate>Thu, 30 Mar 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2023-03-26-产品笔记-1</guid>
+    <title>产品笔记-1</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2023-03-26-产品笔记-1</link>
+    <description>这篇文章主要介绍了互联网的发展历程、产品经理的定义和能力要求,以及产品经理的工作内容和成长路径。文章指出,互联网经历了PC时代、移动时代,正在进入万物互联时代。产品经理需要具备好奇心、同理心、逻辑思维和协调能力,负责产品的全生命周期管理。产品经理的工作包括方向设计、功能设计、交互设计、商业化设计和增长设计等方面。</description>
+    <pubDate>Sun, 26 Mar 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Product</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-03-05-Generate_AI_model一些评价角度</guid>
+    <title>Generate_AI_model一些评价角度</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-03-05-Generate_AI_model一些评价角度</link>
+    <description>总结了ChatGPT在多个领域的局限性和失败案例,包括推理、逻辑、数学、事实准确性等方面。同时,文章也探讨了ChatGPT对社会的影响,如隐私、抄袭、环境影响等问题,并指出了未来研究的方向。</description>
+    <pubDate>Sun, 05 Mar 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-02-25-Sam_Altman,_Elon_Musk_2016年9月采访</guid>
+    <title>Sam_Altman,_Elon_Musk_2016年9月采访</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-02-25-Sam_Altman,_Elon_Musk_2016年9月采访</link>
+    <description>这篇文章主要讨论了做有意义的事情和人工智能的风险与机遇。作者强调了创造能带来变化的事物的重要性,以及技术进步背后的努力。关于人工智能,文章提出了民主化AI技术和人机融合的观点,认为这可以解决AI控制权的问题。</description>
+    <pubDate>Sat, 25 Feb 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-02-12-笔记-nanoGPT</guid>
+    <title>笔记-nanoGPT</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-02-12-笔记-nanoGPT</link>
+    <description>这篇文章主要介绍了GPT模型的结构和实现细节。文章详细描述了GPT模型的核心组件,包括多头自注意力机制、前馈神经网络、位置编码等,并给出了相应的Python代码实现。此外,文章还介绍了GPT模型的训练过程,包括学习率调整策略等。</description>
+    <pubDate>Sun, 12 Feb 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-15-GPT2</guid>
+    <title>GPT2</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-15-GPT2</link>
+    <description>GPT-2语言模型,一个无监督的多任务学习器。GPT-2在多个任务上实现了零样本学习的最先进结果,展示了语言模型作为通用任务学习器的潜力。文章还讨论了增加模型容量可以以对数线性方式提高性能,以及大规模多样化数据集对模型泛化能力的重要性。</description>
+    <pubDate>Sun, 15 Jan 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-15-GPT3</guid>
+    <title>GPT3</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-15-GPT3</link>
+    <description>GPT-3是一个拥有1750亿参数的大型语言模型,通过增大模型规模显著提高了小样本学习能力。在问答、填空、翻译等多项任务上,GPT-3无需微调就能取得不错的性能,但在某些数据集上仍存在困难。该研究还探讨了如何在大规模数据上训练如此庞大的语言模型。</description>
+    <pubDate>Sun, 15 Jan 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-15-自编码-自回归_BERT-GPT-LLM_</guid>
+    <title>自编码-自回归_BERT-GPT-LLM_</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-15-自编码-自回归_BERT-GPT-LLM_</link>
+    <description>自回归和自编码模型在自然语言处理中的应用,以及BERT、GPT等大型语言模型的发展。文章重点讨论了BERT及其变体(如ALBERT、RoBERTa等)的改进,以及GPT、XLNet等自回归模型的特点。最后,文章简要概述了大型语言模型(LLM)的发展历程及其在NLP任务中的应用前景。</description>
+    <pubDate>Sun, 15 Jan 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-04-Reinforcement_Learning</guid>
+    <title>Reinforcement_Learning</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-04-Reinforcement_Learning</link>
+    <description>这篇文章主要介绍了强化学习的基本概念和定义。文章解释了概率密度函数、期望、状态、动作、策略、奖励等基础术语，并定义了回报、折扣回报、动作价值函数、最优动作价值函数和状态价值函数等关键概念。文章还通过马里奥游戏的例子来具体说明这些概念在实际应用中的含义。</description>
+    <pubDate>Wed, 04 Jan 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2022-08-08-笔记-产品经理</guid>
+    <title>笔记-产品经理</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2022-08-08-笔记-产品经理</link>
+    <description>这篇文章主要讨论了产品经理的工作内容和方法。文章涵盖了验证码设计、需求变更管理、产品规划、与开发人员合作、文档编写等多个方面。文章强调了产品经理需要深入理解用户需求,关注产品场景,善于沟通和管理项目,并且要不断学习新技术。总的来说,文章为产品经理提供了全面的工作指导和建议。</description>
+    <pubDate>Mon, 08 Aug 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Product</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-06-05-逻辑回归_BASE</guid>
+    <title>逻辑回归_BASE</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-06-05-逻辑回归_BASE</link>
+    <description>这篇文章介绍了逻辑回归的核心概念,包括最大似然估计、sigmoid函数和交叉熵。文章通过抛硬币和银行放款的例子来解释这些概念,并提供了一个训练逻辑回归模型的代码notebook。</description>
+    <pubDate>Sun, 05 Jun 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2022-04-20-python_cookbook</guid>
+    <title>python_cookbook</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2022-04-20-python_cookbook</link>
+    <description>Python文件操作和多进程编程的一些技巧。文章讨论了如何处理文件读取时的换行符和编码错误，介绍了Python的-u选项用于关闭输出缓冲，并提供了设置pip源的方法。最后，文章展示了一个使用多进程写文件的Python代码示例。</description>
+    <pubDate>Wed, 20 Apr 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-04-14-nginx设置tensorboard转发服务_</guid>
+    <title>nginx设置tensorboard转发服务_</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-04-14-nginx设置tensorboard转发服务_</link>
+    <description>本文介绍了如何配置Nginx和启动TensorBoard以实现远程访问。文章包括Nginx配置示例、TensorBoard启动命令，以及访问TensorBoard时需要注意的URL格式。</description>
+    <pubDate>Thu, 14 Apr 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-04-01-n-gram检索domain_Adaptation：_Non-Parametric_Adaptation_for_Neural_Machine_Translation</guid>
+    <title>n-gram检索domain_Adaptation：_Non-Parametric_Adaptation_for_Neural_Machine_Translation</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-04-01-n-gram检索domain_Adaptation：_Non-Parametric_Adaptation_for_Neural_Machine_Translation</link>
+    <description>这篇文章提出了一种半参数方法,通过n-gram检索来实现神经机器翻译在新领域的无参数适应。作者设计了新的架构来编码源语言和目标语言信息,并通过消融分析验证了方法的有效性。该方法在异构数据和稀有短语翻译上表现良好,避免了微调可能带来的灾难性遗忘问题。</description>
+    <pubDate>Fri, 01 Apr 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-31-GEC语法错误纠正-GECToR</guid>
+    <title>GEC语法错误纠正-GECToR</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-31-GEC语法错误纠正-GECToR</link>
+    <description>这篇文章介绍了一种名为GECToR的语法纠错方法,采用序列标注模型对错误tokens进行变换标记,而不是直接重写句子。该方法通过三步训练过程和推理技巧提高了模型性能,在保持高准确率的同时大幅提升了推理速度。</description>
+    <pubDate>Thu, 31 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-31-MT翻译记忆融合-Encoding_Gated_Translation_Memory_into_Neural_Machine_Translation</guid>
+    <title>MT翻译记忆融合-Encoding_Gated_Translation_Memory_into_Neural_Machine_Translation</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-31-MT翻译记忆融合-Encoding_Gated_Translation_Memory_into_Neural_Machine_Translation</link>
+    <description>这篇文章提出了一种将翻译记忆(TM)融入神经机器翻译(NMT)的方法。通过两个独立的编码器对输入和TM匹配进行编码,并使用TM门控网络计算权重,将TM信息加权融入翻译生成过程。实验验证了不同模糊匹配分数(FMS)对结果的影响,并分析了TM门控值与语义相似度的关系。</description>
+    <pubDate>Thu, 31 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-31-增强术语翻译（修改输入）-Training_Neural_Machine_Translation_To_Apply_Terminology_Constraints_</guid>
+    <title>增强术语翻译（修改输入）-Training_Neural_Machine_Translation_To_Apply_Terminology_Constraints_</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-31-增强术语翻译（修改输入）-Training_Neural_Machine_Translation_To_Apply_Terminology_Constraints_</link>
+    <description>这篇文章介绍了一种通过在输入中增加目标端术语信息来提高神经机器翻译模型术语翻译能力的方法。该方法使用replace和append两种方式添加术语注解，让模型学习&quot;复制机制&quot;，并考虑术语的形态变化。研究结果显示这种方法可以提高术语翻译准确性，但在BLEU评分上有所下降，且通用性有限。</description>
+    <pubDate>Thu, 31 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-22-低资源领域适应MT</guid>
+    <title>低资源领域适应MT</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-22-低资源领域适应MT</link>
+    <description>这篇文章介绍了几种利用丰富通用语料来训练低资源领域机器翻译模型的方法,包括增量训练、集成解码、合并训练数据和数据加权等。其中数据加权方法通过对领域内数据进行过采样,在训练过程中让模型&quot;见到&quot;更多领域数据,在领域数据量为50k-500k时效果较好。</description>
+    <pubDate>Tue, 22 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-gcc双版本安装</guid>
+    <title>gcc双版本安装</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-gcc双版本安装</link>
+    <description>这篇文章介绍了如何在Linux系统上安装和配置GCC 5.5.0版本。文章详细说明了下载、编译和安装GCC 5.5.0的步骤，以及如何使用update-alternatives命令配置多个GCC版本，使系统能够同时支持GCC 4.8.5和5.5.0版本。</description>
+    <pubDate>Sat, 19 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-安装tesseract和Detectron2参考网址</guid>
+    <title>安装tesseract和Detectron2参考网址</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-03-19-安装tesseract和Detectron2参考网址</link>
+    <description>这篇文章主要介绍了在测试Layout Parser功能时需要安装和使用Detectron2和Tesseract。文章提供了相关的安装文档链接,并详细说明了在CentOS 7系统上安装Tesseract时可能遇到的问题及解决方法,特别是libtool版本不匹配的错误处理。</description>
+    <pubDate>Sat, 19 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-08-笔记-（Adaptive）Nearest_Neighbor_Machine_Translation_</guid>
+    <title>笔记-（Adaptive）Nearest_Neighbor_Machine_Translation_</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-03-08-笔记-（Adaptive）Nearest_Neighbor_Machine_Translation_</link>
+    <description>Nearest Neighbor Machine Translation (KNN-MT)</description>
+    <pubDate>Tue, 08 Mar 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-25-笔记-Learning_Kernel-Smoothed_Machine_Translation_with_RetrievedExamples</guid>
+    <title>笔记-Learning_Kernel-Smoothed_Machine_Translation_with_RetrievedExamples</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-25-笔记-Learning_Kernel-Smoothed_Machine_Translation_with_RetrievedExamples</link>
+    <description>KSTER的机器翻译方法,通过可学习的核函数和自适应混合权重来改进基于检索的神经机器翻译。KSTER在领域适应和多领域翻译任务中表现优异,相比基线模型在BLEU分数上提高了1.1-1.5分。该方法通过动态计算检索实例的相关性和自适应混合模型预测与检索结果,在保持通用性能的同时提高了特定领域的翻译质量。</description>
+    <pubDate>Fri, 25 Feb 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-23-笔记-As_Easy_as_1,_2,_3:_Behavioural_Testing_of_NMT_Systemsfor_Numerical_Translation</guid>
+    <title>笔记-As_Easy_as_1,_2,_3:_Behavioural_Testing_of_NMT_Systemsfor_Numerical_Translation</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-23-笔记-As_Easy_as_1,_2,_3:_Behavioural_Testing_of_NMT_Systemsfor_Numerical_Translation</link>
+    <description>这篇文章介绍了一项针对机器翻译模型数字翻译准确率的测试研究。研究对比了不同类型的翻译模型,总结出四种常见的数字翻译错误类型,并提出了几种可能的改进策略。结果显示,所有测试的模型在各种错误类型上都未能达到100%的准确率。</description>
+    <pubDate>Wed, 23 Feb 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-21-小牛论坛笔记（2021）</guid>
+    <title>小牛论坛笔记（2021）</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-21-小牛论坛笔记（2021）</link>
+    <description>这篇文章主要讨论了神经机器翻译领域的几个研究方向,包括模型压缩、质量评估和训练策略等。文章介绍了减少模型冗余的方法,如深编码器-浅解码器结构和知识蒸馏等。同时还探讨了翻译模型的学习规律,提出了基于课程学习的训练策略。</description>
+    <pubDate>Mon, 21 Feb 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-17-笔记-Improving_Neural_Machine_Translation_by_Bidirectional_Training</guid>
+    <title>笔记-Improving_Neural_Machine_Translation_by_Bidirectional_Training</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-17-笔记-Improving_Neural_Machine_Translation_by_Bidirectional_Training</link>
+    <description>这篇文章提出了一种名为BiT的新方法,通过使用双向模型作为单向模型的初始化来提高机器翻译性能。BiT方法在训练早期阶段将源语言到目标语言的数据组合为源语言+目标语言到目标语言+源语言的形式进行预训练,然后再使用常规的源语言到目标语言数据进行训练。实验表明,BiT方法在8个语言对上都取得了优于现有最佳方法的性能提升,并且能提高模型的对齐质量和低资源场景下的效果。</description>
+    <pubDate>Thu, 17 Feb 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-14-TranSmart-笔记</guid>
+    <title>TranSmart-笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-14-TranSmart-笔记</link>
+    <description>这篇文章介绍了一个交互式机器翻译系统的主要功能和技术实现。系统的核心功能包括词级和句子级自动补全、增强翻译记忆等,采用了通用翻译模型、词汇约束、基于图的翻译记忆等技术。评估结果显示,该系统在词级准确率和BLEU分数上都有显著提升。</description>
+    <pubDate>Mon, 14 Feb 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-opennmt-tf_验证</guid>
+    <title>opennmt-tf_验证</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-opennmt-tf_验证</link>
+    <description>这篇文章介绍了使用OpenNMT-tf进行机器翻译模型训练的步骤,包括创建词汇表、配置训练参数、开始训练、模型推理和BLEU评分计算。文章还比较了不同模型平均数量和beam search参数对BLEU评分的影响,最终得到最佳的模型配置。</description>
+    <pubDate>Thu, 10 Feb 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-频率派vs贝叶斯派</guid>
+    <title>频率派vs贝叶斯派</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-频率派vs贝叶斯派</link>
+    <description>这篇文章主要介绍了频率派和贝叶斯派对概率的不同诠释。频率派认为参数θ是常量，通过最大似然估计求解；贝叶斯派则认为θ满足先验分布，通过最大后验估计求解。文章还简要对比了两种方法的发展方向，频率派演变为优化问题，贝叶斯派发展为概率图模型。</description>
+    <pubDate>Thu, 10 Feb 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-01-25-笔记-A_Novel_Hybrid_Approach_to_Improve_Neural_Machine_Translation_Decoding_using_Phrase-Based_Statistical_Machine_Translation</guid>
+    <title>笔记-A_Novel_Hybrid_Approach_to_Improve_Neural_Machine_Translation_Decoding_using_Phrase-Based_Statistical_Machine_Translation</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-01-25-笔记-A_Novel_Hybrid_Approach_to_Improve_Neural_Machine_Translation_Decoding_using_Phrase-Based_Statistical_Machine_Translation</link>
+    <description>这篇文章提出了一种结合短语统计机器翻译(SMT)来改进神经机器翻译(NMT)解码的混合方法。在beam search过程中,如果SMT翻译的token存在于beam中,就将其概率提升至beam中的最大概率。实验结果显示,该方法在某些策略下可以小幅提升BLEU和METEOR分数。</description>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-01-25-笔记-Dynamic_Terminology_Integration_for_COVID-19_and_other_EmergingDomains</guid>
+    <title>笔记-Dynamic_Terminology_Integration_for_COVID-19_and_other_EmergingDomains</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-01-25-笔记-Dynamic_Terminology_Integration_for_COVID-19_and_other_EmergingDomains</link>
+    <description>这篇文章提出了一种动态术语集成方法,用于提高新兴领域如COVID-19的机器翻译准确率。作者通过术语过滤、识别和集成等步骤,在不干扰训练过程的情况下提高了术语翻译的准确性,在测试集上实现了94%的COVID-19术语准确率。文章强调了高质量术语集的重要性,并指出术语改进对BLEU分数影响不大可能导致这方面研究被忽视。</description>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-25-xml文件修复</guid>
+    <title>xml文件修复</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-25-xml文件修复</link>
+    <description>这段代码使用BeautifulSoup库解析XML文件。它打开指定路径的文件，读取内容，并使用BeautifulSoup将其解析为格式化的XML结构。</description>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-19-cudnn_安装</guid>
+    <title>cudnn_安装</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2022-01-19-cudnn_安装</link>
+    <description>本文介绍了cuDNN的安装步骤,包括下载对应版本压缩包、解压文件、配置环境变量、复制头文件等操作。文章还提供了查看cuDNN版本的方法,以及CUDA、NVIDIA驱动和cuDNN之间的版本兼容性查询链接。</description>
+    <pubDate>Wed, 19 Jan 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-01-10-Google-GNMT</guid>
+    <title>Google-GNMT</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-01-10-Google-GNMT</link>
+    <description>这篇文章介绍了Google的神经机器翻译系统,采用了深层LSTM、残差连接、注意力机制等技术来提高翻译质量。系统使用wordpiece模型来处理稀有词,并通过强化学习、beam search优化等方法进一步改进性能。在WMT14英法和英德翻译任务上取得了最佳结果,人工评测中比短语翻译系统错误减少60%。</description>
+    <pubDate>Mon, 10 Jan 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-12-24-MAC问题列表</guid>
+    <title>MAC问题列表</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-12-24-MAC问题列表</link>
+    <description>这篇文章介绍了两个技术问题的解决方法。第一个是解决Mac系统上文件损坏的问题，通过在终端中输入特定命令来移除应用程序的隔离属性。第二个是关于Docker中docker.raw文件占用空间过大的问题，文章提供了一张图片展示如何调整相关设置。</description>
+    <pubDate>Fri, 24 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-23-MT_paper简单笔记</guid>
+    <title>MT_paper简单笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-23-MT_paper简单笔记</link>
+    <description>这篇文章探讨了定制化神经机器翻译模型的开发，介绍了几个相关的开源项目。文章还证明了当前方法在领域适应、数据清洗和数据增强方面的实用性。另外，文章对句子级BLEU评分的平滑技术进行了系统比较，探讨了BLEU评分的应用原因。</description>
+    <pubDate>Thu, 23 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-23-计算机辅助翻译-coursera课程1-3</guid>
+    <title>计算机辅助翻译-coursera课程1-3</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-23-计算机辅助翻译-coursera课程1-3</link>
+    <description>这篇文章主要介绍了计算机辅助翻译(CAT)的相关知识,包括翻译过程、译员能力评估、翻译问题分类等。文章还讨论了翻译技术的组成,如翻译记忆、术语管理等,以及语料库在翻译研究和实践中的应用。最后介绍了一些常用的语料库检索工具。</description>
+    <pubDate>Thu, 23 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-14-Deep_Transformer（DLCL,_pre-norm）</guid>
+    <title>Deep_Transformer（DLCL,_pre-norm）</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-14-Deep_Transformer（DLCL,_pre-norm）</link>
+    <description>这篇文章提出了两种方法来改进Transformer模型用于机器翻译:pre-norm和dlcl。这些方法可以训练更深的网络,缓解梯度消失问题,同时减小模型大小并加快训练速度。实验结果显示BLEU分数提升0.4-2.4分,但整体性能提升不大。</description>
+    <pubDate>Tue, 14 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-09-tensor2tensor框架记录</guid>
+    <title>tensor2tensor框架记录</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-09-tensor2tensor框架记录</link>
+    <description>这篇文章主要讨论了tensor2tensor和tensorflow的版本依赖问题，以及一些重要参数的设置。文章重点介绍了学习率的计算方式，包括constant、linear_warmup、rsqrt_decay和rsqrt_hidden_size四个部分，并提供了一个Python函数来计算学习率。</description>
+    <pubDate>Thu, 09 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-05-邻近搜索</guid>
+    <title>邻近搜索</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-12-05-邻近搜索</link>
+    <description>这篇文章主要介绍了几种用于大数据场景下邻近搜索的算法,包括Annoy、HNSW、KD Tree和LSH。文章重点讲解了Annoy和HNSW两种算法的原理和实现方法,Annoy通过建立二叉树来实现快速查找,HNSW则是基于图结构并引入了分层机制来提高搜索效率。</description>
+    <pubDate>Sun, 05 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-28-HMM_参数估计</guid>
+    <title>HMM_参数估计</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-28-HMM_参数估计</link>
+    <description>这篇文章主要介绍了隐马尔可夫模型(HMM)的基本概念和两个主要任务:推断和参数估计。文章详细讲解了完整数据和不完整数据情况下的参数估计方法,包括EM算法、前向-后向算法等,并给出了估计初始概率分布、发射概率和转移概率矩阵的具体步骤。</description>
+    <pubDate>Sun, 28 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-28-梯度消失和BN</guid>
+    <title>梯度消失和BN</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-28-梯度消失和BN</link>
+    <description>这篇文章主要讨论了深度学习中的梯度消失问题及其解决方案,以及不同的归一化方法(如BN、LN、WN等)。文章指出,归一化方法可以缓解协变量偏移问题,加速网络收敛,并具有权重和数据伸缩不变性,从而提高模型的鲁棒性和泛化能力。</description>
+    <pubDate>Sun, 28 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-23-生物医学BERT</guid>
+    <title>生物医学BERT</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-23-生物医学BERT</link>
+    <description>这篇文章介绍了几个生物医学领域的预训练语言模型,包括BioBERT、中文MC-BERT、Clinical BERT和Med-BERT。这些模型都是在大规模生物医学文本数据上进行预训练,以适应生物医学文本挖掘任务。文章还比较了不同模型的训练数据、训练策略和下游任务表现。</description>
+    <pubDate>Tue, 23 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-11-22-常用正则_python_re</guid>
+    <title>常用正则_python_re</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-11-22-常用正则_python_re</link>
+    <description>这篇文章介绍了使用Python的re模块进行文本处理的几个实用技巧。主要包括移除标点符号、拆分连在一起的英文句子、匹配特殊符号以及替换多余空格等操作，展示了正则表达式在文本清理和格式化中的应用。</description>
+    <pubDate>Mon, 22 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-18-不同数据噪音对SMT_NMT模型的影响</guid>
+    <title>不同数据噪音对SMT_NMT模型的影响</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-18-不同数据噪音对SMT_NMT模型的影响</link>
+    <description>这篇文章研究了不同类型噪音数据对神经机器翻译(NMT)和统计机器翻译(SMT)的影响。结果表明，NMT对噪音数据更敏感，特别是未翻译句子对NMT影响最大；而SMT对噪音数据的抵抗力较强。短句段(2-5个词)对两种模型都有轻微的增强作用。</description>
+    <pubDate>Thu, 18 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-17-机器翻译模型架构记录</guid>
+    <title>机器翻译模型架构记录</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-17-机器翻译模型架构记录</link>
+    <description>这篇文章主要讨论了机器翻译架构的一些研究发现。文章指出LSTM作为解码器在某些情况下性能优于Transformer解码器,并探讨了embedding大小、双向LSTM、注意力机制等因素对翻译性能的影响。文章还比较了不同架构的训练时间和BLEU得分,发现LSTM训练速度快,而基础Transformer模型效果较好。</description>
+    <pubDate>Wed, 17 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-15-Facebook_AI_2021_WMT论文笔记</guid>
+    <title>Facebook_AI_2021_WMT论文笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-15-Facebook_AI_2021_WMT论文笔记</link>
+    <description>Facebook AI在WMT21新闻翻译任务中采用了多语言翻译模型和Mixture-of-Expert技术，在14个翻译方向上取得了第一名的成绩。他们使用了加深的Transformer模型作为基线，并通过大规模回译、增加训练数据、模型微调和模型平均等技术进一步提升了翻译质量。</description>
+    <pubDate>Mon, 15 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</guid>
+    <title>As_I_began_to_love_myself..._-_Charlie_Chaplin</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</link>
+    <description>这篇文章探讨了自爱的重要性及其带来的积极影响。作者通过一系列&quot;当我开始真正爱自己&quot;的陈述，阐述了自爱如何引导人们获得真实、尊重、成熟、自信等品质。文章强调了接纳自我、活在当下、追求简单和内心智慧的重要性，最终指出生命中的冲突和挑战都是成长的机会。</description>
+    <pubDate>Wed, 10 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-10-Transformer模型训练技巧</guid>
+    <title>Transformer模型训练技巧</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-10-Transformer模型训练技巧</link>
+    <description>这篇文章主要探讨了影响Transformer模型训练质量和效率的各种参数设置。作者通过大量实验分析了batch size、学习率、warmup steps、最大句子长度等参数对模型性能的影响,并给出了一些实用的调参建议。文章还比较了不同GPU配置下的训练效果,以及checkpoint averaging等技巧对提升BLEU分数的作用。</description>
+    <pubDate>Wed, 10 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-09-2021_EMNLP_机器翻译预训练和回译的互补性</guid>
+    <title>2021_EMNLP_机器翻译预训练和回译的互补性</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-09-2021_EMNLP_机器翻译预训练和回译的互补性</link>
+    <description>研究了预训练(PT)和反向翻译(BT)对神经机器翻译模型的影响。研究发现PT主要作用于编码器,BT主要作用于解码器,两者具有互补性。结合PT和BT可以提高翻译质量,在WMT16英语-罗马尼亚语和英语-俄语任务上取得了最先进的结果。</description>
+    <pubDate>Tue, 09 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-04-机器翻译中域内小样本微调的正则</guid>
+    <title>机器翻译中域内小样本微调的正则</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-04-机器翻译中域内小样本微调的正则</link>
+    <description>探讨了在神经机器翻译中使用小规模领域数据进行微调时的过拟合问题。作者测试了三种正则化技术(Dropout、MAP-L2和Tuneout)来防止过拟合,发现使用Dropout和MAP-L2的组合可以使训练更加稳定,并显著提高BLEU评分。实验结果表明,正则化技术可以有效缓解微调过程中的过拟合问题,提高模型在小数据集上的泛化能力。</description>
+    <pubDate>Thu, 04 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-02-对比学习-减少翻译漏词错误</guid>
+    <title>对比学习-减少翻译漏词错误</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-02-对比学习-减少翻译漏词错误</link>
+    <description>一种基于对比学习的方法来减少神经机器翻译中的词语遗漏错误。通过随机遗漏、按词频遗漏和按词性遗漏三种方式构建负例，并使用最大边际损失来微调翻译模型，从而提高翻译质量。</description>
+    <pubDate>Tue, 02 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-01-2021_transformer_综述（部分）</guid>
+    <title>2021_transformer_综述（部分）</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-01-2021_transformer_综述（部分）</link>
+    <description>Transformer模型的发展和优化方向。文章分析了Transformer在模型效率、泛化能力和领域适应性方面的改进,并将优化工作分为架构改进、预训练和应用三个方面。文章重点讨论了注意力机制的优化,包括稀疏注意力、线性化注意力等方法,以解决长序列计算复杂度高和缺乏归纳偏置的问题。</description>
+    <pubDate>Mon, 01 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-25-truecase和detruecase使用</guid>
+    <title>truecase和detruecase使用</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-25-truecase和detruecase使用</link>
+    <description>truecase模型文件的结构和使用方法。文章解释了模型如何记录单词的大小写出现次数,以及在truecase过程中如何保留某些词的原有大小写形式。最后提到通常需要在truecase后进行detruecase,以恢复句首字母的大写。</description>
+    <pubDate>Mon, 25 Oct 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-13-2018-2019_Tecent_AI_Lab_machine_translation_相关内容</guid>
+    <title>2018-2019_Tecent_AI_Lab_machine_translation_相关内容</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-13-2018-2019_Tecent_AI_Lab_machine_translation_相关内容</link>
+    <description>这篇文章主要介绍了机器翻译中的语言理解和条件生成两个关键问题。文章讨论了深度网络、多头注意力机制和自注意力网络等方面的改进,以提高语言理解能力。在条件生成方面,文章提出了鲁棒transformer、全面转换和信息流等方法来优化生成过程。</description>
+    <pubDate>Wed, 13 Oct 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-09-为什么使用self-attention,机器翻译下的评估</guid>
+    <title>为什么使用self-attention,机器翻译下的评估</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-09-为什么使用self-attention,机器翻译下的评估</link>
+    <description>这篇文章主要比较了RNNs、CNNs和self-attention网络在机器翻译中的表现。实验发现,在长距离主谓一致任务中,RNNs的表现优于CNNs和self-attention网络;而在词义消歧任务中,self-attention网络(Transformer)的语义特征提取能力最强。文章指出评估神经机器翻译模型架构需要考虑内在因素的权衡,而不仅仅关注BLEU分数。</description>
+    <pubDate>Sat, 09 Oct 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-08-2021_Facebook_AI_BPE对Transformer模型记忆力的影响</guid>
+    <title>2021_Facebook_AI_BPE对Transformer模型记忆力的影响</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-08-2021_Facebook_AI_BPE对Transformer模型记忆力的影响</link>
+    <description>这篇文章主要研究了BPE词表大小对Transformer模型记忆能力的影响。实验表明,增加BPE词表大小可以提高模型的记忆能力,原因可能是BPE减少了训练序列的长度。作者通过三个任务验证了这一结论,并排除了其他可能的解释,最终确定序列长度的减少是观察到记忆效果增强的主要因素。</description>
+    <pubDate>Fri, 08 Oct 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-29-2018_ACL_迭代回译</guid>
+    <title>2018_ACL_迭代回译</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-29-2018_ACL_迭代回译</link>
+    <description>这篇文章主要介绍了迭代回译技术在神经机器翻译中的应用。研究表明,使用高质量的模型进行回译可以显著提升翻译质量,在高资源和低资源场景下都能取得良好效果。文章还探讨了单语数据利用、模型质量影响等相关问题,为迭代回译技术的应用提供了实践指导。</description>
+    <pubDate>Wed, 29 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-28-2018_ACL_The_Best_of_Both_Worlds:_Combining_Recent_Advances_in_Neural_Machine_翻译笔记</guid>
+    <title>2018_ACL_The_Best_of_Both_Worlds:_Combining_Recent_Advances_in_Neural_Machine_翻译笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-28-2018_ACL_The_Best_of_Both_Worlds:_Combining_Recent_Advances_in_Neural_Machine_翻译笔记</link>
+    <description>这篇论文提出了改进的RNMT+模型,单模型效果优于Transformer和原始RNN。作者对多头注意力、层归一化等技术进行了消融分析,并通过混合Transformer和RNMT+的编码器和解码器,实验出了更好的模型架构。</description>
+    <pubDate>Tue, 28 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-27-机器翻译的理解</guid>
+    <title>机器翻译的理解</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-27-机器翻译的理解</link>
+    <description>这篇文章主要讨论了机器翻译和大规模预训练语言模型在语义理解和系统性知识利用方面的不足。文章指出,当前机器翻译主要依赖于数据和统计规则,缺乏深层语义理解和世界知识的应用,导致翻译质量受限。同时,大规模预训练语言模型虽然规模庞大,但在语义和知识利用方面仍存在不足,需要更合理的内部结构和机制支撑。</description>
+    <pubDate>Mon, 27 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-16-GPT2_领域数据微调</guid>
+    <title>GPT2_领域数据微调</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-16-GPT2_领域数据微调</link>
+    <description>这篇文章介绍了如何使用transformers 4.11.0对GPT2-small 12层模型进行微调。文章详细说明了环境准备、数据准备和训练过程，包括使用run_clm.py脚本进行单机多卡训练的具体步骤。最后，文章还解释了如何计算模型的困惑度，即对模型输出的损失进行指数运算。</description>
+    <pubDate>Thu, 16 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-11-EM算法</guid>
+    <title>EM算法</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-11-EM算法</link>
+    <description>这篇文章主要介绍了Jensen不等式和期望最大化(EM)算法。文章首先定义了Jensen不等式,并给出了一个图形化的例子。然后详细推导了EM算法,包括E步和M步,并用抛硬币的例子说明了EM算法的应用过程。</description>
+    <pubDate>Sat, 11 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-09-sentencepiece_user_defined&control_symbols</guid>
+    <title>sentencepiece_user_defined&amp;control_symbols</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-09-sentencepiece_user_defined&control_symbols</link>
+    <description>SentencePiece库中用户自定义符号和控制符号的使用方法。用户自定义符号在任何上下文中都被视为一个token，可以在输入句子中出现；而控制符号只保留ID，即使出现在输入文本中也不会被作为一个token处理，用户需要在编码后显式插入ID。</description>
+    <pubDate>Thu, 09 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-09-概率分布-熵</guid>
+    <title>概率分布-熵</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-09-概率分布-熵</link>
+    <description>这篇文章主要介绍了概率论中的一些基本概念和特性，包括均值、方差、期望、熵等。文章还通过一个具体的天气预报例子，展示了如何计算联合熵、条件熵和互信息，说明了随机变量之间的相互依赖关系。</description>
+    <pubDate>Thu, 09 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-07-使用SMT特征提高NMT-2016_AAAI_百度</guid>
+    <title>使用SMT特征提高NMT-2016_AAAI_百度</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-07-使用SMT特征提高NMT-2016_AAAI_百度</link>
+    <description>这篇文章提出了一种在对数线性框架下将统计机器翻译(SMT)特征与神经机器翻译(NMT)模型集成的方法,以改进NMT的性能。作者组合了三个SMT特征:翻译模型、单词奖励特征和n-gram语言模型,解决了NMT中的OOV问题、翻译不充分问题,并利用了大规模单语数据。实验结果表明,该方法在NIST中英翻译测试集上提升了2.33 BLEU分。</description>
+    <pubDate>Tue, 07 Sep 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-31-翻译-Finding_the_Words_to_Say:_Hiddent_State_Visualizations_for_Language_Models</guid>
+    <title>翻译-Finding_the_Words_to_Say:_Hiddent_State_Visualizations_for_Language_Models</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-31-翻译-Finding_the_Words_to_Say:_Hiddent_State_Visualizations_for_Language_Models</link>
+    <description>这篇文章介绍了通过可视化GPT2-XL语言模型隐层状态来探索模型思考过程的方法。文章展示了如何将隐层状态映射到词表并使用softmax计算概率,以及如何查看每层输出token的排名变化,从而分析模型在不同层级的决策过程。通过这些可视化技术,可以洞察模型的内部工作机制,包括句子结构识别、关键词预测以及潜在的性别偏见等。</description>
+    <pubDate>Tue, 31 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-24-PR-ROC-AUC曲线</guid>
+    <title>PR-ROC-AUC曲线</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-24-PR-ROC-AUC曲线</link>
+    <description>这篇文章主要介绍了PR曲线和ROC-AUC曲线的概念及特点。PR曲线反映了查准率和查全率之间的关系,通过调节置信度阈值来绘制。ROC-AUC曲线则反映了真正类率和假正类率的关系,其面积不受正负样本比例影响。</description>
+    <pubDate>Tue, 24 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2021-08-23-ubuntu18.04_GPU环境搭建</guid>
+    <title>ubuntu18.04_GPU环境搭建</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2021-08-23-ubuntu18.04_GPU环境搭建</link>
+    <description>在Linux系统上安装GPU驱动、CUDA和PyTorch的步骤和注意事项。文章详细说明了安装NVIDIA驱动、CUDA工具包的过程,以及可能遇到的问题和解决方法。此外,还提供了验证安装是否成功的方法,以及更换pip源和apt源的相关信息。</description>
+    <pubDate>Mon, 23 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-19-基于字典的跨域神经机器翻译数据增强</guid>
+    <title>基于字典的跨域神经机器翻译数据增强</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-19-基于字典的跨域神经机器翻译数据增强</link>
+    <description>这篇文章介绍了一种基于字典的数据增强方法,用于跨领域神经机器翻译。该方法通过使用平行领域字典和非领域平行语料,创建伪领域平行语料,主要步骤包括短语句子嵌入、匹配、对齐和替换。实验结果表明,该方法可以有效提高领域覆盖率,改善跨领域神经机器翻译的性能。</description>
+    <pubDate>Thu, 19 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-18-WMT2021-新闻-wechat</guid>
+    <title>WMT2021-新闻-wechat</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-18-WMT2021-新闻-wechat</link>
+    <description>这篇文章介绍了WeChat在WMT21机器翻译比赛中使用的神经机器翻译系统。主要通过改进模型架构(如Pre-Norm和Post-Norm Transformer、AAN等)和大规模合成数据生成(如反向翻译、知识蒸馏等)来提高翻译性能。文章还探讨了一些先进的微调技术和基于Self-BLEU的模型集成方法,以进一步提升系统效果。</description>
+    <pubDate>Wed, 18 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-08-17-linux常用命令</guid>
+    <title>linux常用命令</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-08-17-linux常用命令</link>
+    <description>这篇文章主要介绍了一些常用的Linux命令行操作。文章涵盖了端口管理、文件处理、压缩解压、FTP下载等多个方面的命令示例。此外,还包含了一个简短的Python代码片段,用于修改目录下的文件名。</description>
+    <pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-16-WMT2019-新闻-Facebook</guid>
+    <title>WMT2019-新闻-Facebook</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-16-WMT2019-新闻-Facebook</link>
+    <description>这篇文章介绍了一个机器翻译系统,主要针对英德和英俄翻译方向。系统采用了大规模反向翻译、数据过滤、模型集成和噪声信道模型重排等技术,相比2018年提升了4.5个BLEU分。文章详细描述了数据预处理、模型训练和解码等各个环节的具体做法。</description>
+    <pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-CCMT2020-OPPO</guid>
+    <title>CCMT2020-OPPO</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-CCMT2020-OPPO</link>
+    <description>这篇文章主要介绍了OPPO在CCMT 2020机器翻译比赛中的系统设计和发现。OPPO在7个任务方向中的6个排名第一,主要采用了Transformer模型,并使用了回译、领域微调、知识蒸馏等技术。文章还发现,在低资源语料上简单应用不同的中文分词工具,可以在多个任务中带来明显的性能提升。</description>
+    <pubDate>Sun, 15 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-WMT2020-新闻-小牛</guid>
+    <title>WMT2020-新闻-小牛</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-WMT2020-新闻-小牛</link>
+    <description>这篇文章介绍了NiuTrans团队在WMT20机器翻译评测中的系统。该系统在日英和英日翻译方向上排名第一,主要应用了迭代回译、宽深Transformer模型、迭代知识蒸馏和迭代微调等技术。系统的训练步骤包括数据预处理、生成伪数据、多样化翻译模型、知识蒸馏、领域微调和后处理等。</description>
+    <pubDate>Sun, 15 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-Atman机器翻译模型笔记</guid>
+    <title>Atman机器翻译模型笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-Atman机器翻译模型笔记</link>
+    <description>这篇文章主要介绍了机器翻译模型的训练过程和数据处理方法。文章详细描述了从大规模语料训练基础模型到领域精调的完整流程,包括使用平行语料和单语回译语料进行训练,以及采用联合训练、EWC约束等技术来优化模型性能。此外,文章还讨论了语料清洗和数据增强的方法,如使用语言模型、句对相似度和统计规则进行数据筛选,以及通过反向翻译和对偶学习等技术来扩充训练数据。</description>
+    <pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-WMT2020-生物医学-华为</guid>
+    <title>WMT2020-生物医学-华为</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-WMT2020-生物医学-华为</link>
+    <description>华为在WMT20生物医学翻译任务中的方法。研究者探讨了领域内字典对提高跨领域神经机器翻译性能的影响,并利用预训练机器翻译模型进行迁移学习。通过领域数据增强、重排序等技术,在英-法、英-德、英-意大利语对上取得了最先进的结果。</description>
+    <pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-理解大规模反向翻译</guid>
+    <title>理解大规模反向翻译</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-理解大规模反向翻译</link>
+    <description>1. 研究发现在反向翻译中,使用采样(sampling)或带噪声的束搜索(noised beam search)生成合成数据比标准束搜索或贪心搜索更有效,可以提供更强的训练信号。2. 通过大规模实验比较了合成数据和真实双语数据的效果,以及不同领域数据的影响,在WMT14英德翻译任务上达到了35 BLEU的最佳结果。</description>
+    <pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/features</guid>
+    <title>features</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/features</link>
+    <description>An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more</description>
+    <pubDate>Sat, 07 Aug 2021 15:32:14 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>next-js</category><category>tailwind</category><category>guide</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2020-01-19-PyTorch矩阵乘法</guid>
+    <title>PyTorch矩阵乘法</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Tech/2020-01-19-PyTorch矩阵乘法</link>
+    <description>这篇文章介绍了PyTorch中不同类型的乘法操作及其特性。文章详细解释了element-wise乘法（*）、矩阵乘法（@）、mm()、bmm()、mul()和matmul()等函数的用法和区别。同时，文章还讨论了这些操作对广播（broadcast）的支持情况，并简要说明了广播的规则。</description>
+    <pubDate>Sun, 19 Jan 2020 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Tech</category>
+  </item>
+
+    </channel>
+  </rss>

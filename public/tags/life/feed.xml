@@ -1,0 +1,74 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Tz Blog</title>
+      <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
+      <description>博客记录学习和生活。</description>
+      <language>zh-cn</language>
+      <managingEditor>tztw4723@gmail.com (Tz)</managingEditor>
+      <webMaster>tztw4723@gmail.com (Tz)</webMaster>
+      <lastBuildDate>Wed, 10 Nov 2021 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/tags/life/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</guid>
+    <title>As_I_began_to_love_myself..._-_Charlie_Chaplin</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</link>
+    <description>这篇文章探讨了自爱的重要性及其带来的积极影响。作者通过一系列&quot;当我开始真正爱自己&quot;的陈述，阐述了自爱如何引导人们获得真实、尊重、成熟、自信等品质。文章强调了接纳自我、活在当下、追求简单和内心智慧的重要性，最终指出生命中的冲突和挑战都是成长的机会。</description>
+    <pubDate>Wed, 10 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-02-25-Sam_Altman,_Elon_Musk_2016年9月采访</guid>
+    <title>Sam_Altman,_Elon_Musk_2016年9月采访</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-02-25-Sam_Altman,_Elon_Musk_2016年9月采访</link>
+    <description>这篇文章主要讨论了做有意义的事情和人工智能的风险与机遇。作者强调了创造能带来变化的事物的重要性,以及技术进步背后的努力。关于人工智能,文章提出了民主化AI技术和人机融合的观点,认为这可以解决AI控制权的问题。</description>
+    <pubDate>Sat, 25 Feb 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-癌症-Note</guid>
+    <title>癌症-Note</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-癌症-Note</link>
+    <description>这篇文章主要讨论了癌症的发病率、致癌因素以及治疗方法。文章指出癌症源于基因突变，发病率随年龄增长而上升，并介绍了几种主要的抗癌方法，包括手术、化疗药物和免疫疗法。文章还强调了癌细胞与免疫系统之间的&quot;密码战&quot;，以及靶向药物和免疫疗法在这场战斗中的作用。</description>
+    <pubDate>Fri, 12 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-量子力学&相对论&量子计算&芯片-Note</guid>
+    <title>量子力学&amp;相对论&amp;量子计算&amp;芯片-Note</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-12-量子力学&相对论&量子计算&芯片-Note</link>
+    <description>这篇文章主要介绍了现代物理学的两大支柱:量子力学和相对论,以及它们在微观和宏观世界的应用。文章还讨论了量子计算和半导体芯片等前沿技术领域,指出这些技术都是建立在量子力学基础之上的。最后文章提到,虽然中国在芯片领域投入巨大,但与国际巨头相比仍有差距。</description>
+    <pubDate>Fri, 12 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-21-王坚_天津人工智能主题演讲-2023</guid>
+    <title>王坚_天津人工智能主题演讲-2023</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-21-王坚_天津人工智能主题演讲-2023</link>
+    <description>人工智能的创新过程和历史发展。文章强调创新是一个需要积累的完整系统，并通过GPU技术的演进和人工智能应用的发展来说明这一点。文章还指出，未来人工智能的发展方向将从资源消耗转向提高效率。</description>
+    <pubDate>Sun, 21 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-22-微软中国CTO_韦青_工程师思维-笔记</guid>
+    <title>微软中国CTO_韦青_工程师思维-笔记</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2023-05-22-微软中国CTO_韦青_工程师思维-笔记</link>
+    <description>韦青演讲</description>
+    <pubDate>Mon, 22 May 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
+  </item>
+
+    </channel>
+  </rss>

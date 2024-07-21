@@ -18,15 +18,7 @@
 public/sitemap.xml
 .vercel
 
-# production
-/build
-*.xml
 
-# rss feed
-/public/feed.xml
-
-# search
-/public/search.json
 
 # misc
 .DS_Store

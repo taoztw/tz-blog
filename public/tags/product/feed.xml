@@ -1,0 +1,34 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Tz Blog</title>
+      <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
+      <description>博客记录学习和生活。</description>
+      <language>zh-cn</language>
+      <managingEditor>tztw4723@gmail.com (Tz)</managingEditor>
+      <webMaster>tztw4723@gmail.com (Tz)</webMaster>
+      <lastBuildDate>Mon, 08 Aug 2022 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/tags/product/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2022-08-08-笔记-产品经理</guid>
+    <title>笔记-产品经理</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2022-08-08-笔记-产品经理</link>
+    <description>这篇文章主要讨论了产品经理的工作内容和方法。文章涵盖了验证码设计、需求变更管理、产品规划、与开发人员合作、文档编写等多个方面。文章强调了产品经理需要深入理解用户需求,关注产品场景,善于沟通和管理项目,并且要不断学习新技术。总的来说,文章为产品经理提供了全面的工作指导和建议。</description>
+    <pubDate>Mon, 08 Aug 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Product</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2023-03-26-产品笔记-1</guid>
+    <title>产品笔记-1</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Product/2023-03-26-产品笔记-1</link>
+    <description>这篇文章主要介绍了互联网的发展历程、产品经理的定义和能力要求,以及产品经理的工作内容和成长路径。文章指出,互联网经历了PC时代、移动时代,正在进入万物互联时代。产品经理需要具备好奇心、同理心、逻辑思维和协调能力,负责产品的全生命周期管理。产品经理的工作包括方向设计、功能设计、交互设计、商业化设计和增长设计等方面。</description>
+    <pubDate>Sun, 26 Mar 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Product</category>
+  </item>
+
+    </channel>
+  </rss>

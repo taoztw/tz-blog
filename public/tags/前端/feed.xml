@@ -1,0 +1,54 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Tz Blog</title>
+      <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
+      <description>博客记录学习和生活。</description>
+      <language>zh-cn</language>
+      <managingEditor>tztw4723@gmail.com (Tz)</managingEditor>
+      <webMaster>tztw4723@gmail.com (Tz)</webMaster>
+      <lastBuildDate>Thu, 05 Oct 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/tags/前端/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-JS_基础2</guid>
+    <title>JS_基础2</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-JS_基础2</link>
+    <description>这篇文章主要介绍了ES6及之后版本的一些新特性,包括let/const声明、模板字符串、对象和数组的新语法等。同时还讨论了浏览器的进程模型、渲染主线程的工作原理,以及JavaScript中的异步编程、Promise规范和async/await语法。</description>
+    <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-css样式</guid>
+    <title>css样式</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-css样式</link>
+    <description>这篇文章主要介绍了CSS3在不同浏览器中的实现和前缀使用情况。文章提到了浏览器厂商前缀的使用，如-webkit、-moz等，以及CSS预处理器和后处理器的概念。此外，文章还简要介绍了一些常用的CSS属性和技巧，如盒模型、浮动和文字居中等。</description>
+    <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-前端工程化</guid>
+    <title>前端工程化</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2023-10-05-前端工程化</link>
+    <description>前端工程化的概念和实践。文章讨论了软件工程学在解决软件开发问题中的应用,并详细介绍了模块化、包管理、Monorepo、Less预处理器和Webpack等前端工程化的关键技术和工具。文章强调了这些技术在提高开发效率、代码质量和项目可维护性方面的重要作用。</description>
+    <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2024-01-10-Refactoring_UI</guid>
+    <title>Refactoring_UI</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/前端/2024-01-10-Refactoring_UI</link>
+    <description>这篇文章主要讨论了网页设计的各个方面，包括功能优先、层次结构、布局与间距、文字设计、色彩运用、创造深度感以及图像处理等。文章强调了从功能出发、建立系统化的设计方法、注重视觉层次和可读性、合理使用色彩和阴影来创造深度，以及在细节上精益求精的重要性。最后，文章鼓励设计师跳出框架思维，创造性地解决设计问题。</description>
+    <pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>前端</category>
+  </item>
+
+    </channel>
+  </rss>
