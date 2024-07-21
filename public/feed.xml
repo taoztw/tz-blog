@@ -771,16 +771,6 @@
   </item>
 
   <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</guid>
-    <title>As_I_began_to_love_myself..._-_Charlie_Chaplin</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</link>
-    <description>这篇文章探讨了自爱的重要性及其带来的积极影响。作者通过一系列&quot;当我开始真正爱自己&quot;的陈述，阐述了自爱如何引导人们获得真实、尊重、成熟、自信等品质。文章强调了接纳自我、活在当下、追求简单和内心智慧的重要性，最终指出生命中的冲突和挑战都是成长的机会。</description>
-    <pubDate>Wed, 10 Nov 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>Life</category>
-  </item>
-
-  <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-10-Transformer模型训练技巧</guid>
     <title>Transformer模型训练技巧</title>
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-10-Transformer模型训练技巧</link>
@@ -788,6 +778,16 @@
     <pubDate>Wed, 10 Nov 2021 00:00:00 GMT</pubDate>
     <author>tztw4723@gmail.com (Tz)</author>
     <category>AI</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</guid>
+    <title>As_I_began_to_love_myself..._-_Charlie_Chaplin</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Life/2021-11-10-As_I_began_to_love_myself..._-_Charlie_Chaplin</link>
+    <description>这篇文章探讨了自爱的重要性及其带来的积极影响。作者通过一系列&quot;当我开始真正爱自己&quot;的陈述，阐述了自爱如何引导人们获得真实、尊重、成熟、自信等品质。文章强调了接纳自我、活在当下、追求简单和内心智慧的重要性，最终指出生命中的冲突和挑战都是成长的机会。</description>
+    <pubDate>Wed, 10 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Life</category>
   </item>
 
   <item>
