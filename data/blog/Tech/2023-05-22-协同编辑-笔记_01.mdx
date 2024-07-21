@@ -1,0 +1,47 @@
+---
+title: 协同编辑-笔记_01
+date: 2023-05-22
+lastmod: 2023-05-22
+tags: ['Tech']
+draft: false
+summary: 这篇文章介绍了协同编辑的几种主要技术方法，包括编辑锁、GNU diff-patch、Myer's diff-patch和Operational Transformation (OT)。文章详细解释了OT的工作原理，并根据不同的应用场景和需求，给出了选择协同编辑技术的建议。
+layout: PostSimple
+---
+
+协同编辑：
+
+- 实时通信：通过websocket
+- 编辑冲突
+  - 编辑锁：最简单的方法，但是使用体验不好
+  - GNU diff-patch：diff和patch是unix下的命令，diff比较两个文本的不同，patch更新文件。基于行比较，非常容易产生冲突。
+  - Myer's diff-patch: 字符匹配。会丢失一些文字
+  - Operational Transformation，OT
+
+OT：
+
+将文本内容修改转成3种类型的操作：
+
+retain(n)，保持n个字符
+
+Insert(str):插入字符
+
+delete(str)：删除字符
+
+将编辑转成操作，如果多人同时进行操作，就需要最操作进行Transformation。
+
+> 分布式 Operational Transformation
+>
+> Unfortunately, implementing OT sucks. There’s a million algorithms with different tradeoffs, mostly trapped in academic papers. The algorithms are really hard and time consuming to implement correctly. I am an ex Google Wave engineer. Wave took 2 years to write and if we rewrote it today, it would take almost as long to write a second time.
+
+**初步结论**
+
+> https://fex.baidu.com/blog/2014/04/realtime-collaboration/
+
+- 如果你只是一个内部小项目，实时性要求不高，但对准确性要求比较高
+  - 推荐用 merge 或 diff3 工具，出现同一行冲突时由用户来解决，这样能避免自动合并有可能出错的问题
+- 如果想具备一定的实时性，流量不大，不想实现太复杂，且对少量的冲突可以忍受
+  - 推荐用 Myer’s diff，后端只开一个 Node 进程
+- 如果想具备实时性，且有多台后端服务同时处理
+  - 可以用 Operational Transformation 或 Myer’s diff，但需要注意分布式带来的问题
+- 如果需要很精细的控制，如支持富文本编辑等非单纯文本格式
+  - 只能使用 Operational Transformation，但要自己实现操作合并算法，比如 XML 可以参考[这篇文章](http://www.codecommit.com/blog/java/understanding-and-applying-operational-transformation)

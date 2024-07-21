@@ -1,0 +1,732 @@
+---
+title: Git_基础
+date: 2023-09-28
+lastmod: 2023-09-28
+tags: ['Tech']
+draft: false
+summary: 介绍了Git的基本概念和常用操作。
+layout: PostSimple
+---
+
+## git config
+
+`git config --global user.name "tz"`
+
+`git config --global user.email "1@qq.com"`
+
+在`~/.gitconfig`可以看到如下配置, 也可以通过`git config -l`来查看
+
+```
+ [user]
+         name = taoztw
+         email = 472311509@qq.com
+```
+
+去除`--global`选项则会在当前目录下`.git/config`文件生成对应的配置项,git 优先使用当前目录下的配置。
+
+`git config  user.name "tz"`
+
+`git config  user.email "1@qq.com"`
+
+`cat .git/config`
+
+```
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[user]
+	name = tz-test
+	email = tz@qq.com
+```
+
+> 三个级别，user ,global, system
+>
+> git config --global --list --show-origin
+
+```shell
+# 配置代理
+git config http.proxy 'http://127.0.0.1:7890'
+
+# 查看代理配置内容
+git config --get http.proxy
+```
+
+## git init
+
+### 本地初始化
+
+> 每隔一秒运行一次`find .`命令，并在每次运行之间显示差异 d
+>
+> watch -n 1 -d find .
+
+`git init `
+
+运行git命令之后，本地会多出如下文件
+
+> 删除了hooks下的\*.sample
+
+![image-20230923161022408](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923161022408.png)
+
+> windows下使用tree /F 来树形打印文件
+
+#### .git/config文件
+
+存储配置项
+
+`cat .git/config`
+
+```
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[user]
+	name = tz-test
+	email = tz@qq.com
+```
+
+## git add
+
+```bash
+# 新建一个文件，然后git add
+echo "hello git" > hello.txt
+git add hello.txt
+```
+
+git add 一个文件之后(生成blob object)，.git目录下的变化
+
+增加了1个目录，两个文件：
+
+./.git/objects/8d/0e41234f24b6da002d962a26c2495ea16a425f
+
+index文件
+
+| ADD 前                                                                                                            | ADD后                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| ![image-20230923161239858](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923161239858.png) | ![image-20230923161249577](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923161249577.png) |
+
+### object 对象
+
+文件 8d/0e41234f24b6da002d962a26c2495ea16a425f 存储了git add 文件的内容和类型。可以通过如下命令来查看
+
+```bash
+git cat-file -t 8d0e41234f24b6da002d962a26c2495ea16a425f  # 查看对象类型  blob (文本)
+git cat-file -p 8d0e41234f24b6da002d962a26c2495ea16a425f  # 查看对象内容  hello git
+git cat-file -s 8d0e41234f24b6da002d962a26c2495ea16a425f  # 查看对象的长度  10
+```
+
+**8d0e41234f24b6da002d962a26c2495ea16a425f**hash值存储了对象的内容和类型长度。不包括文件名。 如果两个文件，被git add，但是文件中的内容是一致的，那么只会有一个object
+
+可以通过`echo "blob 10\0hello git" | shasum`来生成文件的hash值.
+
+./.git/objects/8d/0e41234f24b6da002d962a26c2495ea16a425f 文件中的内容是压缩后的信息。可以通过如下python脚本来查看内容
+
+```python
+import zlib
+compressed_contents = open("./.git/objects/8d/0e41234f24b6da002d962a26c2495ea16a425f",'rb').read()
+zlib.decompress(compressed_contents)
+
+"""
+OUTPUT:
+b'blob 10\x00hello git\n'
+"""
+```
+
+> SHA1 碰撞
+>
+> 两个pdf文件一样，得到的hash是一样的。
+>
+> https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html
+
+### index
+
+<img
+  src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923174022747.png"
+  alt="image-20230923174022747"
+/>
+
+git add 之后会将文件名的信息存储在(Staging Area)index中。 通过git ls-files查看索引信息。
+
+如果新增一个文件，会生成一个新的index，
+
+| -                                                | -                                                                                                                                  |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 新增了如图object对象                             | <img src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923174501918.png" alt="image-20230923174501918"  /> |
+| index                                            | ![image-20230923175056109](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923175056109.png)                  |
+| 修改一下文件提交，index更新，新增一个blob object | ![image-20230923175510332](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923175510332.png)                  |
+
+index文件通过如下命令查看：
+
+git ls-files # 列出索引区的文件
+
+git ls-files -s # 文件权限 blob对象 文件名
+
+```
+100644 8d0e41234f24b6da002d962a26c2495ea16a425f 0	hello.txt
+100644 fcad531b1d7c12ac34b70872775303896b5772ce 0	hello2.txt
+```
+
+## git commit
+
+### 第一次提交
+
+产生commit object和tree object
+
+```bash
+git commit -m "1st commit"
+```
+
+[main (root-commit) 802fdb3] 1st commit
+2 files changed, 2 insertions(+)
+create mode 100644 hello.txt
+create mode 100644 hello2.txt
+
+新增了两个object
+
+802fdb35031d60195c2ac65e2c57279a94cf2128 commit 对象
+
+0465b5321aa15e4ce73452552d2e3f9a6ecf2a7d tree对象
+
+```bash
+git cat-file -p 802fdb35031d60195c2ac65e2c57279a94cf2128
+
+
+# Result:
+tree 0465b5321aa15e4ce73452552d2e3f9a6ecf2a7d
+author tz-test <tz@qq.com> 1695463761 +0800
+committer tz-test <tz@qq.com> 1695463761 +0800
+
+1st commit
+----
+
+git cat-file -p 0465b5321aa15e4ce73452552d2e3f9a6ecf2a7d
+# Result:
+100644 blob 8d0e41234f24b6da002d962a26c2495ea16a425f	hello.txt
+100644 blob 121418f0d9ae355797c6543bc2ba898ded746b59	hello2.txt
+```
+
+### 第二次提交
+
+修改了hello.txt
+
+```bash
+git commit -m "2nd commit"
+
+# Result
+[main 161e3e4] 2nd commit
+1 file changed, 1 insertion(+), 1 deletion(-)
+---
+
+
+git cat-file -p 161e3e4
+
+# Result
+tree f01bcf6d20fdcdb72e5ec6583e90c20e31ebcc07
+parent 802fdb35031d60195c2ac65e2c57279a94cf2128
+author tz-test <tz@qq.com> 1695466956 +0800
+committer tz-test <tz@qq.com> 1695466956 +0800
+
+2nd commit
+---
+
+# 查看tree 对应的文件
+git cat-file -p f01bcf6d20fdcdb72e5ec6583e90c20e31ebcc07
+100644 blob b1a798449d920aeafbcff801bbfa65cbcdda24d3	hello.txt
+100644 blob 121418f0d9ae355797c6543bc2ba898ded746b59	hello2.tx
+
+
+```
+
+### 第三次提交
+
+创建一个文件夹t，在文件夹t下面创建一个文件2.txt
+
+> 创建空文件夹不会对git 造成影响
+
+```bash
+git cat-file -p dba645903b120e795acf67e605aca88b2e3be885
+
+# Result
+100644 blob d91b34daf5dc5648e2f10fb48430d20c0edaf3ea	1.txt
+100644 blob b1a798449d920aeafbcff801bbfa65cbcdda24d3	hello.txt
+100644 blob 121418f0d9ae355797c6543bc2ba898ded746b59	hello2.txt
+040000 tree f81917a835a4ee1c5d2d8118ca963ca8514587c9	t
+
+git cat-file -p f81917a835a4ee1c5d2d8118ca963ca8514587c9
+# Result
+100644 blob 190a18037c64c43e6b11489df4bf0b9eb6d2c9bf	2.txt
+```
+
+三次提交的图：
+
+![image-20230923193508153](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230923193508153.png)
+
+每个commit就是一个版本，不同版本可以直接找到对应的文件。
+
+## git文件状态
+
+![image-20230924092620126](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230924092620126.png)
+
+git add 可以将文件从`untracked`状态到staged（索引区）(可以通过git ls-files -s 查看)
+
+将文件从索引区删除，到untracked状态 `git rm --cached test.txt`
+
+修改了文件，文件状态为 Modified
+
+`git restore --staged file1.txt` 在staged 回滚文件
+
+git restore file.txt 同步当前索引区对应文件的内容。
+
+git checkout file.txt 也可以恢复文件内容，取消modifed的修改
+
+## Branches
+
+> Branches are named pointers to commits
+
+需要记录
+
+- 每一个分支指向的commit
+- 标识当前我们在哪个分支
+
+Main：默认主分支
+
+HEAD ：指向当前分支的最新commit
+
+```bash
+cat .git/HEAD
+cat .git/refs/heads/main   # 存储 commit 对象 SHA1值
+
+git cat-file -t 581bd927c
+```
+
+### 基础命令
+
+```bash
+
+# 查看分支
+git branch
+
+# 查看所有分支 （本地+远程）
+git branch -a
+# 查看远程分支
+git branch -r
+
+
+# 创建分支
+git branch dev
+# 切换分支
+git checkout dev
+
+# 创建并切换分支
+git checkout -b dev
+
+# 删除分支
+git branch -d dev
+git branch -D dev # (强制删除)
+
+# 修改分支名字
+git branch -m old_name new_name
+```
+
+`git branch -d dev` 删除前会检查分支是否合并。如果要强制删除，直接使用`git branch -D dev`
+
+删除了dev分支，会产生垃圾对象，只是删除了指针()
+
+> 多次git add后也会产生垃圾对象.
+
+`git checkout 49db074`
+
+git checkout 出特定的commit，把head 指向具体的commit
+
+（在一个场景中比较常用：在删除一个分支后，又想重新回到删除的分支进行工作）恢复被误删的分支
+
+`git reflog` 查看之前进行的操作日志
+
+## git diff
+
+```
+diff --git a/1.txt b/1.txt
+index d91b34d..c23745d 100644
+--- a/1.txt
++++ b/1.txt
+@@ -1 +1,4 @@
+ hello folder
++
++
++new add
+```
+
+index d91b34d..c23745d 100644 d91b34d：索引区对象； c23745d 工作区文件对象
+
+--- a/1.txt 索引区文件内容
++++ b/1.txt 工作区文件内容
+
+@@ -1 +1,4 @@
+
+-1： 索引区展示第一行
+
++1,4： 工作区文件第1行到第4行
+
+## git merge
+
+### fast forward
+
+基于main分支 新建一个dev分支。 将main分支指针指向dev分支。
+
+![image-20230924111241854](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230924111241854.png)
+
+![image-20230924113658886](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230924113658886.png)
+
+### 3 way merge
+
+![image-20230924113524673](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230924113524673.png)
+
+最终merge的main，有两个来源。 （如果有冲突需要解决）
+
+<img
+  src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230924113828611.png"
+  alt="image-20230924113828611"
+/>
+
+git rebase:在 3 way merge场景中， 在bugfix分支，我们可以 git rebase main 将main分支最新的commit合并到bugfix分支，然后再在main分支上进行git merge bugfix(这个merge是fast forward merge)
+
+git rebase main会重写 bugfix 分支。 如果其他人正在用bugfix分支，rebase之后会影响其他人。
+
+## 远程仓库
+
+```bash
+# origin 可以名称自定义
+git remote add origin https://github.com/taoztw/git-demo.git
+
+# 修改为token
+git remote set-url origin https://<your_token>@github.com/taoztw/git-demo.git
+
+# push 之后会生成 .git/refs/remotes/origin/main  存储origin/main 的commit object
+git push -u origin main
+
+
+# 删除origin
+git remote remove origin
+```
+
+```bash
+# mysql-local-git-demo 自定义文件夹名称
+git clone <your_url> mysql-local-git-demo
+
+```
+
+```bash
+git remote # 查看远程仓库名
+git remote -v #  查看远程仓库 fetch push   cat .git/config 也有相关信息
+
+# 查看本地分支和远程分支的关联情况， 会联网查看远程仓库
+git remote show origin
+
+# 同步远程分支的代码，同步本地没有，远程有的文件，如果远程分支被删除，不做任何相应
+git fetch -v
+
+# 修改删除 本地有，远程没有(以下两个都行)
+git remote prune
+git fetch --prune
+
+#
+```
+
+**git fetch & git pull**
+
+git fetch 先fetch 再merge
+
+git pull: fetch + merge
+
+**Git push,**
+
+git push --set-upstream origin feature-1
+
+git push origin -d feature-1 # 删除远程的feature 1
+
+**git show-ref**
+
+## pull request
+
+修改其他人的仓库，
+
+1. 先fork，复制项目到个人
+2. 然后commit ，在new pull request
+
+**如何同步fork的项目**
+
+git remote add upstream url.git
+
+git remote -v 查看当前的remote
+
+git pull upstream main
+
+git push origin main
+
+## Git ssh Key
+
+ssh-keygen -C "emial"
+
+生成的时候路径后面添加一个 name
+
+在.ssh目录创建一个config文件
+
+```ssh
+Host github.com
+IdentityFile /Users/.../github
+User git2022
+
+Host gitlab.com
+IdentityFile /Users/.../github
+User git2022
+```
+
+## git tags
+
+承载版本
+
+静态的指针，不会改变。
+
+semantic versioning 2.0.0
+
+1. MAJOR: version when you make incompatible API changes，大版本，大的feature更新
+2. MINOR version when you add functionality in a backwards compatile manner, 小版本，小的feature更新
+3. PATCH version when you make backwards compatible bug fixes 只修复bug
+
+Lightwright tag: git tag v1.o
+
+annotated tag: git tag -a `<tag_name>` -m `<tag message>` # 会在object下新增一个tag对象
+
+> 以当前时刻所在分支的commit
+
+`git tag -a <tag_name> <commit_SHA1_value>`
+
+查看tag： git tag
+
+删除tag: `git tag -d <tag_name>`
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230925003826309.png)
+
+**tag的本地和远程同步**
+
+`git push origin <tag_name>`
+
+i.e. git push origin v1.0
+
+同步tag: git fetch
+
+删除tag
+
+`git tag -d <tag_name>`
+
+`git push --delete origin <tag_name> 删除远程tag`
+
+## git hooks
+
+> 在执行动作的时候，可以根据hooks 自定义不同的动作
+
+https://pre-commit.com/
+
+忽略hooks强行commit
+
+git commit -m "1" --no-verify
+
+## git reset
+
+恢复到某次commit记录的命令
+
+- mixed(默认模式) ： 修改会保留在缓存区中，通过git add 会恢复修改，取消修改则 git checkout filename
+- soft： 修改会直接放在工作区里
+- hard： 修改都会直接消失
+
+git reset 和 git commit --ament都会修改git的commit历史。
+
+修改历史，提交的时候，需要加force
+
+## 一些命令行技巧
+
+### git object 压缩
+
+对大文件修改，多次commit git会存储多次整个对象。 造成.git 目录占用存储空间较大
+
+git gc # 压缩.git目录大小 会生成 .git/objects/pack
+
+> git verify-pack -v .git/objects/pack/pack...idx 查看压缩idx
+
+git对象压缩的作用，本地仓库和远程仓库同步，git clone 时，.git只有info pack两个目录，全部对象都是压缩的。
+
+> 解压缩pack文件内容
+>
+> 1. pack文件移动到其他目录（不能在objects目录）
+> 2. git unpack-objects < pack文件
+
+### Git stash
+
+暂停工作，并对工作进行保存
+
+git stash save (没有commit的改变存到堆栈中) 不包含untracked 文件
+
+git stash save --include-untracked "your_name"
+
+git stash list #查看
+
+查看save
+
+git stash pop
+
+git stash -h 查看其他的
+
+### git 垃圾对象清理
+
+清理没有引用的对象。
+
+> git help prune
+
+git prune -n # 查看将会删除的对象
+
+git prune # 删除没有引用的对象
+
+git fsck # 查看有哪些垃圾对象
+
+删除分支之后，删除所有垃圾对象：
+
+```sh
+git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 \
+  -c gc.rerereresolved=0 -c gc.rerereunresolved=0 \
+  -c gc.pruneExpire=now gc "$@"
+```
+
+### clone大仓库
+
+clone一个不带历史，只是最新commit的文件
+
+```sh
+git clone ...git --depth=1  # 克隆默认分支
+
+
+git remote add origin https://...
+git -c protocol.version=2 fetch origin 15.0.1 --depth=1
+```
+
+## git log
+
+```sh
+
+git log --online  # 只展示一行 commit message
+
+git log --online -2 # 只展示最近两次
+
+git log --after='2020-5-11'  # 会包含时间
+git log --before='2022-3-11'  # 不会包含时间
+
+git shortlog  # 显示每个人的提交
+
+git log --stat   # 查看每次提交文件信息
+```
+
+```sh
+git log --oneline  # 一行展示
+
+git log -2 # 显示最后两从commit
+
+git log -10 --online
+
+git log --graph # 查看commit 图
+
+git log --stat # 查看每次commit 新增或删除的信息
+
+git log --auth="name"  # 输出作者的commit
+
+git log --grep="keyword"  # 关键字搜索
+git log --merge   # 查看merge commit
+```
+
+```sh
+git shortlog # 作者的commit 进行一个汇总
+git shortlog -n # 只展示作者以及作者commit信息
+git shortlog -n -s # 只展示作者以及作者commit的次数
+git shortlog -n -s -e # -e 展示email
+
+```
+
+## git实践
+
+### commit message
+
+1. 区分subject和body，用一个空行隔开
+2. Subject一般不超过50个字符
+3. Subject首字母大写
+4. Subject结尾不需要用句号结尾
+5. body每一行的长度控制在72个字符
+6. body详细解释这个commit做了什么[body是可选的]
+
+### .gitignore
+
+如果文件已经被添加到工作区，需要git rm -rf filename 将文件移出
+
+.git/info/exclude 文件也可以定义。 但是只对本地有效。
+
+### release 分支和tag
+
+git checkout commit # head指向具体的commit
+
+git branck 2.9.0-bug-fix
+
+git checkout 2.9.0-bug-fix
+
+创建一个分支 stable/2.9 专门用于bug fix
+
+### 修改最后一次commit
+
+git commit --amend # 修改commit message
+
+如果本地commit push之后 又amend，push的时候会被远程拒绝，需要git push origin master --force
+
+修改最后一次commit，但保留原先的commit message
+
+```
+git commit --amend --no-edit
+```
+
+假如我们修改了gitconfig文件，有了新的作者信息，我们希望更新最后一次提交的author，可以通过下面的命令
+
+```
+git commit --amend --no-edit --reset-author
+```
+
+### git worktree
+
+> 紧急情况下切换分支的时候，
+
+新建一个目录将main分支内容放在一个新的目录里面。
+
+git worktree add ../另一个代码仓库 main
+
+git worktree list # 查看工作。
+
+git worktree remove dir_name # 删除worktree
+
+## git submodule
+
+git submodule add github_url
+
+## git cherry-pick
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20230928165521050.png)
+
+Backport, 在main分支上修复了一个bug。将修复bug的commit backport到stable/1.0分支上。 可选择任意main分支上的bugfix
+
+## git patch & apply
+
+创建一个patch
+
+git format-patch -1 # 最新一次的提交创建一个patch
+
+`git apply patch`，根据 patch 文件内的信息，在现有文件中添加或删除内容。

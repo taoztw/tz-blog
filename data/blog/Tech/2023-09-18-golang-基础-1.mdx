@@ -1,0 +1,325 @@
+---
+title: golang-基础-1
+date: 2023-09-18
+lastmod: 2023-09-18
+tags: ['Tech']
+draft: false
+summary: 这篇文章主要介绍了Go语言的基础语法和特性。文章涵盖了main函数、包声明、字符串处理、基本数据类型、变量声明、方法定义、fmt格式化输出、数组和切片的使用，以及控制结构如for循环、if-else语句和switch语句。文章强调了Go语言的一些独特特性，如rune类型、多返回值函数和切片操作。
+layout: PostSimple
+---
+
+## main函数
+
+```go
+package main
+
+func main() {
+	println("hello world")
+}
+
+```
+
+• 无参数、无返回值
+
+• main 方法必须要在 main 包里面
+
+• `go run main.go` 就可以执行
+
+• 如果文件不叫 `main.go` ，则需要` go build` 之后再 ` go run`
+
+**包声明**
+
+• 语法形式：package xxxx
+
+• 字母和下划线的组合
+
+• 可以和文件夹不同名字
+
+• 同一个文件夹下的声明一致
+
+• **引入包**语法形式：import [alias] xxx
+
+• 如果一个包引入了但是没有使用，会报
+
+错
+
+• 匿名引入：前面多一个下划线
+
+## String 和基础类型
+
+```go
+package main
+
+func main() {
+    println("hello world")
+
+    println(`长文本输出
+             内容可以换行，
+             原样输出`)
+}
+```
+
+![image-20230918002803658](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230918002803658.png)
+
+string 的长度很特殊：
+
+• 字节长度：和编码无关，用 len(str)获取
+
+• 字符数量：和编码有关，用编码库来计算
+
+```go
+package main
+
+import "unicode/utf8"
+
+func main() {
+    println("hello world")
+
+    println(len("你好"))  // 输出6
+    println(utf8.RuneCountInString("你好")) // 输出2
+}
+```
+
+string 的拼接直接使用 + 号就可以。golang不支持string和其他类型拼接
+
+```go
+package main
+
+import (
+	"strings"
+	"unicode/utf8"
+)
+
+func main() {
+	println(strings.Compare("你好", "你好啊")) // 返回 -1 +1
+}
+```
+
+### rune类型
+
+rune，直观理解，就是字符
+
+• rune 不是 byte!
+
+• rune 本质是 int32，一个 rune 四个字节
+
+• rune 在很多语言里面是没有的，与之对应的
+
+golang 没有 char 类型。rune 不是数字，也不是 char，也不是 byte！
+
+• 实际中不太常用
+
+> ```
+> // rune is an alias for int32 and is equivalent to int32 in all ways. It is
+> // used, by convention, to distinguish character values from integer values.
+> type rune = int32
+> ```
+
+### 基础类型
+
+• bool: true, false
+
+• int8, int16, int32, int64, int
+
+• uint8, uint16, uint32, uint64, uint
+
+• float32, float64
+
+byte，字节，本质是 uint8 ，对应的操作包在 bytes 上
+
+**类型总结**
+
+• golang 的数字类型明确标注了长度、有无符号
+
+• golang 不会帮你做类型转换，类型不同无法通过编译。也因此，string 只能和string 拼接
+
+golang 有一个很特殊的 rune 类型，接近一般语言的 char 或者 character 的概念，非面试情况下，可以理解为 “ rune = 字符
+
+## 变量声明
+
+首字符是否大写控制了访问性：大写包外可访问；
+
+golang 支持类型推断（声明的时候可以不写类型，但是特殊的类型需要些写）
+
+**基础语法** **——** **变量声明** **:=**
+
+• 只能用于**局部变量**，即方法内部
+
+• golang 使用类型推断来推断类型。数字会被理解为 int 或者 float64。（所以要其它类型的数字，就得用 var 来声明）
+
+```go
+	var name string = "123" // 局部变量 ； 包变量；块声明
+	name2 := "123"
+```
+
+变量声明易错点
+
+- 变量声明了没有使用
+
+- 类型不匹配
+
+- 同作用域下，变量只能声明一次
+
+**常量声明**
+
+- 首字符是否大写控制了访问性：大写包外可访问
+- 驼峰命名
+- 支持类型推荐
+- 无法修改值
+
+## 方法
+
+• 四个部分：
+
+• 关键字 func
+
+• 方法名字：首字母是否大写决定了作用域
+
+• 参数列表：`[<name type>]`
+
+• 返回列表: `[<name type>]`
+
+![image-20230918005214568](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230918005214568.png)
+
+• golang 支持多返回值，这是一个很大的不同点
+
+• golang 方法的作用域和变量作用域一样，通过大小写控制
+
+• golang 的返回值是可以有名字的，可以通过给予名字让调用方清楚知道你返回的是什么
+
+## fmt格式化输出
+
+常用的：%s, %d, %v, %+v, %#v
+
+```go
+fmt.Printf("%s\n %s %v ", name, name2, name3)
+```
+
+![image-20230918005343401](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230918005343401.png)
+
+## 数组和切片
+
+数组和别的语言的数组差不多，语法是：[cap]type
+
+1. 初始化要指定长度（或者叫做容量）
+2. 直接初始化
+3. arr[i]的形式访问元素
+4. len 和 cap 操作用于获取数组长度
+
+数组的len和cap结果是一样的，就是数组的长度
+
+```go
+arr1 := [10]int{1, 2, 3, 4}
+fmt.Printf("arr1: %v\n", arr1)
+fmt.Printf("arr1: %v len: %d cap: %d", arr1, len(arr1), cap(arr1))
+```
+
+arr1: [1 2 3 4 0 0 0 0 0 0]
+arr1: [1 2 3 4 0 0 0 0 0 0] len: 10 cap: 10
+
+**切片**
+
+切片,语法：[]type
+
+1. 直接初始化
+2. make初始化:make([]type, length, capacity)
+3. arr[i] 的形式访问元素
+4. append 追加元素
+5. len 获取元素数量
+6. cap 获取切片容容量
+7. 推荐写法：s1 := make([]type, 0, capacity)
+
+```go
+// 切片
+// 数组和切片的唯一标准是 中括号有没有数字
+s1 := []int{1, 2, 3, 4}
+fmt.Printf("s1 %v, len: %d cap: %d\n", s1, len(s1), cap(s1))
+
+s2 := make([]int, 3, 4) // 创建一个包含三个元素，容量为4的切片
+fmt.Printf("s2 %v, len: %d cap: %d\n", s2, len(s2), cap(s2))
+s3 := make([]int, 3) // 等价于s3 := make([]int, 3，3)
+s3 = append(s3, 8)
+fmt.Printf("s3 %v, len: %d cap: %d\n", s3, len(s3), cap(s3))
+
+// 切片 推荐些好
+s4 := make([]int, 0, 10)
+fmt.Printf("s4: %v\n", s4)
+```
+
+![image-20230918005928544](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230918005928544.png)
+
+数组和切片都可以通过[start:end] 的形式来获取子切片：
+
+1. arr[start:end]，获得[start, end)之间的元素
+2. arr[:end]，获得[0, end) 之间的元素
+3. arr[start:]，获得[start, len(arr))之间的元素
+
+最直观的对比：ArrayList，即基于数组的 List 的实现，切片的底层也是数组
+
+跟 ArrayList 的区别：
+
+1. 切片操作是有限的，不支持随机增删（即没有 add, delete 方法，需要自己写代码）
+2. 只有 append 操作
+3. 切片支持子切片操作，**和原本切片是共享底层数组**,只有结构变化后才不会共享底层数组，比如切片后扩容
+
+> 用切片，不容易出错
+
+## for
+
+for 和别的语言差不多，有三种形式：
+
+1. for {} ，类似 while 的无限循环
+2. fori， 一般的按照下标循环
+3. for range 最为特殊的 range 遍历
+4. break 和 continue 和别的语言一样
+
+```go
+for i := 0; i < 10; i++ {
+    fmt.Printf("%d\n", i)
+}
+
+s1 := []int{1, 2, 3, 4}
+for i, i2 := range s1 {
+    fmt.Printf("%v %v\n", i, i2)
+}
+// 无限循环
+for {
+    fmt.Printf("hell")
+}
+```
+
+## if else
+
+带局部变量声明的 if- else：
+
+1. distance 只能在 if 块，或者后边所有的 else 块里面使用
+
+2. 脱离了 if - else 块，则不能再使用
+
+```go
+if distance := 10; distance > 5 {
+    fmt.Printf("大于5")
+} else {
+    fmt.Printf("不大于5")
+}
+```
+
+## switch
+
+switch 和别的语言差不多
+
+switch 后面可以是基础类型和字符串，或者满足特定条件的结构体
+
+最大的差别： 不用加break了
+
+```go
+fruit := "苹果123132"
+switch fruit {
+case "苹果":
+    fmt.Println("是苹果哦")
+case "香蕉":
+    fmt.Println("是香蕉")
+default:
+    fmt.Println("不知道是什么")
+}
+```

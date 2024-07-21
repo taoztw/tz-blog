@@ -1,0 +1,40 @@
+---
+title: 不同数据噪音对SMT_NMT模型的影响
+date: 2021-11-18
+lastmod: 2021-11-18
+tags: ['AI']
+draft: false
+summary: 这篇文章研究了不同类型噪音数据对神经机器翻译(NMT)和统计机器翻译(SMT)的影响。结果表明，NMT对噪音数据更敏感，特别是未翻译句子对NMT影响最大；而SMT对噪音数据的抵抗力较强。短句段(2-5个词)对两种模型都有轻微的增强作用。
+layout: PostSimple
+---
+
+> On the Impact of Various Types of Noise on Neural Machine Translation
+
+**增加网络爬取噪音数据之后，NMT翻译能力下降很大。SMT表现受噪音能力影响小。**
+
+![](https://www.tzer.top/usr/uploads/2021/11/3842063302.png)
+
+错误分类为：
+
+- MISALIGNED SENTENCES：不对齐的句子
+- MISORDERED WORD：不流利的句子 （判断句子不流利具有一些主观因素）
+- WRONG LANGUAGE：比如英中翻译，加入英日翻译语料
+- UNTRANLATED SENTENCES：不翻译的句子，tgt=src
+- SHORT SEGMENTS：分为 `<=`2 和 2-5的
+
+模型：
+
+- SMT： Moses 短语翻译模型
+- NMT：RNN
+
+结论：
+
+UNTRANLATED SENTENCES对NMT翻译结果影响最大，NMT的复制机制。
+
+WRONG LANGUAGE 加入其他语言，SMT和NMT表现都很健壮。对NMT影响不太大
+
+SHORT SEGMENTS： 2-5 toks长度对SMT和NMT还有**些增强作用**
+
+![](https://www.tzer.top/usr/uploads/2021/11/1850654698.png)
+
+![](https://www.tzer.top/usr/uploads/2021/11/2828707394.png)

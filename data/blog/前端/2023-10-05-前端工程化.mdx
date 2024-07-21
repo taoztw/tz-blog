@@ -1,0 +1,320 @@
+---
+title: 前端工程化
+date: 2023-10-05
+lastmod: 2023-10-05
+tags: ['前端']
+draft: false
+summary: 前端工程化的概念和实践。文章讨论了软件工程学在解决软件开发问题中的应用,并详细介绍了模块化、包管理、Monorepo、Less预处理器和Webpack等前端工程化的关键技术和工具。文章强调了这些技术在提高开发效率、代码质量和项目可维护性方面的重要作用。
+layout: PostSimple
+---
+
+前端工程化
+
+    成本不可控
+    性能与质量过低
+    项目不符合开发前需求
+    项目代码质量太低
+
+软件工程学
+作为一门新兴的学科，在应对日益庞大的规模的时候，正是缺乏工程学这样科学的方法论来帮助开发者在软件的整个生命周期中控制风险、降本提效。所以，当时人们就想将工程学的理论和方法应用到软件开发领域，从而来解决软件危机中遇到的问题。
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/03/17015155198749.jpg)
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/03/17015160168046.jpg)
+
+## 模块化
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/03/17015373670121.jpg)
+对如上js文件，在html中直接引用会导致全局变量污染
+
+使用立即执行函数
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/03/17015375595274.jpg)
+
+> webpack就是将其他的写法写成立即执行函数
+
+模块化的标准
+
+1. CommonJS CMJ 社区标准 node环境才支持
+2. ES Module ESM 官方标准
+
+### Common JS
+
+CMJ规范：
+
+- 所有的js文件均是一个模块，运行的模块 入口模块
+- 所有的模块中的全局变量，函数，均不会产生污染
+- 当一个模块需要提供一些东西给别的函数使用时，需要把这东西导出
+
+```js
+module.exports = {
+  your_function,
+}
+```
+
+- 当一个模块需要用到别的模块时，路径必须以`./ 或../`开始
+
+```js
+require('./')
+```
+
+![image-20231003005335660](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231003005335660.png)
+
+- 模块有缓存，第一次运行模块后，导出结果会被缓存，之后再使用该模块，直接使用缓存结果。
+
+### ES Module
+
+ES Module分为两种导出方式：
+
+- 具名导出。任意
+- 默认导出，只有一个
+
+```js
+{
+  default: xx, // 默认导出
+}
+```
+
+![image-20231003011120190](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231003011120190.png)
+
+![image-20231003011427953](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231003011427953.png)
+
+**导入**
+
+![image-20231003011737783](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231003011737783.png)
+
+> 模块路径需要写后缀名 js
+
+### 几种模块化规范对比
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/03/17015381715787.jpg)
+
+## 包管理 npm
+
+```shell
+# 查看源
+npm config get registry
+
+
+# 配置源 淘宝源
+npm config set registry https://registry.npm.taobao.org
+# 官方源 https://registry.npmjs.org
+```
+
+**node查找包的顺序**
+
+```js
+require('a')
+```
+
+1.查看是否有内置模块a
+
+2.查找当前目录的node_modules中是否有a
+
+3.依次查找上级目录的node_modules中是否有a，直到根目录
+
+#### 初始化
+
+```shell
+npm init # 生成package.json文件
+
+npm init -y # 直接使用默认值
+
+```
+
+##### 安装普通依赖(最常见)
+
+```shell
+npm install 包名
+npm i 包名
+```
+
+##### 安装开发依赖
+
+```shell
+npm install -D 包名@版本号
+```
+
+#### 全局安装
+
+需要使用某个全局命令时，才需要全局安装
+
+```shell
+npm install -g 包名
+```
+
+#### 卸载 更新
+
+```shell
+# 卸载全局的安装包
+npm uninstall -g 包名
+```
+
+npm uninstall vue
+npm update vue
+
+## NVM
+
+nvm：node version manager 管理node版本工具，通过该工具，可以在一台机器上安装多个node
+
+卸载原本的nodejs
+
+https://blog.csdn.net/huangpb123/article/details/120248002
+
+下载nvm
+
+nvm list # 查看当前安装和使用的node版本
+
+nvm install 版本号 # 安装某个版本
+
+nvm use 版本号 # 切换版本吧
+
+nvm alias default v20.3.0 # 设置默认版本
+
+## Monorepo
+
+一个项目多包的情况下
+与 Monorepo 对⽐的是 MutiRepo。对于⼀个复杂的前端架构通常会有多个 npm package 组成。repo 指的是版本仓库。如果多个 package 放在⼀个 repo 仓库中就叫做 monorepo。
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/03/17015170573778.jpg)
+
+```bash
+├── packages
+| ├── pkg1
+| | ├── package.json
+| ├── pkg2
+| | ├── package.json
+├── package.json
+```
+
+monorepo 最主要的好处是统⼀的⼯作流和 Code Sharing。⽐如我想看⼀个 pacakge的代码、了解某段逻辑，不需要找它的 repo，直接就在当前 repo；当某个需求要修改多个 pacakge 时，不需要分别到各⾃的 repo 进⾏修改、测试、发版或者 npm link，直接在当前 repo 修改，统⼀测试、统⼀发版。只要搭建⼀套脚⼿架，就能管理（构建、测试、发布）多个 package。
+
+### pnpm实现Monorepo
+
+```bash
+mkdir smarty
+cd smarty
+pnpm init -y
+
+mkdir scripts
+# 在目录下放置一个preinstall.js 并且在package.json 中进行配置
+```
+
+建立工作空间
+pnpm-workspace.yml
+
+```ts
+packages:
+# all packages in subdirs of packages/ and components/
+- 'packages/**'
+```
+
+在packages目录下分别创建, admin 和 utils目录
+smarty-admin
+@smarty-admin/utils
+
+```bash
+# 子package安装, 给utils下安装vue
+pnpm i vue -r --filter @smarty-admin/utils
+
+# 内部依赖package安装， 给admin下安装utils
+pnpm i @smarty-admin/utils -r --filter smarty-admin
+```
+
+> node preinstall 有些问题，之后解决
+
+```js
+// preinstall.js
+if (!/pnpm/.test(process.env.npm_execpath || '')) {
+  console.warn(
+    `\u001b[33mThis repository requires using pnpm as the package manager `` for scripts to work properly.\u001b[39m\n`
+  )
+  process.exit(1)
+}
+```
+
+## 自己的脚手架
+
+为项目引入新的通用特性
+针对构建环境配置优化
+单元测试等辅助工具代码
+定制目录结构与通用模板
+
+## Less
+
+更加简洁的样式代码
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231003161403459.png)
+
+安装less
+
+npm i -D less # 提供lessc命令
+
+npx lessc -v # npx 在当前目录下运行node module下的一些命令。
+
+lessc index.less index.css # 转换
+
+变量
+
+```less
+@round: 5px @color:;
+```
+
+嵌套
+
+混合
+
+![image-20231003171658524](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231003171658524.png)
+
+![image-20231003171756753](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231003171756753.png)
+
+## webpack
+
+webpack运行在node环境中，搭建前端工程
+
+以某个模块作为入口，根据入口分析出所有模块的依赖关系，然后对各种模块进行合并，压缩，形成最终的打包结果。
+
+### 页面模板
+
+webpack回自动生成一个页面，并且在页面中会自动加入对js和css的引用，生成页面时，参考的是public/index.html
+
+## public目录
+
+webpack会暴力将public目录中的所有文件(除页面模版外)，复制到打包结果中
+
+### 资源路径
+
+除代码和样式模块外，其他模块被视为资源模块
+
+值得特别注意的是，资源模块在源代码中的路径和打包后的路径是不一样的。 这就导致我们再编写代码的时候，无法知道最终的路径
+
+css中的资源模块webpack可以搞定。
+
+js中需要模块化的导入资源
+
+```js
+import url from './a.png'
+```
+
+### 缺省的文件和后缀名
+
+导入模块时，所有js模块可以省略.js
+
+如果到的模块文件名为index.js 可省略文件名
+
+```js
+import './home'
+
+import './dir' // 导入目录 dir下的 index.js文件
+```
+
+### 路径别名
+
+用@表示src目录
+
+### css module
+
+类样式容易冲突
+
+当样式文件以xxx.module.less 方式命名时，webpack会将该文件当成一个开启了css module的文件。
+
+文件中所有类名都会被hash化

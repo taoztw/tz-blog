@@ -1,0 +1,69 @@
+---
+title: python-视频处理
+date: 2023-05-22
+lastmod: 2023-05-22
+tags: ['Tech']
+draft: false
+summary: 这篇文章介绍了如何对视频进行笔记，包括解析字幕、提取图片和音频。文章提供了两段Python代码，分别用于将MP4文件转换为MP3音频文件和从视频中提取图片帧。
+layout: PostSimple
+---
+
+> 如何对一个视频做笔记?
+> 解析视频
+
+- 字幕(字幕解析，音频解析文字)
+- 图片（截取图片保存，图片OCR，相似度图片过滤，形成类似PPT？）
+  for future: 针对视频进行视频摘要。图文并茂的笔记。
+
+## mp4转mp3
+
+```python
+from moviepy.video.io.VideoFileClip import VideoFileClip
+
+
+# 将mp4文件转为mp3音频文件并返回其文件路径,生成路径仍在原路径中(需要先下载moviepy库)
+def mp4_to_mp3(path):
+    try:
+        video = VideoFileClip(path)
+        audio = video.audio
+        # 设置生成的mp3文件路径
+        newPath = path.replace('mp4', 'mp3')
+        audio.write_audiofile(newPath)
+        return newPath
+    except Exception as e:
+        print(e)
+        return None
+
+
+if __name__ == '__main__':
+    import os
+    # for file in os.listdir("./"):
+    #     if file.endswith(".mp4"):
+    #         mp4_to_mp3(file)
+    mp4_to_mp3("04-4.mp4")
+```
+
+## mp4 提取图片
+
+```python
+import os
+from moviepy.editor import *
+
+
+def extract_frames(movie, imgdir):
+    clip = VideoFileClip(movie)
+    duration = clip.duration
+    # 3秒生成一张照片
+    for i in range(0,int(duration),3):
+        imgpath = os.path.join(imgdir, '{}.png'.format(str(i)))
+        clip.save_frame(imgpath, i)
+
+
+movie = '02.mp4'
+imgdir = '02'
+if not os.path.exists(imgdir):
+    os.makedirs(imgdir)
+
+
+extract_frames(movie, imgdir)
+```

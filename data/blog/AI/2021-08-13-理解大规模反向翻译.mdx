@@ -1,0 +1,121 @@
+---
+title: 理解大规模反向翻译
+date: 2021-08-13
+lastmod: 2021-08-13
+tags: ['AI']
+draft: false
+summary: 1. 研究发现在反向翻译中,使用采样(sampling)或带噪声的束搜索(noised beam search)生成合成数据比标准束搜索或贪心搜索更有效,可以提供更强的训练信号。2. 通过大规模实验比较了合成数据和真实双语数据的效果,以及不同领域数据的影响,在WMT14英德翻译任务上达到了35 BLEU的最佳结果。
+layout: PostSimple
+---
+
+> Understanding Back-Translation at Scale, Facebook AI，**2018EMNLP**
+
+## Abstract
+
+```markdown
+反向翻译中sampling or noised beam 是最有效的,它们可以提供much stronger训练信号。
+比较了合成数据和真实双语数据以及各种领域的影响
+
+在WMT14 英德测试机 SOTA 35BLEU
+```
+
+## Introduction
+
+```markdown
+单于数据的利用：语言模型融合，回译，对偶学习
+这些方法可以组合获得更好的准确率，参考一下论文
+
+> Achieving hu-man parity on automatic chinese to english news translation
+
+对于回译，虽然简单，但是这种方法已经被证实有助于基于短语的翻译以及无监督的MT
+
+根据实验分析：sampling from the model distribution or noising beam outputs 比原生的beam或贪心搜索效果好。在几个测试集下平均有1.7BLEU的评分。
+```
+
+## Generating synthetic sources
+
+```markdown
+beam和greedy注意力集中在模型的头部分布，只取概率最大的，不能覆盖真实的数据分布
+
+首先，探索了不受限制的采样，输出非常多样化但是有时候不一定很多样化
+其次，限制最可能的词，在每一个decode步骤，从输出分布中选择k个最有可能的tokens，归一化，然后进行sample。
+其次，在beam search加入噪声。在source sentence以三种方式加入噪声：1. 删除概率小于1的单词2. 用概率为0.1的token替换单词3. 交换单词，随机排列，从均匀分布中抽取，交换token不超过3个
+```
+
+## Model and hyperparameters
+
+这个不重要，基线一样就行。transformer big
+
+## Results
+
+### 生成方法对比
+
+分别加入不同量的合成数据进行测试，训练步数也随着合成数据而增加，sampling和beam + noise的效果比较好。top10比原始的beam和greedy效果好。
+
+![image-20210805183802955.png](http://tzer.top/usr/uploads/2021/08/812787494.png)
+
+### 生成方法分析
+
+为什么sampling和beam noise要比pure MAP方法要好。
+
+beam search和argmax只寻求最有可能的输出，结果缺乏多样性，丰富性。而sampling可以近似数据的分布，产生更加多样性的结果，并且为source sentence加入了部分噪音，可能会帮助训练。
+
+比较了每种方法在训练数据上的损失，并且区分合成数据和真实文本数据。
+
+![image-20210806102627498.png](http://tzer.top/usr/uploads/2021/08/34183303.png)
+
+上图说明，greedy beam与beam noise，sampling，top10相比更容易训练。
+
+除了抽样，发现训练数据上的困惑与终端模型的准确性有一定的相关性。并且除了抽样以外的所有方法都比真实文本的损失更低
+
+为什么sampling和noise可以提供更强的训练信号，推测：采样和噪声 argmax 都将模型暴露在更广泛的源语句中，这使得模型对自然发生的重新排序和替换更加鲁棒，即使通过噪声重新排序和替换的模型不是很现实。
+
+同时上面可以观察到beam noise和sampling的，因为抽样有时会选择非常不可能的输出，很难拟合。
+
+![image-20210806104857839.png](http://tzer.top/usr/uploads/2021/08/1282872367.png)
+
+使用真实文本训练出来的语言模型在不同数据下的困惑度。beam的困惑度是最低的，所以可能在一定程度上可以解释，beam提供的训练信号弱。
+
+### 低资源和高资源设置
+
+在低资源的语料下 NON-MAP的方法还是否有效？
+
+![image-20210806111156742.png](http://tzer.top/usr/uploads/2021/08/3628797852.png)
+
+当低资源时候，beam的效果较好，而sampling生成噪音数据会对训练造成不好的结果。
+
+### 领域的合成数据
+
+真实数据和合成数据相比在模型准确率如何？ 领域单语数据影响如何？
+
+![image-20210806112204830.png](http://tzer.top/usr/uploads/2021/08/2607832324.png)
+
+图a看到，在新闻领域的测试集下，2.56m数据情况，BT-news效果比真实文本的要好。
+
+由于BT数据域和测试集不匹配，BT-news的准确性不如以前。然而，BT-news仍然将基线提高了1.2 BLEU。另一方面，bt - bittext匹配了valid-mixed域，提高了2.7 BLEU。这只比真正的文本低1.3个BLEU，对应于真正的人类文本获得的67%的增益。
+
+### bitext上采样
+
+上采样的比率为2，就说明 合成数据量是 真实数据的两倍。
+
+![image-20210806140205677.png](http://tzer.top/usr/uploads/2021/08/1905824674.png)
+
+从上图可以看出，Beam和greedy从更高的速率中受益很多，这导致对文本数据进行更多的训练。beam noise和sampling不需要对文本进行上采样，他们的增长很少，这可能是合成数据已经足够难拟合。
+
+### 大规模上的结果
+
+作者增强了35.7M句子。通过sampling 31M newscrawl 句子。
+
+![image-20210806140604562.png](http://tzer.top/usr/uploads/2021/08/3713159251.png)
+
+## WMT18
+
+![image-20210806141236071.png](http://tzer.top/usr/uploads/2021/08/11272435.png)
+
+![image-20210806142133107.png](http://tzer.top/usr/uploads/2021/08/195912777.png)
+
+Analyzing Uncertainty in Neural Machine Translation这篇论文指出beam search有时会输出原句子的复制而不是目标的翻译。文章中说：**任务本身固有的不确定性**同一个语句存在几个语义等价的翻译，**数据收集过程引起的伪翻译（spurious artifacts）导致的不确定性（extrinsic 不确定性）** 目标语句可能只是源语句的部分翻译，或者目标可能包含源中不存在的信息。
+
+所以作者进行了filter copies，如果源和目标 unigram 之间的 Jaccard 相似度超过 0.5，则输出被视为源副本。 大约 0.5% 的输出被确定为源副本。filter copies之后效果有一点提升。
+
+> Oppo在CCMT2020时，发现使用纯beam的效果比sampling的效果好。具体的效果还需要进一步验证。

@@ -1,0 +1,384 @@
+---
+title: asyncio笔记
+date: 2023-03-30
+lastmod: 2023-03-30
+tags: ['Tech']
+draft: false
+summary: Python中asyncio模块的核心概念和使用方法。文章详细解释了事件循环、协程、任务和Future等重要概念,并通过代码示例展示了如何创建和运行异步任务。此外,文章还讨论了yield和yield from在实现协程中的作用,以及它们与asyncio的关系。
+layout: PostSimple
+---
+
+参考
+
+## asyncio
+
+**event_loop**：事件循环，相当于一个无限循环，我们可以把一些函数注册到这个事件循环上，当满足条件发生的时候，就会调用对应的处理方法。
+
+**协程 corountine**：async 定义的函数直接调用会返回一个 corountine对象，无法直接执行，需要注册到事件循环中才可以执行。
+
+**任务 task** ：对corountine对象进一步的封装，包含了任务的状态。`asyncio.create_task()`将一个协程对象封装成任务。将其包装成任务，任务是可以包含各种状态的，异步编程最重要的就是对异步操作状态的把控。
+
+```
+创建任务：task = asyncio.ensure_future(coro())
+```
+
+```
+task = asyncio.create_task(coro())  # 这是3.7版本新添加的
+```
+
+```
+也可以使用loop.create_future()；loop.create_task(coro)
+```
+
+```
+asyncio.all_tasks(loop=None) 返回某一个loop中还没有结束的任务
+```
+
+**Future**：它是一个“更底层”的概念，他代表一个一步操作的最终结果，因为一步操作一般用于耗时操作，结果不会立即得到，会在“将来”得到异步运行的结果，故而命名为Future。
+
+当一个Future对象被等待的时候，协程会一直等待，直到Future已经运算完毕。
+
+三者的关系， coroutine可以自动封装成task，而Task是Future的子类。
+
+```python
+import asyncio
+
+# 定义了一个简单的协程
+async def simple_async():
+    print('hello')
+    await asyncio.sleep(1) # 休眠1秒
+    print('python')
+
+# 使用asynio中run方法运行一个协程
+asyncio.run(simple_async())
+
+# 执行结果为
+hello
+python
+```
+
+```python
+import asyncio
+
+# 定义了一个简单的协程
+async def simple_async():
+    print('hello')
+    await asyncio.sleep(1) # 休眠1秒
+    print('python')
+
+# ----asyncio.run() 等价于
+loop = asyncio.get_event_loop()
+loop.run_until_complete(simple_async())
+
+# ----
+loop = asyncio.get_event_loop()  # 1. 创建事件循环
+# # task = asyncio.ensure_future(simple_async())
+task = loop.create_task(simple_async()) # 将协程包装成任务列表
+#  task.add_done_callback(callback)   # 并被任务绑定一个回调函获取结果
+loop.run_until_complete(task)  # 将task添加到事件循环，通过事件循环运行
+print(task.result())  # 通过result()获取结果
+
+loop.close()
+# ---
+# task = asyncio.ensure_future(coroutine) # 没有声明 loop 也可以提前创建task 对象
+tasks = [asyncio.ensure_future(coroutine()) for i in [*,*]]
+loop = asyncio.get_event_loop()
+tasks = asyncio.gather(*tasks) # 使用gather同时注册多个任务，实现并发
+loop.run_until_complete(tasks)
+
+```
+
+在用协程的时候，CPU就不来分配时间了，时间由你们自己决定，你觉得干这件事情很耗时，要等IO啥的，你就干一会歇一会，等到等IO的时候就主动让出CPU，让别人上去干活，别人也是讲道理的，干一会也会把时间让给你。协程就是使用了这种思想，让编程者控制各个任务的运行顺序，从而最大可能的发挥CPU的性能。
+
+```python
+import asyncio
+
+async def eternity():
+    print('我马上开始执行')
+    await asyncio.sleep(3600)  #当前任务休眠1小时，即3600秒
+    print('终于轮到我了')
+
+async def main():
+    # Wait for at most 1 second
+    try:
+        print('等你3秒钟哦')
+        await asyncio.wait_for(eternity(), timeout=3)  #休息3秒钟了执行任务
+    except asyncio.TimeoutError:
+        print('超时了！')
+
+asyncio.run(main())
+
+'''运行结果为：
+等你3秒钟哦
+我马上开始执行
+超时了！
+'''
+```
+
+当异步操作需要执行的时间超过waitfor设置的timeout，就会触发异常，所以在编写程序的时候，如果要给异步操作设置timeout，一定要选择合适，如果异步操作本身的耗时较长，而你设置的timeout太短，会涉及到她还没做完，就抛出异常了。（7）多个协程函数时候的等候注意：该函数的返回值是两个Tasks/Futures的集合：参数解释：
+
+```python
+
+import asyncio
+
+async def cancel_me():
+    print('cancel_me(): before sleep')
+    try:
+        await asyncio.sleep(3600) #模拟一个耗时任务
+    except asyncio.CancelledError:
+        print('cancel_me(): cancel sleep')
+        raise
+    finally:
+        print('cancel_me(): after sleep')
+
+async def main():
+    #通过协程创建一个任务，需要注意的是，在创建任务的时候，就会跳入到异步开始执行
+    #因为是3.7版本，创建一个任务就相当于是运行了异步函数cancel_me
+    task = asyncio.create_task(cancel_me())
+    #等待一秒钟
+    await asyncio.sleep(1)
+    print('main函数休息完了')
+    #发出取消任务的请求
+    task.cancel()
+    try:
+        await task  #因为任务被取消，触发了异常
+    except asyncio.CancelledError:
+        print("main(): cancel_me is cancelled now")
+
+asyncio.run(main())
+
+'''运行结果为：
+cancel_me(): before sleep
+main函数休息完了
+cancel_me(): cancel sleep
+cancel_me(): after sleep
+main(): cancel_me is cancelled now
+'''
+
+```
+
+asyncio.get_running_loop()
+
+asyncio.get_event_loop()
+
+asyncio.set_event_loop(loop)
+
+asyncio.new_event_loop()
+loop.run_until_complete(future)。运行事件循环，直到future运行结束
+
+loop.create_future(coroutine) ，返回future对象
+
+loop.time() # 时间循环的时钟
+
+## freezing
+
+各个异步方法之间不完全是独立
+
+```python
+
+import asyncio
+import time
+import threading
+
+#定义一个异步操作
+async def hello1(a,b):
+    print(f"异步函数开始执行")
+    await asyncio.sleep(3)
+    print("异步函数执行结束")
+    return a+b
+
+#在一个异步操作里面调用另一个异步操作
+async def main():
+    c=await hello1(10,20)
+    print(c)
+    print("主函数执行")
+
+loop = asyncio.get_event_loop()
+tasks = [main()]
+loop.run_until_complete(asyncio.wait(tasks))
+
+loop.close()
+
+'''运行结果为：
+异步函数开始执行（在此处要等待3秒）
+异步函数执行结束
+30
+主函数执行
+'''
+```
+
+future = asyncio.run_coroutine_threadsafe(coro_func(), loop) # 在新线程中运行协程
+
+result = future.result() #等待获取Future的结果
+
+## yield
+
+**为什么yield可以实现协程：**
+
+当一个函数中有yield时，函数是生成器，调用代码不会立即执行，而是返回一个生成器对象。
+
+返回一个值，接收调用者的参数。yield具有中断等待的功能。
+
+GEN_CREATED：等待执行，即还没有进入协程
+
+GEN_RUNNING：解释器执行（这个只有在使用多线程时才能查看到他的状态，而协程是单线程的）
+
+GEN_SUSPENDED：在yield表达式处暂停（协程在暂停等待的时候的状态）
+
+GEN_CLOSED：执行结束（协程执行结束了之后的状态）
+
+> 版权声明：本文为CSDN博主「LoveMIss-Y」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+> 原文链接：https://blog.csdn.net/qq_27825451/article/details/85234610
+
+```python
+from inspect import getgeneratorstate  # 一定要导入
+from time import sleep
+
+
+def my_generator():
+    for i in range(3):
+        sleep(0.5)
+        x = yield i + 1
+        print(x)
+
+
+g = my_generator()  # 创建一个生成器对象
+
+
+def main(generator):
+    try:
+        print("生成器初始状态为:{0}".format(getgeneratorstate(g)))
+        print(next(g))
+        # 激活生成器
+        print("生成器初始状态为:{0}".format(getgeneratorstate(g)))
+        print(g.send(100))
+        print("生成器初始状态为:{0}".format(getgeneratorstate(g)))
+        print(next(g))
+        print("生成器初始状态为:{0}".format(getgeneratorstate(g)))
+        print(next(g))
+    except StopIteration:
+        print('全部迭代完毕了')
+        print("生成器初始状态为:{0}".format(getgeneratorstate(g)))
+
+
+main(g)
+'''运行结果为：
+生成器初始状态为:GEN_CREATED
+1
+生成器初始状态为:GEN_SUSPENDED
+100
+2
+生成器初始状态为:GEN_SUSPENDED
+None
+3
+生成器初始状态为:GEN_SUSPENDED
+None
+全部迭代完毕了
+生成器初始状态为:GEN_CLOSED
+'''
+```
+
+（1）协程函数的返回值不是特别方便获取，为什么参见上一篇文章，只能够通过出发StopIteration异常，然后通过该异常的value属性获取；
+
+（2）Python的生成器是协程coroutine的一种形式，但它的局限性在于只能向它的直接调用者每次yield一个值。这意味着那些包含yield的代码不能想其他代码那样被分离出来放到一个单独的函数中。这也正是yield from要解决的。
+
+## yield from
+
+如果将yield理解成“返回”，那么yield from就是“从什么（生成器）里面返回”
+
+```python
+def my_generator():
+    for i in range(5):
+        if i==2:
+            return '我被迫中断了'
+        else:
+            yield i
+
+def main(generator):
+    try:
+        print(next(generator))   #每次迭代一个值，则会显式出发StopIteration
+        print(next(generator))
+        print(next(generator))
+        print(next(generator))
+        print(next(generator))
+    except StopIteration as exc:
+        print(exc.value)     #获取返回的值
+
+g=my_generator()
+main(g)
+'''运行结果为：
+0
+1
+我被迫中断了
+'''
+```
+
+yield from让解释器可以捕获stopiteration异常，并且return返回的值或者是StopIteration的value 属性的值变成 yield from 表达式的值
+
+```python
+# 子生成器
+def my_generator():
+    for i in range(5):
+        if i==2:
+            return '我被迫中断了'
+        else:
+            yield i
+
+# 委派生成器
+def wrap_my_generator(generator):  #定义一个包装“生成器”的生成器，它的本质还是生成器
+  # 在使用yield from的时候，多了一个对原始my_generator的包装函数，然后调用方是通过这个包装函数（后面会讲到它专有的名词）来与生成器进行交互的，即“调用方——>生成器包装函数——>生成器函数(协程函数)”；
+    result=yield from generator    #自动触发StopIteration异常，并且将return的返回值赋值给yield from表达式的结果，即result
+    print(result)
+
+# 调用方
+def main(generator):
+    for j in generator:
+        print(j)
+
+g=my_generator()
+wrap_g=wrap_my_generator(g)
+main(wrap_g)  #调用
+'''运行结果为：
+0
+1
+我被迫中断了
+'''
+```
+
+```python
+def average():
+    total = 0.0  #数字的总和
+    count = 0    #数字的个数
+    avg = None   #平均值
+    while True:
+        num = yield avg
+        total += num
+        count += 1
+        avg = total/count
+
+def wrap_average(generator):
+    yield from generator
+
+#定义一个函数，通过这个函数向average函数发送数值
+def main(wrap):
+    print(next(wrap))  #启动生成器
+    print(wrap.send(10))  # 10
+    print(wrap.send(20))  # 15
+    print(wrap.send(30))  # 20
+    print(wrap.send(40))  # 25
+
+g = average()
+wrap=wrap_average(g)
+main(wrap)
+
+'''运行结果为：
+None
+10.0
+15.0
+20.0
+25.0
+'''
+
+```
+
+[1]: https://tz.life/usr/uploads/2023/04/1043587666.png

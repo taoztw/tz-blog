@@ -1,0 +1,803 @@
+---
+title: JS基础
+date: 2023-09-18
+lastmod: 2023-09-18
+tags: ['Tech']
+draft: false
+summary: JavaScript的一些基础知识和概念。
+layout: PostSimple
+---
+
+声明式语言 HTML SQL CSS
+
+命令式语言：c c++ c# PHP Python Java Js
+
+## 数据表达
+
+JS提供三种方式表达一个数据
+
+- 变量
+- 字面量 var x=1 1 就是字面量
+- 表达式
+
+7种基本类型：
+3种基本类型： Boolean String Number
+对象：类型的组合 Object
+2种空类型：Undefined Null
+工具类型：Symbol BigInt
+
+为什么有的编程规范要求用 void 0 代替 undefined？
+任何变量赋值前都是undefined，js直接写undefined是一个全局变量。
+建议使用void 0来获取undefined值
+
+String最大长度是 2^53-1
+采用UTF16编码
+
+Number:
+18437736874454810627(即 2^64-2^53+3) 个值
+双精度浮点数
+精度丢失：0.1 + 0.2不等于0.3
+
+Symbol
+
+- 一切非字符串的对象Key的集合
+
+Object
+
+- 对象的定义书属性的集合
+- 属性分为数据属性和访问器属性
+- 二者都是key-value结构，key可以是字符串或者Symbol类型。
+  new Number(3) 和 3是完全不同的、
+  Symbol函数比较特殊，直接用new调用会抛出错误，但它仍然是Symbol对象的构造器
+
+类型转换
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/02/17014994499744.jpg)
+字符串转number
+StringToNumber
+
+- 十进制、二进制、八进制和十六进制
+  30；
+  0b111；
+  0o13；
+  0xFF
+- 科学计数法 可以使用大写或者小写的 e 来表示
+
+parseInt与parseFloat
+parseInt 只支持 16 进制前缀“0x“，而且会忽略非数字字符
+建议传入parseInt第二个参数
+parseFloat直接把原字符串作为10进制解析
+Number是比parseInt和parseFloat更好的选择
+
+NumberToString
+在较小的范围内，数字到字符串的转换是完全符合你直觉的十进制表示
+Number 绝对值较大或者较小时，字符串表示则是使用科学计数法
+
+引用类型：对象（包含普通对象、数组、函数）
+
+装箱转换
+Number、String、Boolean、Symbol在对象中都有对应的类
+装箱转换，把基本类型转换为对应的对象
+
+### 对象
+
+- 对象具有唯一标识性
+- 对象有状态
+- 对象有行为
+
+#### 对象的属性
+
+用一组特征（attribute）来描述属性（property）
+
+数据属性
+
+- value：就是属性的值。
+- writable：决定属性能否被赋值。
+- enumerable：决定 for in 能否枚举该属性。
+- configurable：决定该属性能否被删除或者改变特征值。
+
+访问器属性
+getter：函数或 undefined，在取属性值时被调用。
+
+- setter：函数或 undefined，在设置属性值时被调用。
+- enumerable：决定 for in 能否枚举该属性。
+- configurable：决定该属性能否被删除或者改变特征值。
+
+js的对象是运行时属性的集合，
+getOwnPropertyDescriptor查看对象属性
+
+定义属性
+`Object.defineProperty(o,"b", {value: 2, writable: false, enumerable: true, configurable: true})`
+
+#### 对象分类
+
+宿主对象（host objects）
+内置对象 （built-in Objects）- 固有对象（Intrinsic Objects）- 原生对象（Native Objects）普通对象（Ordinary Objects）
+
+**宿主对象**
+浏览器中的宿主对象是 window
+宿主对象分为固有的和用户可创建的两种， 比如document.create
+宿主也会提供一些构造器： 例 new image()
+
+**内置对象-固有对象**
+随着 JavaScript 运行时创建而自动创建的对象实例。
+扮演类似基础库的角色
+
+**内置对象-原生对象**
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/02/17015070292088.jpg)
+
+函数对象与构造器对象
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/02/17015072699801.jpg)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/02/17015072991568.jpg)
+
+[[construct]]的执行过程如下:
+
+- 以 Object.prototype 为原型创建一个新对象；
+- 以新对象为 this，执行函数的[[call]]；
+- 如果[[call]]的返回值是对象，那么，返回这个对象，否则返回第一步创建的新对象。
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/02/17015074729381.jpg)
+
+```js
+var obj = {
+  name: '邓哥',
+  age: 35,
+  'graduate date': '2007-7-1',
+  'home address': {
+    province: '黑龙江',
+    city: 'city',
+  },
+}
+
+obj['name']
+obj.name
+
+obj['hello world']
+```
+
+数组，本质上也是对象
+
+```js
+// 数组的对象结构
+{
+   '0': xxx,
+   '1': xxx,
+   '2': xxx,
+   'length': 3
+}
+```
+
+## 数据的运算
+
+### 运算符
+
+#### 算术（数学）运算
+
+支持：加(+)、减(-)、乘(\*)、除(/)、求余(%)
+
+值得注意的是，+和-可以放到单个数据的前面，表示正负。
+
+**算术运算的表达式一定返回数字**，可以利用其特点做类型转换
+
+#### 字符串拼接
+
+当`+`的两端有一个是字符串时，不再进行算术运算，**而变为字符串拼接**
+
+**表达式一定返回string，**可以利用其特点做类型转换
+
+#### 赋值运算
+
+涉及的运算符：`=` `+=` `*=` `/=` `-=` `%=`。
+
+其中，`a += xxx`，等效于`a = a + (xxx)`，其他类似
+
+> 小贴士 赋值表达式始终返回赋值结果，我们可以利用该特点完成连续赋值
+>
+> ```
+> // 将 3 同时赋值给 a、b
+> a = b = 3;
+> ```
+
+#### 比较运算符
+
+涉及的运算符：`==` `===` `!=` `!==` `>` `>=` `<` `<=`
+
+比较运算始终返回boolean，我们可以利用这一点来完成某些赋值
+
+#### 逻辑运算
+
+!
+
+||
+
+运算符：`? :`，格式`a ? b : c`
+
+### 布尔判定
+
+所有需要判断真假的地方都会使用下面的规则
+
+| 数据                                      | 判定  |
+| ----------------------------------------- | ----- |
+| `false` `null` `undefined` `0` `NaN` `''` | false |
+| 剩余所有数据                              | true  |
+
+### 类型的隐式转换
+
+每个运算符都有自己期望的数据，比如`*`期望两端都是数字
+
+一旦数据不符合运算符的期望，js就会悄悄的对数据进行类型转换，把它转换成期望的值后进行运算。
+
+值得注意的是，这种转换是 _临时_ 的，并不会对原数据造成影响
+
+> 小贴士 在实际的开发中，我们可以利用类型的隐式转换完成以下功能：
+>
+> ```
+> var n = +a; // 不管a是啥，都会被转换成数字，保存到n中
+> var s = a + ''; // 不管a是啥，都会被转换成字符串，保存到s中
+> var b = !!a; // 不管a是啥，都会被转换成boolean，保存到b中
+> ```
+
+## 数据的作用域
+
+1. JS有两种作用域：全局作用域和函数作用域
+   - 内部的作用域能访问外部，反之不行。访问时从内向外依次查找。
+   - 如果在内部的作用域中访问了外部，则会产生闭包。
+   - 内部作用域能访问的外部，取决于函数定义的位置，和调用无关
+2. 作用域内定义的变量、函数声明会提升到作用域顶部
+
+## 全局对象
+
+无论是浏览器环境，还是node环境，都会提供一个全局对象
+
+- 浏览器环境：window
+- node环境：global
+
+全局对象有下面几个特点：
+
+- 全局对象的属性可以被直接访问
+
+- 给未声明的变量赋值，实际就是给全局对象的属性赋值
+
+  > 永远别这么干
+
+- 所有的全局变量、全局函数都会附加到全局对象（两个js文件变量可以相互访问）
+
+  > 这称之为全局污染，又称之为全局暴露，或简称污染、暴露
+  >
+  > 如果要避免污染，需要使用**立即执行函数**改变其作用域
+  >
+  > 立即执行函数又称之为IIFE，它的全称是Immediately Invoked Function Expression
+  >
+  > **IIFE通常用于强行改变作用域**
+
+```js
+;(function () {
+  var a = 1
+  console.log(a)
+
+  // 要暴露的作为函数返回值返回就行
+  return a
+})()
+```
+
+## 构造函数
+
+创建对象
+
+// JS所有的对象，都是通过构造函数产生的
+
+## 原型
+
+原型系统的复制操作有两种思路：
+
+- 并不真的复制一个原型对象，而是使得新对象持有一个原型的引用（js采用的方式）
+- 切实的复制对象，从此两个对象再无关联。
+
+js的原型
+
+- 如果所有对象都有私有字段[[prototype]]，就是对象的原型；
+- 读一个属性，如果对象本身没有，则会继续访问对象的原型，直到原型为空或者找到为止。
+
+访问原型的三个方法
+
+- Object.create 根据指定的原型创建新对象，原型可以是 null；
+- Object.getPrototypeOf 获得一个对象的原型；
+- Object.setPrototypeOf 设置一个对象的原型。
+
+new关键字
+
+- 以构造器的 prototype 属性（注意与私有字段[[prototype]]的区分）为原型，创建新对象；
+- 将 this 和调用参数传给构造器，执行；
+- 如果构造器返回的是对象，则返回，否则返回第一步创建的对象。
+
+通过构造函数可以创建一个用户对象
+
+这种做法有一个严重的缺陷，就是每个用户对象中都拥有一个`sayHi`方法，对于每个用户而言，`sayHi`方法是完全一样的，没必要为每个用户单独生成一个。
+
+![image-20230916222656722](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230916222656722.png)
+
+每个函数都会自动附带一个属性`prototype`，这个属性的值是一个普通对象，称之为原型对象
+
+每个实例都拥有一个特殊的属性`__proto__`，称之为隐式原型，它指向构造函数的原型
+
+**当访问实例成员时，先找自身，如果不存在，会自动从隐式原型中寻找**
+
+**这样一来，我们可以把那些公共成员，放到函数的原型中，即可被所有实例共享**
+
+![image-20230916224754416](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230916224754416.png)
+
+```js
+function NewPerson(firstName, lastName) {
+  this.firstname = firstName
+  this.lastName = lastName
+}
+NewPerson.prototype.sayhi = function () {
+  console.log('hello')
+}
+
+var a = new NewPerson('z', 't')
+a.sayhi()
+
+a.__proto__.sayhi()
+
+console.log(a.__proto__ === NewPerson.prototype) // true
+```
+
+## this
+
+在全局代码中使用this，指代全局对象
+
+**在函数中使用this，它的指向完全取决于函数是如何被调用的** 只有在运行时才知道指向谁
+
+| 调用方式         | 示例                | 函数中的this指向  |
+| ---------------- | ------------------- | ----------------- |
+| **通过new调用**  | `new method()`      | 新对象            |
+| **直接调用**     | `method()`          | 全局对象          |
+| **通过对象调用** | `obj.method()`      | 前面的对象        |
+| **call**         | `method.call(ctx)`  | call的第一个参数  |
+| **apply**        | `method.apply(ctx)` | apply的第一个参数 |
+
+```js
+var a = {
+  a: 1,
+  b: 2,
+  method: function () {
+    console.log(this.a, this.b)
+  },
+  c: {
+    m: function () {
+      console.log(this)
+    },
+  },
+}
+
+var m = a.method
+m() //undefined undefined
+
+//  call 可以改变this的指向
+```
+
+## 原型链
+
+![image-20230917004411949](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230917004411949.png)
+
+![image-20230917011253947](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230917011253947.png)
+
+根据基础的三角关系，找出对象是从哪new出来的就行了。
+
+<img
+  src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230917011346800.png"
+  alt="image-20230917011346800"
+/>
+
+## 继承
+
+```
+function inherit(Child, Parent){
+  // 在原型链上完成继承
+  Object.setPrototypeOf(Child.prototype, Parent.prototype);
+}
+```
+
+```js
+// 普通会员的构造函数
+function User(username, password) {
+  this.username = username
+  this.password = password
+}
+User.prototype.playFreeVideo = function () {
+  console.log('观看免费视频')
+}
+
+// VIP会员的构造函数
+function VIPUser(username, password, expires) {
+  User.call(this, username, password)
+  this.expires = expires
+}
+VIPUser.prototype.playPayVideo = function () {
+  console.log('观看付费视频')
+}
+
+Object.setPrototypeOf(VIPUser.prototype, User.prototype)
+
+u = new VIPUser('t', 'z', '2022-2-2')
+console.log(u)
+u.playFreeVideo()
+u.playPayVideo()
+```
+
+## 标准库
+
+### String Number
+
+包装类：String Number
+
+如果尝试着把原始类型（number、string、boolean）当做对象使用，JS会自动将其转换为对应包装类的实例
+
+<img
+  src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230917101556067.png"
+  alt="image-20230917101556067"
+/>
+
+### **数学**
+
+parseInt： 向0取整
+
+floor：向上取整
+
+ceil:向下取整
+
+arr = [1,2,3]
+
+Math.max.apply(null, arr)
+
+### 日期
+
+格林威治在0时区（GMT）
+
+![image-20230917103417652](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230917103417652.png)
+
+**GMT**：Greenwish Mean Time 格林威治世界时。太阳时，精确到毫秒。
+
+**UTC**：Universal Time Coodinated 世界协调时。以原子时间为计时标准，精确到纳秒。
+
+> 国际标准中，已全面使用UTC时间，而不再使用GMT时间
+
+GMT和UTC时间在文本表示格式上是一致的，均为`星期缩写, 日期 月份 年份 时间 GMT`，例如：
+
+```
+Thu, 27 Aug 2020 08:01:44 GMT
+```
+
+另外，ISO 8601标准规定，建议使用以下方式表示时间：
+
+```
+YYYY-MM-DDTHH:mm:ss.msZ
+例如：
+2020-08-27T08:01:44.000Z
+```
+
+**GMT、UTC、ISO 8601都表示的是零时区的时间**
+
+Unix 时间戳
+
+> Unix 时间戳（Unix Timestamp）是Unix系统最早提出的概念
+
+它将UTC时间1970年1月1日凌晨作为起始时间，到指定时间经过的秒数（毫秒数）
+
+程序中的时间处理
+
+**程序对时间的计算、存储务必使用UTC时间，或者时间戳**
+
+**在和用户交互时，将UTC时间或时间戳转换为更加友好的文本**
+
+### 数组
+
+[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FArray)
+
+### 对象
+
+[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject)
+
+| API                                                                                                                                                                                   | 含义                                     | 备注         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------------ |
+| [Object.assign()](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2Fassign)                 | 将多个对象的属性混合到一起               | 后面覆盖前面 |
+| [Object.getPrototypeOf()](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2FgetPrototypeOf) | 获取一个对象的隐式原型                   |              |
+| [Object.setPrototypeOf()](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2FsetPrototypeOf) | 设置一个对象的隐式原型                   |              |
+| [Object.create()](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2Fcreate)                 | 创建一个新对象，同时设置新对象的隐式原型 |              |
+
+### 函数
+
+| API                                                                                                                                                                               | 含义               | 备注                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------------ |
+| [Function.prototype.apply()](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FFunction%2Fapply) | 执行函数，绑定this | 参数列表以数组的形式传递 |
+| [Function.prototype.call()](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FFunction%2Fcall)   | 执行函数，绑定this | 参数列表依次传递         |
+
+## WebAPI
+
+和标准库不同，WebAPI 是**浏览器**提供的一套 API，用于操作浏览器窗口和界面
+
+WebAPI 中包含两个部分：
+
+- BOM：Browser Object Model，浏览器模型，提供和浏览器相关的操作
+- DOM：Document Object Model，文档模型，提供和页面相关的操作
+
+![image-20230917105725342](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230917105725342.png)
+
+严格的说：
+
+js是 ES + WebAPI
+
+nodejs 是 ES + NodeAPI
+
+### BOM
+
+window
+
+- open()
+- close()
+- setTimeout()
+
+window.location
+
+window.history
+
+### DOM
+
+获取DOM，创建DOM，更改DOM结构，DOM属性，DOM内容，DOM样式
+
+### DOM属性
+
+属性有两种：
+
+- 标准属性：HTML 元素本身拥有的属性，例如：
+  - a 元素的 href、title
+  - input 的 value
+  - img 的 src
+  - ......
+- 自定义属性：HTML 元素标准中未定义的属性
+
+**所有标准属性均可通过 `dom.属性名` 得到，其中：**
+
+- 布尔属性会被自动转换为 boolean
+- 路径类的属性会被转换为绝对路径
+- 标准属性始终都是存在的，不管你是否有在元素中属性该属性
+- class 由于和关键字重名，因此需要使用 className
+
+**所有的自定义属性均可通过下面的方式操作：**
+
+- `dom.setAttribute(name, value)`，设置属性键值对
+- `dom.getAttribute(name)`，获取属性值
+
+### Dom内容
+
+|                   |                            |                                |
+| ----------------- | -------------------------- | ------------------------------ |
+| API               | 含义                       | 备注                           |
+| ==dom.innerText== | 获取或设置元素文本内容     | 设置时会自动进行 HTML 实体编码 |
+| ==dom.innerHTML== | 获取或设置元素的 HTML 内容 |                                |
+
+### DOM样式
+
+在 JS 中，有两种样式：
+
+- 内联样式：元素的 style 属性中书写的样式
+- 计算样式（最终样式）：元素最终计算出来的样式
+
+**JS 可以获取内联样式和计算样式，但只能设置内联样式**
+
+下面罗列了样式的常见操作：
+
+- ```
+  dom.style
+  ```
+
+  ：获取元素的内联样式，得到样式对象
+
+  - 对象中的所有样式属性均可以被赋值，赋值后即可应用样式到元素的 style 中
+
+- ```
+  getComputedStyle(dom)
+  ```
+
+  ：获取元素的计算样式，得到一个样式对象
+
+  - 该样式对象中的属性是只读的，无法被重新赋值
+
+### 事件
+
+#### 注册事件
+
+JS 提供了三种方式注册事件
+
+方式 1：将事件注册写到元素上，这种方式基本被弃用
+
+```
+<button onclick="js代码">按钮</button>
+```
+
+==方式 2：使用 dom 属性注册事件==
+
+属性名为`on+事件类型`
+
+```
+// 监听事件
+dom.onclick = function () {
+  // 处理函数
+};
+// 移除监听事件
+dom.onclick = null;
+```
+
+这种方式的特点是：
+
+- 优点：易于监听、覆盖、移除
+- 缺点：只能注册一个处理函数
+- 缺点：某些事件不支持用这种方式注册
+
+==方式 3：使用 addEventListener 方法注册事件==
+
+```
+dom.addEventListener('click', function () {
+  // 处理函数1
+});
+dom.addEventListener('click', function () {
+  // 处理函数2
+});
+```
+
+这是最完美的事件注册方式，如果要移除用这种方式注册的事件，需要改写代码
+
+```
+function handler1() {
+  // 处理函数1
+}
+function handler2() {
+  // 处理函数2
+}
+
+dom.addEventListener('click', handler1);
+dom.addEventListener('click', handler2);
+
+dom.removeEventListener('click', handler1); // 移除监听函数1
+```
+
+#### 事件处理函数
+
+当事件发生时，会自动调用事件处理函数，并向函数传递一个参数，该参数称之为事件对象，里面包含了事件发生的相关信息，比如鼠标位置、键盘按键等等
+
+```
+dom.addEventListener('click', function (e) {
+  console.log(e.clientX); //打印鼠标的横坐标
+});
+```
+
+另外，在事件处理函数中，`this`始终指向注册事件的 dom
+
+### 事件默认行为
+
+某些元素的某些事件，浏览器会有自己的默认行为
+
+比如：
+
+- a 元素的 click 事件，浏览器会跳转页面
+- form 元素的 submit 事件，浏览器会提交表单，最终导致页面刷新
+- 文本框的 keydown 事件，浏览器会将按键文本显示到文本框中
+- ......
+
+如果我们要阻止浏览器的默认行为，就需要在对应时间中加入以下代码：
+
+```js
+// e为事件对象
+e.preventDefault()
+```
+
+visibility: hidden 生成盒子 不显示
+
+display: none 不生成盒子
+
+opacity: 0 生成盒子 显示
+
+### 事件传播机制
+
+![image-20230917153940947](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/image-20230917153940947.png)
+
+```js
+// 在冒泡阶段触发
+div.onclick = function () {}
+
+// 在捕获阶段触发事件
+div.addEventListener('click', function () {}, true)
+
+// 在冒泡阶段触发事件（默认）
+div.addEventListener('click', function () {}, false)
+// 事件处理函数
+function handler(e) {
+  e.target // 获取事件源（目标阶段的dom）
+  e.stopPropagation() // 阻止事件继续冒泡
+}
+```
+
+## 函数防抖
+
+操作耗时
+
+函数频繁出发，前面操作没有意义，只有最后一次有意义。
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+
+    <script>
+      function debounce(fn, duration) {
+        var timerId
+        return function () {
+          clearTimeout(timerId)
+          // 将该函数的this传递到fn
+          var curThis = this
+          // 将该函数的参数全部传递给fn
+          var args = Array.prototype.slice.call(arguments, 0)
+
+          timerId = setTimeout(function () {
+            fn.apply(curThis, args)
+          }, duration)
+        }
+      }
+
+      var newHandler = debounce(function (e) {
+        console.log('用户有按键', e, this.value, '耗时操作')
+      }, 2000)
+
+      var inp = document.querySelector('input')
+      inp.addEventListener('input', newHandler)
+
+      var mouseMoveHandler = debounce(function () {
+        console.log('move')
+      }, 1000)
+
+      window.addEventListener('mousemove', mouseMoveHandler)
+    </script>
+  </body>
+</html>
+```
+
+## 异常
+
+```js
+try {
+  // 代码1
+} catch (err) {
+  // 代码2：当代码1出现异常后，会执行这里的代码，异常对象会传递给err
+} finally {
+  // 代码3：可省略。无论是否有异常，都会执行
+}
+
+// 无异常的执行顺序：代码1 --> 代码3
+// 有异常的执行顺序：代码1 --> 出现异常，中断代码1的执行 --> 代码2 --> 代码3
+```
+
+**手动抛出异常**
+
+```js
+/**
+ * 得到两个数字之和
+ * 若传递的不是数字，则会抛出TypeError
+ * @param {number} a 数字1
+ * @param {number} b 数字2
+ * @return {number} 两数之和
+ */
+function sum(a, b){
+  if(typeof a !== 'nu
+     mber' || typeof b !== 'number'){
+    throw new TypeError('必须传入两个数字才能求和')
+  }
+  return a + b;
+}
+```

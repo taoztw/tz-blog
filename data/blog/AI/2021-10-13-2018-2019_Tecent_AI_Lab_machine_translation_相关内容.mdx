@@ -1,0 +1,134 @@
+---
+title: 2018-2019_Tecent_AI_Lab_machine_translation_相关内容
+date: 2021-10-13
+lastmod: 2021-10-13
+tags: ['AI']
+draft: false
+summary: 这篇文章主要介绍了机器翻译中的语言理解和条件生成两个关键问题。文章讨论了深度网络、多头注意力机制和自注意力网络等方面的改进,以提高语言理解能力。在条件生成方面,文章提出了鲁棒transformer、全面转换和信息流等方法来优化生成过程。
+layout: PostSimple
+---
+
+> Zhaopeng tu Tecent AI Lab 18 19的PPT内容记录
+
+Machine Translation：
+
+- 包含两个基础的NLP问题，language understanding和 generation
+- 是NLP的基石
+
+STM：信而不达（adequate yet not fluent）
+
+NMT：达而不信 （fluent yet not adequate）
+
+为什么会漏译（under translation）和错译（mistaken translation），是没有理解到位还是没有生成到位。（机器翻译存在两个组件：language understanding和conditional generation）
+
+## Language Understanding
+
+### Deep Networks
+
+Layer Aggregation
+
+不同的层能够捕获不同的语法语义信息。而目前的NMT模型在decode过程中只使用编码器和解码器的顶层。residual connection只能提供简单的shallow的连接这些信息。
+
+Hierarchical aggregation that incorporates more depth and sharing across layers by maintaining a tree structure (EMNLP 2018); 通过树状的结构保持合并特征通道。
+
+![layer aggregation](https://www.tzer.top/usr/uploads/2021/10/630927955.png)
+
+Routing-by-agreement that iteratively aggregate information according to the representation of the final output (AAAI 2019). 以迭代的方式将个别层概率分配给整体的表述，相应的组合各个部分。
+
+![Routing-by-agreement](https://www.tzer.top/usr/uploads/2021/10/4237871356.png)
+
+实验部分：
+
+![hierarchical aggregation和routing-by-agreement BLEU实验](https://www.tzer.top/usr/uploads/2021/10/3591701533.png)
+
+### Multi-Head Attention
+
+多头注意力的操作作者归纳两个方面：
+
+![多头注意力的两个方面](https://www.tzer.top/usr/uploads/2021/10/3110730853.png)
+
+不同子空间的头：多样性
+
+将不同子空间的头linear(concat([head1,head2...]))：信息聚合
+
+Multi-Head Attention with Disagreement Regularization.
+
+提出分歧正则化，鼓励每个头和其他的头 在 subspace，attended positions，output representation三个方面不一样。
+
+![损失函数](https://www.tzer.top/usr/uploads/2021/10/1935131289.png)
+
+子空间：最大化V向量cosine距离（一下都是 负cosine距离，因为需要最大化生成概率）
+
+![子空间 D计算方法](https://www.tzer.top/usr/uploads/2021/10/3441419017.png)
+
+attended positions：A是softmax之后的注意力矩阵
+
+![attended positions D 计算方法](https://www.tzer.top/usr/uploads/2021/10/2660807031.png)
+
+output：最大输出的距离
+
+![output 计算方法](https://www.tzer.top/usr/uploads/2021/10/1609442916.png)
+
+![评测](https://www.tzer.top/usr/uploads/2021/10/3005141570.png)
+
+信息聚合：Information Aggregation for Multi-Head Attention with Routing-by-Agreement.
+
+Linear层简单的线性变化不能充分的捕获信息。作者还是使用这种协议路由的方式来进行信息聚合。
+
+### Self-Attention
+
+Modeling Localness for Self-Attention Networks.
+
+![](https://www.tzer.top/usr/uploads/2021/10/480129254.png)
+
+Context-Aware Self attention Networks
+
+![](https://www.tzer.top/usr/uploads/2021/10/1299392756.png)
+
+Convolutional Self-Attention Networks
+
+![](https://www.tzer.top/usr/uploads/2021/10/1231895365.png)
+
+### Encoder Representation Interpretation
+
+根绝word reordering detection(WRD)任务，发现SAN可以学习到比RNN更好的位置信息
+
+## Conditional Generation
+
+### Robust Transformer
+
+发现较小的扰动会影响翻译效果：所以出了一个Robust Transformation，让模型对原始输出和扰动输出的行为相似。
+
+![robust Transformer架构](https://www.tzer.top/usr/uploads/2021/10/4011562552.png)
+
+### Full transformation
+
+decode过载，将decode一分为三，past present future。
+
+提出了覆盖差异率的指标CDR(Coverage Difference Ratio),使用强化学习根据该策略进行训练。
+
+### Information Flow
+
+基于梯度解释输入输出行为 论文：Towards Understanding Neural Machine Translation with Word Importance（抽时间看一看）
+
+## 2018 CIPS Summer
+
+主要挑战及解决方案：
+
+- 词汇表
+  - 未登陆词处理
+  - 词汇表采样
+  - 更小粒度 BPE
+- 解码策略
+  - 注意力模型
+  - 改进自左向右解码
+  - **外部知识引入**
+- 训练准则
+  - 将搜索引入训练
+  - 考虑忠实度及鲁棒性
+- 模型架构
+  - 网络改进：RNN CNN SAN
+  - SAN改进：位置编码，时序信息，局部上下文建模
+- 资源受限：
+  - 低资源：显式或隐式的构造伪平行句对
+  - 零资源：X=>Model=>Y=>model2=>X'

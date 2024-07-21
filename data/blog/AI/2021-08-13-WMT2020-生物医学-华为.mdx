@@ -1,0 +1,103 @@
+---
+title: WMT2020-生物医学-华为
+date: 2021-08-13
+lastmod: 2021-08-13
+tags: ['AI']
+draft: false
+summary: 华为在WMT20生物医学翻译任务中的方法。研究者探讨了领域内字典对提高跨领域神经机器翻译性能的影响,并利用预训练机器翻译模型进行迁移学习。通过领域数据增强、重排序等技术,在英-法、英-德、英-意大利语对上取得了最先进的结果。
+layout: PostSimple
+---
+
+> Huawei’s Submissions to the WMT20 Biomedical Translation Task
+
+## Abstract
+
+1.除了在特定领域的文本上进行微调实验外，我们还探讨了**领域内字典**对提高跨领域神经机器翻译性能的影响。
+
+2.利用了预训练机器翻译模型做迁移学习。
+
+在英--法，英->德 英->意大利 SOTA。
+
+## Introduction
+
+领域术语被认为是提高机器翻译质量的关键资源，以缓解领域内文本的稀缺影响。
+
+> Findings of the WMT 2019 Biomedical Translation Shared Task: Evaluation for MEDLINE Abstracts and Biomedical Terminologies
+
+模型I：使用通用数据训练Transformer-Big模型，通过in-domain语料进行微调增强跨域覆盖。
+
+模型II：使用Facebook2019的模型作为预训练模型。
+
+EN`<==>`DE方向的提升：强大的预训练模型 和 一系列的优化技巧。领域数据增强，reranking，strong language model。+3.8 /2.8 BLEU
+
+ZH-->EN方向的提升在于，高质量的领域数据 和 大规模的回译数据。+3.5 BLEU，只在中英方向验证了单语medline数据的回译效果。
+
+## The Data
+
+对于 II模型，focuses on Medline，it is the most effective IND data for this shared task.
+
+## The Approaches
+
+系统I和II，分别使用6144tokens，8000tokens进行训练。
+
+### In-domain dictionary
+
+词典是用来提高平行语料库中稀有和未知词汇的翻译质量的
+
+> Bridging neural machine translation and bilingual dictionaries.
+>
+> Domain adaptation of neural ma-chine translation by lexicon induction.
+>
+> HABLex: Human annotated bilingual lex-icons for experiments in machine translation.
+>
+> Dictionary-based data augmen-tation for cross-domain neural machine translation.
+
+使用了来源于临床术语SNOMED-CT的字典。字典被当作双语attached在训练数据的末尾。
+
+### Reranking
+
+使用fairseq中的NMT预训练模型，在领域数据上进行训练，
+
+使用噪声信道模型重排序方法, 权重$\lambda$ 通过随机搜索验证机最好性能来学习
+
+> Facebook FAIR’s WMT19 news translation task submission.
+>
+> ![image-20210802174441464.png](http://tzer.top/usr/uploads/2021/08/3031221268.png)
+
+### Data Processing
+
+```markdown
+fast align
+
+> Alibaba submission to the WMT18 parallel corpus filtering task.
+
+length ratio
+language detection
+HTML tags,extra spaces
+
+moses: punctuation normalization and tokenization
+sentencepiece segments words into subwords
+
+使用tf-idf相似性从一般领域中提取接近indomain的数据。(数据增强的手段)
+
+> Sentence embedding for neural machine translation domain adaptation.
+> Dictionary-based data augmen-tation for cross-domain neural machine translation.
+
+后处理：detokenize和删除类似23 - 25这样中的空格
+```
+
+## Experimental Results
+
+Larger OOD(out of domain) bitexts is not helpful in cross-domain NMT.
+
+想法：为了验证IND是有效的，计算了训练集 和 训练集+IND+DICT中唯一的terms(1-2 grams)，发现唯一项增加了，
+
+![image-20210802183418323.png](http://tzer.top/usr/uploads/2021/08/186992748.png)
+
+这可能和BLEU的增长有关。
+
+![image-20210802183906835.png](http://tzer.top/usr/uploads/2021/08/4293454325.png)
+
+从上图可以看出，领域微调增加了BLEU，对微调数据进行预处理，也增加了BLEU，说明预处理是有效的。对领域数据增强之后，仍然有提高，但是提升不是很大。也验证了重排序方法的效果。
+
+IND-Aug：包含预处理的Medline data和根据TFIDF从OOD中提取出来的相似数据。

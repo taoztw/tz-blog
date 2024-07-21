@@ -1,0 +1,87 @@
+---
+title: 频率派vs贝叶斯派
+date: 2022-02-10
+lastmod: 2022-02-10
+tags: ['AI']
+draft: false
+summary: 这篇文章主要介绍了频率派和贝叶斯派对概率的不同诠释。频率派认为参数θ是常量，通过最大似然估计求解；贝叶斯派则认为θ满足先验分布，通过最大后验估计求解。文章还简要对比了两种方法的发展方向，频率派演变为优化问题，贝叶斯派发展为概率图模型。
+layout: PostSimple
+---
+
+视频资料：
+
+林轩田：基石 技法
+
+张志华：机器学习导论（频率），统计机器学习（贝叶斯）
+
+李宏毅：ML MLDS
+
+徐亦达：概率模型
+
+吴恩达：cs229
+
+# Introduction
+
+对概率的诠释有两大学派，一种是频率派另一种是贝叶斯派。后面我们对观测集采用下面记号：
+
+$$
+X_{N\times p}=(x_{1},x_{2},\cdots,x_{N})^{T},x_{i}=(x_{i1},x_{i2},\cdots,x_{ip})^{T}
+
+
+$$
+
+这个记号表示有 $N$ 个样本，每个样本都是 $p$ 维向量。其中每个观测都是由 $p(x|\theta)$ 生成的。
+
+## 频率派的观点
+
+$p(x|\theta)$中的 $\theta$ 是一个常量。对于 $N$ 个观测来说观测集的概率为 $p(X|\theta)\mathop{=}\limits _{iid}\prod\limits _{i=1}^{N}p(x_{i}|\theta))$ 。为了求 $\theta$ 的大小，我们采用**最大对数似然MLE**的方法：
+
+$$
+\theta_{MLE}=\mathop{argmax}\limits _{\theta}\log p(X|\theta)\mathop{=}\limits _{iid}\mathop{argmax}\limits _{\theta}\sum\limits _{i=1}^{N}\log p(x_{i}|\theta)
+
+
+$$
+
+## 贝叶斯派的观点
+
+贝叶斯派认为 $p(x|\theta)$ 中的 $\theta$ 不是一个常量。这个 $\theta$ 满足一个预设的先验的分布 $\theta\sim p(\theta)$ 。于是根据贝叶斯定理依赖观测集参数的后验可以写成：
+
+$$
+p(\theta|X)=\frac{p(X|\theta)\cdot p(\theta)}{p(X)}=\frac{p(X|\theta)\cdot p(\theta)}{\int\limits _{\theta}p(X|\theta)\cdot p(\theta)d\theta}
+
+
+$$
+
+为了求 $\theta$ 的值，我们要最大化这个参数后验MAP(最大后验估计)。上式分母$p(X)$和$\theta$没有关系，所以$P(\theta|X)$正比于$P(X|\theta)P(\theta)$：
+
+$$
+\theta_{MAP}=\mathop{argmax}\limits _{\theta}p(\theta|X)=\mathop{argmax}\limits _{\theta}p(X|\theta)\cdot p(\theta)
+
+
+$$
+
+对于严格的贝叶斯估计来说，$P(X)$是需要计算的。
+
+得到了参数的后验分布$P(\theta|X)$后，我们可以将这个分布用于预测贝叶斯预测：
+
+X --> $\theta$ ---> $x_{new}$
+
+$$
+p(x_{new}|X)=\int\limits _{\theta}p(x_{new}|\theta)\cdot p(\theta|X)d\theta
+
+
+$$
+
+## 小结
+
+频率派发展出来的，一般称为统计机器学习，最终演变为优化问题（最优化理论），主要步骤是
+
+1. 设计模型
+2. loss function
+3. 梯度下降。
+
+贝叶斯派 发展出来的是概率图模型，在后验概率建模或推断中，主要是求积分的问题，解析解求不出来，可以用数值积分，比如基于采样的MCMC。
+
+> B站白板推导系列 https://www.bilibili.com/video/BV1aE411o7qd
+>
+> 笔记来源：https://github.com/tsyw/MachineLearningNotes（稍作修改，方便理解）

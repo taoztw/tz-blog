@@ -1,0 +1,100 @@
+---
+title: 2021_EMNLP_机器翻译预训练和回译的互补性
+date: 2021-11-09
+lastmod: 2021-11-09
+tags: ['AI']
+draft: false
+summary: 研究了预训练(PT)和反向翻译(BT)对神经机器翻译模型的影响。研究发现PT主要作用于编码器,BT主要作用于解码器,两者具有互补性。结合PT和BT可以提高翻译质量,在WMT16英语-罗马尼亚语和英语-俄语任务上取得了最先进的结果。
+layout: PostSimple
+---
+
+> On the Complementarity between Pre-Training and Back-Translation for Neural Machine Translation EMNLP 2021
+
+## 摘要
+
+这篇文章主要在于使用mBART(XLM-R,mRASP,[corse-lingual跨语言翻译模型](https://cloud.tencent.com/developer/article/1740267))理解BT和PT对模型的具体影响。作者通过实验发现 Pre-training(PT)主要贡献在encoder和back-translation(BT)主要贡献在decoder模块。PT和BT是有互补性的。BT和PT组合可以提升翻译质量。在WMT16 English-Romanian和Emglish-Russian取得了SOTA。
+
+> 开源代码：https://github.com/SunbowLiu/PTvsBT
+> (**_The code will be available before the convening of EMNLP 2021._**)
+
+## 介绍
+
+BT和PT是NMT模型中最常见的利用单语数据来提高翻译质量的。在经验上取得了成功，数据层面也有一些工作进行解释Understanding back-translation at scale.本博客中包含该文 BART: Denoising sequence-to-sequence pre-training for natural language generation, translation, and comprehension.也有一些工作通过组合PT和BT取得更好的性能。
+
+- 设计了两个probing task分析PT和BT对NMT 模型的影响
+- 经验论证了PT和BT的互补性
+- Tagged BT提高PT和BT的互补性
+
+## 预备知识
+
+### 背景
+
+NMT中预训练模型使用
+
+1. 将预训练模型作为外部知识，在预测的时候通过特殊的策略进行解码。需要修改模型结构，比较麻烦
+2. 将预训练模型作为初始权重进行加载（作者使用[mBART](https://zhuanlan.zhihu.com/p/366525006)作为参数初始化模型）
+
+back-translation
+
+看这篇文章：[理解大规模反向翻译](http://tzer.top/index.php/archives/41/)
+
+Unsupervised Cross-lingual Representation Learning at Scale这篇工作通过组合PT和BT取得了较好的性能。
+
+### 实验设置
+
+数据：
+
+WMT16 En-Ro：612k/2k/2k + 2.3M的BT合成数据
+
+En-Ru 2M/3K/3K 句子对 + 2M的BP合成数据。
+
+bpe + mBART的 tokenizer。
+
+设置：
+
+参数初始化模型 mBART.cc25
+
+微调学习率：[3e-5, 1e-3],dropout:[0.3,0.5]
+
+length penalty 1.0 beam size:5 , sacreBLEU和TER
+
+## 理解PT和BT
+
+![Y代表参数被激活，N意味无效操作](https://www.tzer.top/usr/uploads/2021/11/821458514.png)
+
+PT中，N代表不使用预训练模型初始化。可以看出，YN的组合明显的提高了BLEU。所以说PT作用在模型Encoder上。
+
+BT中，N代表参数冻结，Y代表参数更新。可以看到，encoder参数冻结，decoder参数更新（NY组合）带来的BLEU提升最大。
+
+通过YY看出，这两个组合可以带来更好的BLEU。
+
+> 对于BLEU的评价指标，虽然存在一些缺点，有更好的替代，但是比较简单。而且通过一些分析，BLEU的较大提升也会带来人工评价的提升。但是也有一些其他情况。比如应用了BT，在一些时候，BLEU值没有提升，但是人工评价却提升了。相反的情况肯定也有。如果出现了，有一方面说明BLEU的测试集有点问题了。
+
+## 使用BT和PT提升
+
+![](https://www.tzer.top/usr/uploads/2021/11/1867551569.png)
+
+> Tagged BT: Tagged Back-translation Revisited: Why Does It Really Work? BT合成语料会让模型过度拟合机器翻译的一些特征，导致翻译质量下降。提出了对BT数据加一个tag区分真实数据和合成数据，可以防止这种质量下降。Tagged Back-translation Revisited: Why Does It Really Work?
+
+单从BLEU上，tagged BT + PT 与 BT+PT的区分不大。
+
+分析：
+
+![](https://www.tzer.top/usr/uploads/2021/11/3421711702.png)
+
+有研究表明BT对句子类型是敏感的。作者对 src tgt的翻译 分别做了测试（正常的，我们更关注src的翻译）。PT在src-Ori上比BT表现更好。（33.8 vs 31.9）。但BT在tgt-Ori上表现更好。
+
+> Src-Ori表示测试数据来自源语言。Tgt-Ori表示从目标语言翻译过来的数据
+
+takeaway：
+
+- PT和BT在句子原创性(originality)方面的互补性
+- Tag BT可以减轻翻译Tgt-Ori句子的偏差
+
+![](https://www.tzer.top/usr/uploads/2021/11/1605084617.png)
+
+低频高频词的翻译质量。PT对低频词的翻译质量提高更明显。BT对高频词的提升更明显。BT和PT在词频翻译上互补。
+
+## 未来工作
+
+课程表学习与BT PT组合。探索更多利用单语数据。

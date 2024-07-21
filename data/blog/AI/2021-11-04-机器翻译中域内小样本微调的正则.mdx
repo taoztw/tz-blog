@@ -1,0 +1,57 @@
+---
+title: 机器翻译中域内小样本微调的正则
+date: 2021-11-04
+lastmod: 2021-11-04
+tags: ['AI']
+draft: false
+summary: 探讨了在神经机器翻译中使用小规模领域数据进行微调时的过拟合问题。作者测试了三种正则化技术(Dropout、MAP-L2和Tuneout)来防止过拟合,发现使用Dropout和MAP-L2的组合可以使训练更加稳定,并显著提高BLEU评分。实验结果表明,正则化技术可以有效缓解微调过程中的过拟合问题,提高模型在小数据集上的泛化能力。
+layout: PostSimple
+---
+
+> Regularization techniques for fine-tuning in neural machine translation 2017 ACL
+
+在小数据上进行迁移学习（使用小规模领域内数据对通用机器模型进行微调）的一个问题是过拟合。作者测试了三种防止过拟合的方法(自己提出来了一种Tuneout),发现正则的技术可以使训练更加鲁棒，防止过拟合。实验结论在微调的时候使用dropout和MAP-L2组合会带来更稳定的训练，BLEU提升较为明显。
+
+微调的领域数据和BLEU评分有对数关系...如下图
+
+![](https://www.tzer.top/usr/uploads/2021/11/3322896005.png)
+
+> 微调的其他方式还有使用域内数据在通用模型上继续训练。
+
+> 机器翻译中，使用联合训练来解决域内数据稀少的问题。
+
+## 正则化技术
+
+### Dropout
+
+![](https://www.tzer.top/usr/uploads/2021/11/4274355559.png)
+
+$M_{W,i,j}$ ：bayesian dropout mask
+
+### MAP-L2
+
+![](https://www.tzer.top/usr/uploads/2021/11/3954203332.png)
+
+W是域内参数矩阵，W帽是固定的通用模型参数矩阵。
+
+### Tuneout
+
+![](https://www.tzer.top/usr/uploads/2021/11/2196264585.png)
+
+W冒：固定的域外模型参数
+
+△W：参数变化矩阵
+
+$M_{△W,i,j}$ ：bayesian dropout mask
+
+## 结果
+
+![English->German训练中验证集下BLEU变化](https://www.tzer.top/usr/uploads/2021/11/1336400430.png)
+
+可以看到随着训练增多，单纯使用fine-tune的翻译能力下降。而正则化不然，是训练更加稳定
+
+![](https://www.tzer.top/usr/uploads/2021/11/4288823380.png)
+
+作者的方法并没有提升。dropout+MAP-L2的提升比较明显
+
+> 作者在实验中使用了early stop，结尾说明对于少量的域内数据而言，有点不切实际，因为early-stopping需要依赖足够大的域内验证集。

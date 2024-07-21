@@ -1,0 +1,22 @@
+---
+title: MAC问题列表
+date: 2021-12-24
+lastmod: 2021-12-24
+tags: ['Tech']
+draft: false
+summary: 这篇文章介绍了两个技术问题的解决方法。第一个是解决Mac系统上文件损坏的问题，通过在终端中输入特定命令来移除应用程序的隔离属性。第二个是关于Docker中docker.raw文件占用空间过大的问题，文章提供了一张图片展示如何调整相关设置。
+layout: PostSimple
+---
+
+> **文件损坏**
+
+1. 打开终端
+2. 输入`sudo xattr -d com.apple.quarantine /Applications/xxxx.app`
+   注意：`/Applications/xxxx.app` 换成你的App路径（可以直接将.app文件拖入终端中自动生成路径）
+3. 重启App
+
+> docker.raw 文件占用空间大
+
+调整
+
+![](https://www.tzer.top/usr/uploads/2021/12/2579344251.png)

@@ -1,0 +1,154 @@
+---
+title: css样式
+date: 2023-10-05
+lastmod: 2023-10-05
+tags: ['前端']
+draft: false
+summary: 这篇文章主要介绍了CSS3在不同浏览器中的实现和前缀使用情况。文章提到了浏览器厂商前缀的使用，如-webkit、-moz等，以及CSS预处理器和后处理器的概念。此外，文章还简要介绍了一些常用的CSS属性和技巧，如盒模型、浮动和文字居中等。
+layout: PostSimple
+---
+
+不同浏览器实现css3功能的时间不一样，
+
+如chrome先实现了之后会在属性前加-webkit前缀，
+
+## 介绍
+
+当所有浏览器都实现了css某一个属性，chrome会随着版本更新，同时支持 -webkit 和 无-webkit前缀。
+
+| Prefix  | Browser       |
+| ------- | ------------- |
+| -webkit | chrome safari |
+| -moz    | Firefox       |
+| -ms     | IE            |
+| -o      | Opera         |
+
+[CSS参考手册](http://css.doyoe.com/)
+
+[Can i use](https://caniuse.com/?search=transition)查看css各个浏览器版本的支持情况。
+
+预处理器 pre-processor
+
+less/sass cssNext插件(炒的比较火) 定义了一些语法，让css写的更方便。
+
+> cssNext用来实现一些未来的标准（未完全在各大浏览器实现的功能）
+
+后处理器 post-processor
+autoprefixer
+
+Postcss: 用js实现的css的抽象语法树(AST)
+
+## 小米商城css
+
+> 对应github项目 https://github.com/taoztw/xiaomi
+
+> css查阅指南https://developer.mozilla.org/zh-CN/docs/Learn/CSS
+
+> 如下内容为一些要点，资料记录
+
+## head 部分
+
+```html
+<!-- 修改页面favicon-->
+<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+<!-- 导入css-->
+<link rel="stylesheet" href="./css/common.css" />
+```
+
+## common css
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  /* 消除ul 左边的小点 */
+  list-style: none;
+  box-sizing: border-box;
+}
+```
+
+| list style                                                                                 | list style=none                                                                            |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| ![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231005110106502.png) | ![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231005110221342.png) |
+
+`> ul>li\*10>{选项}`
+
+```css
+/* 示例 */
+.box {
+  width: 100px;
+  height: 200px;
+  padding: 50px;
+  box-sizing: border-box;
+}
+```
+
+| box-sizing: content-box                                                                    | box-sizing: border-box                                                                     |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| ![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231005113200080.png) | ![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/image-20231005113420444.png) |
+| .box                                                                                       |                                                                                            |
+
+> 对于content box 设置width height时是对 content区域进行设置，不包含padding 和 border的大小
+
+### a标签处理
+
+```css
+a {
+  /* 去除a元素的下划线 */
+  text-decoration: none;
+  /* 继承父元素的颜色 */
+  color: inherit;
+}
+
+a:hover {
+  color: #ff6700;
+}
+```
+
+### html
+
+```css
+html {
+  color: #333;
+  min-width: 1226px;
+  font:
+    14px/1.5 'Helvetica Neue',
+    Helvetica,
+    Arial,
+    'Microsoft Yahei',
+    'Hiragino Sans GB',
+    'Heiti SC',
+    'WenQuanYi Micro Hei',
+    sans-serif;
+}
+```
+
+### 浮动
+
+> https://www.programfarmer.com/articles/2019/css-float-and-flex
+>
+> **当一个元素中的CSS 有`clear`属性时，就会「 清除该元素上方所遭遇的浮动情况」，因此就不会忽略其上方的元素高度，进而回到垂直排列的正常状况**。也就是说，如果在Footer 加上`clear: both`，就能让Left / Right 区块的浮动情况消失（能再度看见height ），所以排版会再度回复正常。
+
+```css
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+```
+
+### 文字垂直居中
+
+line-height 设置为父容器的高度就可以垂直居中了
+
+想要文本水平居中设置text-align：center即可。
+
+https://segmentfault.com/a/1190000005122321
+
+> 如果一段文本的高度为16px，如果给他设置line-height的高度为200，那么相当于，文本的上下间距的高度增加了，但是文本本身的高度依然是16是不变的，并且一直默认在行框中垂直居中，而上间距和下间距平分了200px的高度并且减去文本本身的高度。所以，容器被这一行文本占满，而本身文字在自己的一行中是垂直居中的，所以看起来就像是在容器中垂直居中。

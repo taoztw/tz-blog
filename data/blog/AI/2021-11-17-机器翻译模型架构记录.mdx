@@ -1,0 +1,45 @@
+---
+title: 机器翻译模型架构记录
+date: 2021-11-17
+lastmod: 2021-11-17
+tags: ['AI']
+draft: false
+summary: 这篇文章主要讨论了机器翻译架构的一些研究发现。文章指出LSTM作为解码器在某些情况下性能优于Transformer解码器,并探讨了embedding大小、双向LSTM、注意力机制等因素对翻译性能的影响。文章还比较了不同架构的训练时间和BLEU得分,发现LSTM训练速度快,而基础Transformer模型效果较好。
+layout: PostSimple
+---
+
+> 架构这东西，有意思也没意思。
+
+除了之前的[The Best of Both Worlds: Combining Recent Advances in Neural Machine](https://www.tzer.top/index.php/archives/146/)
+
+**Google AI blog 2020**： LSTM 作为decoder性能比Transformer decoder效果好
+
+**Massive Exploration of Neural Machine Translation Architures**，提到small large embeddings matrix在梯度更新时候大致相同，也可能是large参数需要更好的优化方法，对于深度模型也是如此
+
+decoder根据encoder最后输出进行初始化是有必要的。
+
+双向LSTM比单向只好一点点。
+
+注意力机制像一个weighted skip connection。注意力模型对decoder有较大梯度更新。
+
+beam search：3 -10 LP 0.5 1.0差距不大
+
+arxiv最新的一篇简单文章
+
+**ANALYZING ARCHITECTURES FOR NEURAL MACHINE TRANSLATION USING LOW COMPUTATIONAL RESOURCES**
+
+在100万数据集上训练
+
+![模型,BLEU 训练时间](https://www.tzer.top/usr/uploads/2021/11/218517524.png)
+
+训练时间角度看，lstm快。（self attention ，feed forward encoder + lstm decoder）应该不错
+
+BLEU上，base transformer效果好，big差一点，训练时间还更多。
+
+除此之外，加宽 增大filter size到8192，15000。加深 ：dlcl
+
+但是效果不咋di，腾讯WMT21 用了很多Transformer变体，为了让生成结果多样性，然后对翻译结果做排序，可以看 [WeChat Neural Machine Translation Systems for WMT21](https://www.tzer.top/index.php/archives/69/)
+
+**多语言翻译：**
+
+21年的WMT似乎更喜欢用多语言翻译的模型。对低资源效果明显。

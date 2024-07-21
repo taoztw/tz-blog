@@ -1,0 +1,145 @@
+---
+title: 2021_transformer_综述（部分）
+date: 2021-11-01
+lastmod: 2021-11-01
+tags: ['AI']
+draft: false
+summary: Transformer模型的发展和优化方向。文章分析了Transformer在模型效率、泛化能力和领域适应性方面的改进,并将优化工作分为架构改进、预训练和应用三个方面。文章重点讨论了注意力机制的优化,包括稀疏注意力、线性化注意力等方法,以解决长序列计算复杂度高和缺乏归纳偏置的问题。
+layout: PostSimple
+---
+
+> 2021 A Survey of Transformers
+
+## 1 Introduction
+
+Transformer的变体从以下几方面提高：
+
+1. Model efficiency。对于self attention，长序列的计算和内存效果过多。有作者提出了轻量化(lightweight)的注意力（sparse attention，分而治之(divide-and-conquer)递归和分层机制）
+2. (model generalization )模型泛化。transformer几乎没有什么归纳偏差，通用性很强，在小数据集上很难训练，容易过拟合。针对这些问题提出引入结构偏差和正则化，在大规模数据上进行预训练
+3. model adaptation，领域适应。让Transformer适应下游的任务。
+
+论文将优化工作分为：架构改进，预训练和应用。（主要关注通用的架构变体，简要讨论预训练和应用程序的变体）
+
+目录：
+
+2. BACKGROUND，介绍架构和相关的组件
+3. 说明Transformer变体的种类
+4. 5. review模块的改进。attention，position encoding，layer normalization，feed-forward layer
+5. review架构级别的变体
+6. 介绍预训练的表示
+7. Transformer的应用
+8. 讨论
+
+## 2. BACKGROUND
+
+模型各个部件的介绍略。
+
+### 2.3 Model Analysis
+
+分析self attention和position-wise FFN。假设模型隐层维度是D，输入序列长度是T，FFN的内部隐层维度是4D，多头keys values的维度是D/H。
+
+![复杂度分析](https://www.tzer.top/usr/uploads/2021/11/2651890526.png)
+
+![Attention计算](https://www.tzer.top/usr/uploads/2021/11/4191193788.png)
+
+![FFN计算](https://www.tzer.top/usr/uploads/2021/11/3174339028.png)
+
+> 矩阵相乘，复杂度是乘法操作的次数。NM\*MP 复杂度为 O(NMP)
+
+对于self attention来说，复杂度计算如下：
+
+$QK^T$的复杂度$T \times D * D \times T$得到$T\times T$矩阵，复杂度为$O(T^2D)$
+
+softmax的复杂度为$O(T^2)$
+
+$AV$的复杂度为$T \times T * T \times D$，$O(T^2D)$，所以self attention的复杂度为$O(T^2D)$
+
+对于多头注意力而言：
+
+将$T \times D$维度的Q，K矩阵拆分转置为$T \times h \times m$其中$m=D/h$。$QK^T$的复杂度为$h \times T \times m * h \times m \times T$复杂度为$O(h^2T^2m)$换算一下，去掉常数复杂度为$O(T^2D)$
+
+![多头注意力计算公式](https://www.tzer.top/usr/uploads/2021/11/928640717.png)
+
+之后还有一个concat操作，$T \times D * D \times D$,$O(D^2T)$,最后多头注意力的复杂度为$O(T^2D+TD^2)$
+
+参数量：
+
+对于self attention, 包含$W_q,W_k,W_v,W^o)$四个$D \times D$矩阵，参数量是$4D^2$
+
+FFN有两个$4D^2$的参数矩阵$W^1,W^2$
+
+当输入序列较短，FFN是瓶颈，当输入过长时，self attention是瓶颈。
+
+### 2.4 与其他模型对比
+
+#### self attention分析
+
+![不同层的一些信息](https://www.tzer.top/usr/uploads/2021/11/2434977715.png)
+
+通过上表可以看出，在可变长序列处理和长依赖，并行计算，全局信息具有优势。
+
+#### 归纳偏差
+
+> 归纳偏差：目标函数的假设
+
+CNN的归纳偏差为平移不变性和局部性（共享核权重）
+
+RNN马尔可夫结构具有时间不变形(temporal invariance)和局部性(locality)的归纳偏差
+
+Transformer没有对数据结构进行假设。这使得Transformer成为一个灵活通用的架构。也使得在小数据上容易过拟合。Transformer可以看作为在完全有向图上的GNN(with self-loop)，Transformer与GNN的区别是Transformer没有引入数据如何构造的先验信息，完全依赖相似性度量进行信息传递。
+
+## 3. Transformer分类
+
+![transformer优化分类](https://www.tzer.top/usr/uploads/2021/11/1674555156.png)
+
+## 4. Attention
+
+Attention的两个问题：
+
+1. 复杂性。在输入序列较长时，计算代价大，有个长度的平方操作。$O(T^2D)$
+2. 结构先验。没有假设任何的结构偏差（归纳偏置），小数据上容易过拟合。
+
+提高：
+
+1. Sparse Attention。在注意力机制中引入稀疏偏差降低复杂度。
+2. Linearized Attention。实现了线性复杂度的注意力计算
+3. Prototype 和内存压缩，减少q或者kv的大小，以减小注意力矩阵的大小
+4. 低秩self-attention：捕获注意力的低秩性
+5. attention with prior，使用先验的注意分布来替换标准的注意力
+6. 提高多头机制
+
+### Sparse Attention
+
+transformer学习到的attention 矩阵是比较稀疏的。
+
+https://kexue.fm/archives/6853 这个角度理解比较好。
+
+分为两类稀疏：基于位置的，基于内容的
+
+#### 基于位置
+
+有五个基础的稀疏注意力模式。
+
+![基础稀疏注意力模式](https://www.tzer.top/usr/uploads/2021/11/398204688.png)
+
+可以对以上的基础模式进行复合，形成新的不同的注意力。
+
+![基础模式复合](https://www.tzer.top/usr/uploads/2021/11/1108752270.png)
+
+其他扩展的稀疏注意力模型：
+
+BPT的基于二叉树的注意力模式。还有视觉方面的一些操作。
+
+![其他扩展](https://www.tzer.top/usr/uploads/2021/11/2566504886.png)
+
+#### 基于内容
+
+选择与query相似度高的key
+
+### Linearized Attention
+
+## 待续...
+
+> https://juejin.cn/post/6977376855850483749
+>
+> https://www.jianshu.com/p/98d82f83b6ba

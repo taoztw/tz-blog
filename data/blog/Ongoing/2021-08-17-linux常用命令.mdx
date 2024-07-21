@@ -1,0 +1,61 @@
+---
+title: linux常用命令
+date: 2021-08-17
+lastmod: 2021-08-17
+tags: ['Tech']
+draft: false
+summary: 这篇文章主要介绍了一些常用的Linux命令行操作。文章涵盖了端口管理、文件处理、压缩解压、FTP下载等多个方面的命令示例。此外,还包含了一个简短的Python代码片段,用于修改目录下的文件名。
+layout: PostSimple
+---
+
+> 不断更新中...
+
+```bash
+# 查看占用端口
+lsof -i:8888
+kill -9 `lsof -t -i:port`
+```
+
+```bash
+split -l 800 ../corp.all
+
+# 将三个文件内容以 '\t'方式合并到merged文件中
+paste -d '\t' en zh score> merged
+
+# 将不包含 “- - ”的字符串数据输入到指定文件
+grep -v "\- \- " clean_OK > result.first_step.tmp
+
+# 删除文件的1-7行
+sed -n '1,7d' forward_score
+
+# sed 's/需要替换的部分/替换成的部分/' file
+awk -F '\t' '{print $1"\t"$2}' $RAW_INPUT | sed 's/\t/ ||| /g' | sed 's/-/ - /g' | sed 's/  / /g' > $INPUT
+
+gawk -F '\t' '{if ($9 / $4 < -9.0)print $1"\t"$2"\t"$7}' result.first_step  > illegal
+
+tar -zcvf train.tgz train # 压缩
+tar -xzvf file.tar.gz # 解压缩
+
+# 解码当前目录下多个文件
+for z in *.zip;do unzip $z;done
+
+
+shuf result.third_step -o result.third_step.shuffled
+
+set -e # Exit the script if an error happens
+
+# 第一行插入
+printf '%s\t%s\n' "aa" "vv" | cat  -  rfile > file
+
+# wget ftp下载文件
+wget -r -nH -P ./ ftp://172.31.1.1:21/* --ftp-user=anonymous
+	-r 递归下载
+	-nH 不包含主机文件夹
+	-P 下载到指定目录
+```
+
+```python
+# 修改目录下文件名
+os.listdir()
+os.rename(old_name, new_name)
+```

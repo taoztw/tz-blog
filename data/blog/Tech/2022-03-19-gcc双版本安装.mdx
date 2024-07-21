@@ -1,0 +1,58 @@
+---
+title: gcc双版本安装
+date: 2022-03-19
+lastmod: 2022-03-19
+tags: ['Tech']
+draft: false
+summary: 这篇文章介绍了如何在Linux系统上安装和配置GCC 5.5.0版本。文章详细说明了下载、编译和安装GCC 5.5.0的步骤，以及如何使用update-alternatives命令配置多个GCC版本，使系统能够同时支持GCC 4.8.5和5.5.0版本。
+layout: PostSimple
+---
+
+> linux默认gcc版本是4.8.5，但是由于install fairseq需要5版本以上的gcc版本
+>
+> > [c++: error: unrecognized command line option ‘-std=c++14’](安装过程中报错)
+
+```bash
+# 1. 下载
+wget http://mirrors.concertpass.com/gcc/releases/gcc-5.5.0/gcc-5.5.0.tar.gz
+# 2. 解压
+tar -xzvf gcc-5.5.0.tar.gz
+# 3. 进入目录
+cd gcc-5.5.0
+# 4. 下载下载依赖项
+./contrib/download_prerequisites
+# 5. 创建编译输出目录
+mkdir build
+# 6. 进入创建目录，生成makefile文件
+cd build
+
+../configure
+	–prefix=/usr/local/
+	--enable-languages=c,c++
+	--disable-multilib
+# 7. 编译,应该得一个小时左右
+make -j4 # j4 最多允许四个编译命令同时执行，前提编译的项目要有好的依赖，否则会出问题
+# 8. 安装
+make install
+```
+
+```markdown
+# 配置两个gcc
+
+`whereis gcc`可以看到gcc在/usr/bin/gcc
+/usr/local/gcc-5.5.0/bin/gcc这个目录也可能会为/usr/local/bin/gcc(/usr/local/bin/g++)
+首先链接新安装的/usr/local/gcc-5.5.0/bin/gcc到/usr/bin/gcc5.5.0.
+`ln -s /usr/local/gcc-5.5.0/bin/gcc /usr/bin/gcc-5.5.0`
+然后将原始gcc更名为gcc4.8.5
+`mv /usr/bin/gcc /usr/bin/gcc-4.8.5`
+
+使用
+`update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5.5.0 50`
+50代表优先级
+`update-alternatives --config gcc`可以看到gcc的xuan xing
+
+同理可得：g++
+`update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50 `
+
+查看版本 g++ -v
+```

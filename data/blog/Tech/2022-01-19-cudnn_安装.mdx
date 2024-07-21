@@ -1,0 +1,48 @@
+---
+title: cudnn_安装
+date: 2022-01-19
+lastmod: 2022-01-19
+tags: ['Tech']
+draft: false
+summary: 本文介绍了cuDNN的安装步骤,包括下载对应版本压缩包、解压文件、配置环境变量、复制头文件等操作。文章还提供了查看cuDNN版本的方法,以及CUDA、NVIDIA驱动和cuDNN之间的版本兼容性查询链接。
+layout: PostSimple
+---
+
+## cuDNN安装
+
+1. 下载https://developer.nvidia.com/rdp/cudnn-archive对应版本压缩包
+
+> tensorflow cuda cuDNN对应关系 https://tensorflow.google.cn/install/source_windows?hl=en#gpu下载需要注册账号密码，如需要，可以私信。
+
+2. tar -xzvf 解压，得到cuda目录，包含include 和 lib64 两个文件
+3. 将lib64文件添加到环境变量中，然后source
+
+```shell
+vim ~/.bashrc
+添加： export LD_LIBRARY_PATH=..(你的安装目录)../lib64:$LD_LIBRARY_PATH
+source ~/.bashrc
+```
+
+4. 将include中cuddn.h文件复制到 /usr/local/cuda/include文件中,重置cudnn.h权限
+
+```sh
+cp */cuddn.h /usr/local/cuda/include/
+chmod a+r /usr/local/cuda/include/cuddn.h
+```
+
+> https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
+
+5. 查看cuDNN版本
+
+> cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+>
+> cat /usr/local/cuda/version.txt
+
+## 相关帮助链接：
+
+CUDA各个版本下载链接：https://developer.nvidia.com/cuda-toolkit-archive
+nvidia驱动和cuda版本兼容性查看：https://docs.nvidia.com/cuda/archive/11.3.0/cuda-installation-guide-linux/index.html
+
+cuDNN各版本下载：https://developer.nvidia.com/rdp/cudnn-archive
+
+tensorflow cuda cuDNN对应关系：https://tensorflow.google.cn/install/source_windows?hl=en#gpu

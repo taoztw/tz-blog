@@ -1,0 +1,117 @@
+---
+title: EM算法
+date: 2021-09-11
+lastmod: 2021-09-11
+tags: ['AI']
+draft: false
+summary: 这篇文章主要介绍了Jensen不等式和期望最大化(EM)算法。文章首先定义了Jensen不等式,并给出了一个图形化的例子。然后详细推导了EM算法,包括E步和M步,并用抛硬币的例子说明了EM算法的应用过程。
+layout: PostSimple
+---
+
+## Jensen's Inequality
+
+> Jensen不等式
+
+### 定义
+
+对于凹函数：
+
+$f(E[x])\geq E[f(x)]\quad(1)$
+
+$f(\sum_i\lambda_jx_j) \geq\sum_j\lambda_jf(x_j)\quad f()\,and\,\lambda_j\geq0,\sum_j\lambda_j=1\quad(2)$
+
+### 例子
+
+![](https://www.tzer.top/usr/uploads/2021/09/3702871856.png)
+
+如图：$x_t=(1-t)a + tb\quad where\,0\leq t\leq1$,代入第2个式子。
+
+$f((1-t)a + tb)\geq (1-t)f(a)+tf(b)$，如果所示，只有当$a=b=x_t$时，不等式取等号。
+
+将a,b视为随机变量的两个可能取值，$(1-t)a + tb$为样本的期望。不等式取等号的条件等价于$X=E(X)$
+
+## Expectation Maximization
+
+> EM算法推导记录
+>
+> 用于含有隐变量的概率参数模型的最大似然估计或极大后验概率估计
+
+给定数据集，m个独立数据${x_1,...,x_m}$,拟合一个模型p(x)，则对数似然函数为
+
+$l(\theta)=\sum_{i=1}^mlog\,p(x;\theta)$
+
+加入隐变量，设$Q_i$为z的概率分布，$\sum_zQ_i(z)=1,Q_i(z)\geq0$
+
+$l(\theta)=\sum_{i=1}^mlog\sum_{z^{(i)}}p(x^{(i)},z^{(i)};\theta)$
+
+$\quad\quad=\sum_{i=1}^mlog\sum_{z^{(i)}}Q_i(z^{(i)})\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$
+
+$\quad\quad\geq\sum_{i=1}^m\sum_{z^{(i)}}Q_i(z^{(i)})log\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$ 根据Jensen不等式转换，将$\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$视为x，$Q_i(z^{(i)})$视为$\lambda_i$，当$\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}=c$为常数时，不等式取等号。
+
+做个变换：
+
+$\sum_z p(x^{(i)},z^{(i)};\theta)=\sum_z Q_i(z^{(i)})c$ 其中$\sum_z Q_i(z^{(i)})=1$，所以$\sum_z p(x^{(i)},z^{(i)};\theta)=c=\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$
+
+$Q_i(z^{(i)})=\frac{p(x^{(i)},z^{(i)};\theta)}{\sum_z p(x^{(i)},z^{(i)};\theta)}$
+
+$\quad\quad\quad=\frac{p(x^{(i)},z^{(i)};\theta)}{p(x^{(i)};\theta)}$
+
+$\quad\quad\quad=p(z^{(i)}|x^{(i)};\theta)$
+
+EM算法主要是两个步骤：
+
+E-step，得到似然函数的一个下界，M-step：最大化似然函数下界。
+
+E-step：
+
+```
+
+```
+
+$Q_i(z^{(i)})=p(z^{(i)}|x^{(i)};\theta)$
+
+M-step：
+
+```
+
+```
+
+$\theta=argmax_\theta\sum_{i=1}^m\sum_{z^{(i)}}Q_i(z^{(i)})log\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$
+
+如下图：随机初始化$\theta$为$\theta^{(t)}$,在E-step，构建了$g_t$的函数，M-step最大化$g_t$得到新的参数$\theta^{(t+1)}$,如此反复。
+
+![](https://www.tzer.top/usr/uploads/2021/09/305494921.png)
+
+## 硬币的例子
+
+两枚硬币A，B，每次独立随机抛掷，在已知每次抛掷的硬币情况下，可以很轻松的通过极大似然估计(频率)的方式，计算出A，B硬币正面朝上的概率。
+
+![](https://www.tzer.top/usr/uploads/2021/09/4252090064.png)
+
+现在，每一轮硬币抛掷是A或B是未知的，如何计算A，B硬币正面朝上的概率？z为隐变量，代表每一轮抛的硬币。
+
+首先随机初始化硬币A，B正面朝上的概率，如图：硬币A正面朝上的概率为0.6,硬币B为0.5
+
+E-step： $Q_i(z^{(i)})=p(z^{(i)}|x^{(i)};\theta)$，根据硬币正面朝上的概率，估计出，每轮抛掷A或B硬币的概率，
+
+![](https://www.tzer.top/usr/uploads/2021/09/1391106071.png)
+
+根据抛硬币A，B硬币的概率，就可以得到，A或B硬币每轮抛掷的期望次数。通过次数的频率估计出A，B硬币正面朝上的概率。
+
+例如：在第一轮的抛A硬币的概率是0.45，出现正面反面都是5词，那么正面反面的期望次数都等于0.45\*5（每一次抛硬币都是独立的），计算完成之后
+
+M-step：$\theta=argmax_\theta\sum_{i=1}^m\sum_{z^{(i)}}Q_i(z^{(i)})log\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$
+
+![](https://www.tzer.top/usr/uploads/2021/09/1065015742.png)
+
+简单补充：
+
+**收敛证明：**
+
+![](https://www.tzer.top/usr/uploads/2021/09/3077475497.png)
+
+**需要注意**迭代一定会收敛，但不一定会收敛到真实的参数值，因为可能会陷入局部最优。所以 EM 算法的结果很受初始值的影响。
+
+> 参考：https://zhuanlan.zhihu.com/p/78311644
+>
+> http://ai.stanford.edu/~chuongdo/papers/em_tutorial.pdf

@@ -1,0 +1,201 @@
+---
+title: python_多进程为什么慢
+date: 2023-12-16
+lastmod: 2023-12-16
+tags: ['Tech']
+draft: false
+summary: 这篇文章主要介绍了使用Python进行并行处理以提高质数计算效率的几种方法。文章比较了串行处理、简单并行处理、数据分块并行处理以及使用multiprocessing.Pool的并行处理方法，并分析了各种方法的性能差异。最终结论是，对于大规模数据，合适的并行处理方法可以显著提高计算效率。
+layout: PostSimple
+---
+
+> 笔记： https://www.bilibili.com/video/BV1q94y1N7pJ
+
+## v1 代码 -串行处理
+
+```python
+
+import time
+from utils import is_prime
+
+MAX_NUMBER = 100000
+primes = []
+
+start = time.time()
+
+for i in range(1, MAX_NUMBER):
+    if is_prime(i):
+        primes.append(i)
+
+
+print(f"Took {time.time() - start} seconds")
+print(f"Got {len(primes)} primes")
+
+
+"""""
+Took 0.06995820999145508 seconds
+Got 9592 primes
+"""""
+```
+
+## v2代码 -并行处理
+
+```python
+import multiprocessing
+from utils import is_prime
+import time
+
+MAX_NUMBER = 100000
+
+primes = []
+
+def work(inq, outq):
+    """
+    work从 输入队列中取任务执行,如果从队列中获得None,则该进程的任务结束
+    """
+    while n := inq.get():
+        if is_prime(n):
+            outq.put(n)
+    outq.put(None)
+
+
+if __name__ == "__main__":
+    start_time = time.time()
+
+    inq = multiprocessing.Queue()
+    outq = multiprocessing.Queue()
+
+    workers = [ multiprocessing.Process(target=work, args=(inq, outq)) for _ in range(4) ]
+
+    for w in workers:
+        w.start()
+
+    for i in range(1, MAX_NUMBER):
+        inq.put(i)
+
+    # 最后在input队列塞 4个 None
+    for _ in range(4):
+        inq.put(None)
+
+    finish = 0
+    while finish < 4:
+        if n := outq.get():
+            primes.append(n)
+        else:
+            finish += 1
+
+    print(f"Took {time.time() - start_time} seconds")
+    print(f"Got {len(primes)} primes")
+
+
+    """
+    Took 1.1287569999694824 seconds
+    Got 9592 primes
+    """
+```
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/16/17026983298632.jpg)
+`get`函数执行事件，远超过`is_prime`函数.
+事件都浪费在通讯上。
+
+## v3 代码-等份切分数据
+
+减少通讯的次数以及数据
+每次输入队列一个元祖，代表list中起止索引
+
+```python
+import multiprocessing
+from utils import is_prime
+import time
+
+MAX_NUMBER = 1000000
+
+primes = []
+
+def work(inq, outq):
+    """
+    work从 输入队列中取任务执行,如果从队列中获得None,则该进程的任务结束
+    """
+    while n := inq.get():
+        start, end = n
+        primes = []
+        for i in range(start, end):
+            if is_prime(i):
+                primes.append(i)
+        outq.put(primes)
+    outq.put(None)
+
+
+if __name__ == "__main__":
+    start_time = time.time()
+
+    inq = multiprocessing.Queue()
+    outq = multiprocessing.Queue()
+
+    workers = [ multiprocessing.Process(target=work, args=(inq, outq)) for _ in range(4) ]
+
+    for w in workers:
+        w.start()
+
+    # for i in range(1, MAX_NUMBER):
+    #     inq.put(i)
+    for i in range(4):
+        inq.put((i * MAX_NUMBER//4, (i + 1) * MAX_NUMBER//4))
+
+    # 最后在input队列塞 4个 None
+    for _ in range(4):
+        inq.put(None)
+
+    finish = 0
+    while finish < 4:
+        if n := outq.get():
+            # primes.append(n)
+            primes.extend(n)
+        else:
+            finish += 1
+
+    print(f"Took {time.time() - start_time} seconds")
+    print(f"Got {len(primes)} primes")
+
+
+    """
+    Took 0.06907486915588379 seconds
+    Got 9592 primes
+    """
+
+```
+
+分配的任务不均匀，各个work的运行时间不同。
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/12/16/17027007962338.jpg)
+
+## v4代码 -使用pool map function
+
+使用
+
+```python
+import multiprocessing
+from utils import is_prime
+import time
+
+MAX_NUMBER = 100000
+primes = []
+
+start_time = time.time()
+
+
+if __name__ == "__main__":
+    with multiprocessing.Pool(4) as pool:
+        primes = [
+            n+1 for n, prime in enumerate(pool.map(is_prime, range(1, MAX_NUMBER))) if prime
+        ]
+
+
+    print(f"Took {time.time() - start_time} seconds")
+    print(f"Got {len(primes)} primes")
+
+    """
+    Took 0.08679699897766113 seconds
+    Got 9592 primes
+    """
+```
+
+> 数据越大 区别越明显

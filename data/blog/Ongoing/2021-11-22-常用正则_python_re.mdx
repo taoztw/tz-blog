@@ -1,0 +1,42 @@
+---
+title: 常用正则_python_re
+date: 2021-11-22
+lastmod: 2021-11-22
+tags: ['Tech']
+draft: false
+summary: 这篇文章介绍了使用Python的re模块进行文本处理的几个实用技巧。主要包括移除标点符号、拆分连在一起的英文句子、匹配特殊符号以及替换多余空格等操作，展示了正则表达式在文本清理和格式化中的应用。
+layout: PostSimple
+---
+
+> [官方文档](https://docs.python.org/zh-cn/3.8/library/re.html)
+
+```python
+# 移除句子标点符号
+import re
+import string
+from zhon.hanzi import punctuation
+
+text = "I have - a dream . ?"
+re.sub(r"[%s]+|[%s]+" % (punctuation, string.punctuation), "", text)
+# output: "I have  a dream  " 需要处理连续空格
+
+
+# 英文连在一起的句子拆开
+def pre_tokenize(eng):
+    def callback_repl(matchobj):
+        return matchobj.group(1) + '. ' + matchobj.group(2)
+    # 匹配 "I have a dream.We have" 为 dream. We
+    # 注意. 后的匹配需要大写字母和小写字母同时拥有
+    # 如果是 "have dream.I" 这样则不能匹配成功
+    return re.sub('( [a-z0-9 ]{2,})\.([A-Z][a-z])', callback_repl, eng)
+
+
+
+# 匹配一些特殊符号
+question = re.compile(r'\?{3,}')   # ''三次及三次以上？
+bad_mrk = re.compile(r'[¶©↓]')
+re.search(bad_mrk, line)
+
+# 替换句子中多个空格 为 1个空格
+re.sub(r'\s{2,}', ' ', sentence)
+```

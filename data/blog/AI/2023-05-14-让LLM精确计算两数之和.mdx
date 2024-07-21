@@ -1,0 +1,159 @@
+---
+title: 让LLM精确计算两数之和
+date: 2023-05-14
+lastmod: 2023-05-14
+tags: ['AI']
+draft: false
+summary: 如何使用LLM(大型语言模型)来精确计算两个数的和。文章展示了两种方法:使用LLM chain和LLM agent,通过调用Python代码或预定义的工具函数来实现准确计算。此外,文章还简要提到了其他相关工具,如语音转文本、语音合成和图像生成等。
+layout: PostSimple
+---
+
+让LLM 100%精确计算两数之和
+
+> Just show code
+
+## LLM chain
+
+```python
+from langchain.prompts import PromptTemplate
+from langchain.chat_models.azure_openai import AzureChatOpenAI
+from langchain.chains import LLMChain
+from langchain.utilities import PythonREPL
+
+llm = AzureChatOpenAI(deployment_name="保密省略", model_name="gpt-35-turbo",
+                      openai_api_version="2023-03-15-preview")
+
+multiply_by_python_promot = PromptTemplate(template="写一段python代码,用于计算{question},只输出代码",
+                                           input_variables=["question"])
+math_by_python_chain = LLMChain(llm=llm, prompt=multiply_by_python_promot, output_key="answer")
+
+answer = math_by_python_chain.run("342*932")
+
+python_repl = PythonREPL()
+print(f"GPT Answer: {answer}")
+print(f"GPT Answer with Python exec: {python_repl.run(answer)}")
+print(f"Calc Answer: {342*932}")
+
+
+# ======Output======
+"""
+GPT Answer: print(342*932)
+GPT Answer with Python exec: 318744
+
+Calc Answer: 318744
+"""
+```
+
+## LLM agent
+
+```python
+from langchain.agents import initialize_agent, Tool, AgentType
+from langchain.chat_models import AzureChatOpenAI
+
+"""
+prompt位置: https://github.com/hwchase17/langchain/blob/master/langchain/agents/mrkl/prompt.py
+思路参考paper: https://arxiv.org/pdf/2205.00445.pdf
+"""
+llm = AzureChatOpenAI(deployment_name="保密省略", model_name="gpt-35-turbo",
+                      openai_api_version="2023-03-15-preview", temperature=0)
+
+# 只对加法进行了调整
+def add(s: str) -> int:
+    a, b = s.split(",")
+    a = int(a.strip())
+    b = int(b.strip())
+    return a + b
+
+def subtract(a: int, b: int) -> int:
+    return a - b
+
+
+def multiply(a: int, b: int) -> int:
+    return a * b
+
+
+tools = [
+    Tool(
+        name="Add", func=add,
+        description="Used to add two numerical values."
+    ),
+    Tool(name="Subtract", func=subtract,
+         description="Used to subtract two numerical values"
+         ),
+    Tool(name="Multiply", func=multiply,
+         description="Used to multiply two numerical values"
+         )
+]
+
+agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
+agent.run("Calculate the sum of 222231 and 33312")
+
+
+# Test Case
+
+"""
+> Entering new AgentExecutor chain...
+I need to add two numerical values
+Action: Add
+Action Input: 222231, 33312
+Observation: 255543
+Thought:I now know the final answer
+Final Answer: 255543
+
+> Finished chain.
+"""
+```
+
+Prompt:
+
+```python
+PREFIX = """Answer the following questions as best you can. You have access to the following tools:"""
+FORMAT_INSTRUCTIONS = """Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [{tool_names}]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question"""
+SUFFIX = """Begin!
+
+Question: {input}
+Thought:{agent_scratchpad}"""
+
+
+"""介绍
+Action，就是根据用户的输入，选择应该选取哪一个 Tool，然后行动。
+Action Input，就是根据需要使用的 Tool，从用户的输入里提取出相关的内容，可以输入到 Tool 里面。
+Oberservation，就是观察通过使用 Tool 得到的一个输出结果。
+Thought，就是再看一眼用户的输入，判断一下该怎么做。
+Final Answer，就是 Thought 在看到 Obersavation 之后，给出的最终输出。
+
+https://github.com/hwchase17/langchain/blob/master/langchain/agents/mrkl/output_parser.py
+最终会根据Final Answer 解析出最后的答案
+"""
+
+```
+
+## Other tools
+
+whisper 语音转文本
+
+语音合成：Azure认知服务(一定字符内免费)， 百度开源PaddleSpeech TTSExecutor
+
+数字人：https://www.d-id.com/
+
+CLip 图片搜索
+
+Stable Diffusion 图片生成
+
+```python
+
+from diffusers import DiffusionPipeline
+pipeline = DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
+pipeline.to("cuda")
+image = pipeline("a photograph of an astronaut riding a horse").images[0]
+image
+```

@@ -1,0 +1,89 @@
+---
+title: GPT2_领域数据微调
+date: 2021-09-16
+lastmod: 2021-09-16
+tags: ['AI']
+draft: false
+summary: 这篇文章介绍了如何使用transformers 4.11.0对GPT2-small 12层模型进行微调。文章详细说明了环境准备、数据准备和训练过程，包括使用run_clm.py脚本进行单机多卡训练的具体步骤。最后，文章还解释了如何计算模型的困惑度，即对模型输出的损失进行指数运算。
+layout: PostSimple
+---
+
+> 使用transformers 4.11.0进行GPT2-small 12层 模型的微调。
+
+## 环境准备
+
+https://huggingface.co/transformers/installation.html
+
+这里采用源码方式安装
+
+```sh
+git clone https://github.com/huggingface/transformers.git
+python setup.py install
+pip install pytorch==1.6.0
+```
+
+## 数据准备
+
+准备训练数据 和 验证数据，一行对应一条文本，这里使用txt文件后缀。文件样式如下。对应文件名为train_en.txt, valid_en.txt
+
+```text
+I have a dream.
+I have a dream.
+```
+
+## 开始训练
+
+使用https://github.com/huggingface/transformers/blob/master/examples/pytorch/language-modeling/run_clm.py
+
+该脚本进行单机多卡训练。
+
+```sh
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 run_clm.py \
+    --model_name_or_path gpt2 \
+    --train_file train_en.txt \
+    --validation_file valid_en.txt \
+    --do_train \
+    --do_eval \
+    --output_dir model \
+    --overwrite_output_dir \
+    --per_device_eval_batch_size 8 \
+    --per_device_train_batch_size 6 \
+    --num_train_epochs 10 \
+    --save_steps 1000
+```
+
+per_device_train_batch_size，per_device_eval_batch_size，如果训练发生OOM，需要根据自己GPU的显存大小进行调整。
+
+overwrite_output_dir每次执行是都是删除指定输出目录下的文件。
+
+save_total_limit：采用此限制输出目录下的checkpoint个数。以防硬盘存储过大。默认为None
+
+训练日志：
+
+```
+{'loss': 3.2526, 'learning_rate': 4.6367598982927716e-05, 'epoch': 0.73}
+7%|▋ | 8000/110120 [1:37:15<20:27:26, 1.39it/s][INFO|trainer.py:1956] 2021-09-16 19:04:04,838 >> Saving model checkpoint to model/checkpoint-8000
+{'loss': 3.2327, 'learning_rate': 4.61405739193607e-05, 'epoch': 0.77}
+{'loss': 3.2252, 'learning_rate': 4.591354885579368e-05, 'epoch': 0.82}
+8%|▊ | 9000/110120 [1:49:25<20:14:42, 1.39it/s][INFO|trainer.py:1956] 2021-09-16 19:16:14,990 >> Saving model checkpoint to model/checkpoint-9000
+{'loss': 3.2139, 'learning_rate': 4.568652379222666e-05, 'epoch': 0.86}
+{'loss': 3.2096, 'learning_rate': 4.545949872865964e-05, 'epoch': 0.91}
+9%|▉ | 10000/110120 [2:01:38<20:21:57, 1.37it/s][INFO|trainer.py:1956] 2021-09-16 19:28:27,348 >> Saving model checkpoint to model/checkpoint-10000
+```
+
+## 困惑度的计算
+
+困惑度是交叉熵的指数形式。所以直接对模型输出loss进行math.exp(loss)就可以。
+
+```python
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+inputs = tokenizer("I have a dream", return_tensors="pt")
+outputs = model(**inputs, labels=inputs["input_ids"])
+
+
+loss = outputs.loss
+torch.exp(loss) # 困惑度
+# output: 68.56529998779297
+```

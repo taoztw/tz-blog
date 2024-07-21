@@ -1,0 +1,91 @@
+---
+title: WMT2020-新闻-小牛
+date: 2021-08-15
+lastmod: 2021-08-15
+tags: ['AI']
+draft: false
+summary: 这篇文章介绍了NiuTrans团队在WMT20机器翻译评测中的系统。该系统在日英和英日翻译方向上排名第一,主要应用了迭代回译、宽深Transformer模型、迭代知识蒸馏和迭代微调等技术。系统的训练步骤包括数据预处理、生成伪数据、多样化翻译模型、知识蒸馏、领域微调和后处理等。
+layout: PostSimple
+---
+
+> The NiuTrans Machine Translation Systems for WMT20
+
+在日英和英日方向排名第一。
+
+应用了迭代回译，宽度和深度的Transformer，迭代知识蒸馏，迭代微调的技巧，发现组合 加宽 加深模型 会带来好的性能。迭代微调可以在领域翻译表现好。
+
+## Introduction
+
+在受限数据集上构建的。
+
+deeper and wider Transformer做为基线，使用核采样在回译过程中生成更合适的伪造双语数据。发现了新的微调方法，在高低资源的数据上，都可以显著的增加数据的评分。
+
+模型训练的步骤如下：1、数据预处理及过滤；2、迭代回译生成伪数据；3、使用不同的翻译模型去丰富模型翻译的多样性；4、通过领域内的多语数据进行迭代知识蒸馏；5、使用领域内数据并应用**较小的训练batch**进行模型微调；6、翻译后处理。
+
+## System overview
+
+使用 normalize-punctuation.perl脚本对中日符号进行标准化。英语、因纽特语使用MOSES进行分割，中文、日语、泰米尔语分别使NiuTrans、MeCab、IndicNLP进行分割，把符号和数字转化为英语的模式之后，使用Sudachi将日语句子中的英语单词规范化为日语。
+
+### Data Preprocessing and Filtering
+
+严格的清洗数据是非常重要的
+
+```markdown
+句子长度在0.4-3之外，标点符号大鱼0.3
+去除长单词超过40个，token大于200个
+Remove repeated n-gram translation and re-peated sentences except for IU.
+fast aling 评分低于-6
+语言检测，删除其他语言，或包含特殊的HTML label
+过滤两边括号不对应的句子
+使用Unicode去过滤句子，其他字符超过10
+```
+
+### Iterativa Back Translation
+
+选择域内单数据进行反向翻译至关重要。对于英文，使用5000万的新闻数据训练一个语言模型，使用语言模型对数据进行排序。但是其他语料较少的方向很难用大量数据训练语言模型，所以作者这里采用XenC toolkit。为了避免短句子排名过高，在使用两种方法对这些数据打分时，每一分都乘以一个长度惩罚
+
+首先采用波束搜索方法生成最佳的翻译数据作为伪数据，伪数据的比例约为真实数据的1:1，合并这些数据，然后重新训练模型再次进行反向翻译，重复步骤，直到验证集的BLEU值有很小的提升。
+
+### Multilingual Model
+
+### Model Architectures and Ensemble
+
+作者对表中所有的糖果进行了实验，并最终选择six decoder layers，因为其他的网络的增加很少。
+
+![image-20210815184301071.png](http://tzer.top/usr/uploads/2021/08/3152282651.png)
+
+```markdown
+Deep Network:对encoder layers,hidden size和其他的超参数进行了改进。
+DLCL
+Filter size：增大FFN size，训练时间会获得明显的提升
+RPR and relative length：相对位置，一个参数是相对长度。
+```
+
+### Iterative KD and Fine-tuning
+
+使用迭代蒸馏的方式实现自学习,作者设计了一个新的迭代微调过程，
+
+1. 使用集成模型去decode验证测试数据，然后使用这些伪数据进行微调。
+2. 使用较小的训练batch和学习率做微调。
+3. test source side选择领域数据进行自学习
+   依据验证集的分数，重复2到3次，为了保持和测试集合相同的成分，作者从之前的有效集合中挑选出源端是真实的而目标端是手动的数据，发现迭代微调可以提升新闻title的翻译质量。
+
+![image-20210815194439838.png](http://tzer.top/usr/uploads/2021/08/2890615329.png)
+
+### Reranking
+
+使用Facebook的rerank方式，语言模型和reverse translation model，作者使用了集中长度惩罚去生成更多的候选项。
+
+### Post Editing
+
+对于英语side，作者只通过脚本确认数字是否翻译正确。对于英中，处理姓名的翻译，英日将英语标点符号转化为日文模式。
+
+## Experiment
+
+日英翻译实验：
+
+![image-20210815195715470.png](http://tzer.top/usr/uploads/2021/08/140952837.png)
+
+英中实验：
+
+![image-20210815195746432.png](http://tzer.top/usr/uploads/2021/08/3202242855.png)

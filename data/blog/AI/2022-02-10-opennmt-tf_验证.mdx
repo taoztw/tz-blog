@@ -1,0 +1,128 @@
+---
+title: opennmt-tf_验证
+date: 2022-02-10
+lastmod: 2022-02-10
+tags: ['AI']
+draft: false
+summary: 这篇文章介绍了使用OpenNMT-tf进行机器翻译模型训练的步骤,包括创建词汇表、配置训练参数、开始训练、模型推理和BLEU评分计算。文章还比较了不同模型平均数量和beam search参数对BLEU评分的影响,最终得到最佳的模型配置。
+layout: PostSimple
+---
+
+opennmt-tf 2.24文档：https://opennmt.net/OpenNMT-tf/index.html
+
+opennmt论坛：https://forum.opennmt.net/
+
+> 使用版本 OpenNMT-tf 2.20.1，opennmt超过此版本最低需要使用tf 2.4
+>
+> tensorflow 2.3.0
+
+## 创建vocab
+
+```sh
+onmt-build-vocab --sentencepiece character_coverage=1 num_threads=4 model_type=unigram num_threads=16 input_sentence_size=20000000 --size 32000  --save_vocab sp train.all.txt
+
+
+```
+
+## 开始训练
+
+```sh
+CUDA_VISIBLE_DEVICES=4,5,6,7 onmt-main --model_type TransformerBigSharedEmbeddings \
+	--config config/train.yaml --auto_config \
+	train --with_eval --num_gpus 4
+```
+
+配置文件 config/train.yaml
+
+```yaml
+
+model_dir: model
+
+data:
+  train_features_file: train.ja
+  train_labels_file: train.en
+
+  eval_features_file: ja-en.ja.tok.test
+  eval_labels_file: ja-en.en.tok.test
+	source_vocabulary: sp.vocab
+	target_vocabulary: sp.vocab
+  source_tokenization:
+    type: SentencePieceTokenizer
+    params:
+      model: sp.model
+  target_tokenization:
+    type: SentencePieceTokenizer
+    params:
+      model: sp.model
+
+params:
+  maximum_decoding_length: 500
+  beam_width: 5
+  length_penalty: 0.8009
+
+train:
+  batch_size: 8192
+  batch_type: tokens
+
+  save_checkpoints_steps: 100
+  keep_checkpoint_max: 20
+  save_summary_steps: 1000
+
+  max_step: 500000
+  moving_average_decay: 0.9999
+  average_last_checkpoints: 20
+eval:
+  batch_size: 32
+  batch_type: examples
+  steps: 5000
+  save_eval_predictions: true
+  scores: bleu
+  export_on_best: bleu
+  export_format: checkpoint
+  max_exports_to_keep: 5
+	early_stopping:
+		metric: bleu
+		min_improvement: 0.001
+		steps: 10
+```
+
+## Inference
+
+```markdown
+Inference
+
+# avg
+
+onmt-main \
+ --config config/train.yaml --auto_config \
+ average_checkpoints \
+ --output_dir avg3 \
+ --max_count 3
+
+# 输出文件
+
+onmt-main \
+ --config config/train.yaml --auto_config \
+ --checkpoint_path avg3 \
+ infer --features_file test_in_ja.tokenized --predictions_file output_ckpt_avg3
+```
+
+## BLEU计算
+
+**平均不同模型个数**
+
+37.326281335281024 avg
+
+37.46784600657037 avg2 ✅ BLEU评分最好
+
+37.45982108284651 avg 3
+
+37.326281335281024 avg5
+
+37.39469167207481 avg10
+
+**添加beam search 和 length penalty BLEU变化**
+
+37.69308880298246 output_ckpt_avg2_lp ✅ avg 2 + beam 5，
+
+37.510240688512766 output_ckpt_avg10_lp

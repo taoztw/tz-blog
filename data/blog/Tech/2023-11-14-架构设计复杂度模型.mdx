@@ -1,0 +1,161 @@
+---
+title: 架构设计复杂度模型
+date: 2023-11-14
+lastmod: 2023-11-14
+tags: ['Tech']
+draft: false
+summary: 这篇文章主要讨论了软件架构设计中的三个关键方面:可扩展性、高性能和高可用性。文章介绍了通过拆分和复用来提高系统的可扩展性,通过单机优化和集群设计来实现高性能,以及通过冗余和复制等方式来保证系统的高可用性。文章还提出了"鸡蛋篮子"理论,强调了在架构设计中合理分配和分解任务的重要性。
+layout: PostSimple
+---
+
+> 鸡蛋篮子第一法则：如何一个蓝字数不清，拆分到多个蓝字再数
+
+业务复杂度 和 质量负责度 正交，二者相互不影响
+
+![image-20230623002714228](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623002714228.png)
+
+架构复杂度应对之道
+
+![image-20230623003725148](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623003725148.png)
+
+### 可扩展
+
+extensibility：系统适应变化的能力。包含**可理解** **可复用**两个部分（可理解也是可扩展的部分） 重点就是拆分和复用。
+
+scalability：可伸缩，系统通过添加更多资源来提升性能的能力
+
+可理解和可复用如何影响可扩展：可理解代码系统有哪些地方有修改，可复用代表修改的范围有多大。
+
+![image-20230623121946454](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623121946454.png)
+
+#### 拆分法则
+
+![image-20230623122305438](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623122305438.png)
+
+#### 内部复杂度，外部复杂度 平衡原则
+
+![image-20230623122402447](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623122402447.png)
+
+![image-20230623122552027](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623122552027.png)
+
+为什么不先拆多一些然后再合并。
+
+![image-20230623122808656](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623122808656.png)
+
+#### 封装
+
+![image-20230623122856916](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623122856916.png)
+
+##### 预测的艺术
+
+![image-20230623123043469](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623123043469.png)
+
+##### 封装的技巧
+
+![image-20230623123232591](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623123232591.png)
+
+美团MazeGo规则引擎![image-20230623124531263](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623124531263.png)
+
+OSGI微内核
+
+![image-20230623124603932](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623124603932.png)
+
+![image-20230623123521199](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623123521199.png)
+
+### 高性能
+
+高性能：计算的高性能， 存储的高性能
+
+![image-20230623184032570](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623184032570.png)
+
+#### 单机高性能复杂度分析
+
+![image-20230623184247038](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623184247038.png)
+
+> 列出只是常见的
+
+#### 集群高性能设计
+
+##### 鸡蛋蓝字理论-叠加法则
+
+![image-20230623184714107](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623184714107.png)
+
+###### 任务分配
+
+![image-20230623185059173](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623185059173.png)
+
+任务分配器本身也是集群
+
+![image-20230623185401303](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623185401303.png)
+
+任务分配：DNS，Nginx（10万）（类似的还有F5百万, LVS 50万量级）
+
+memcached
+
+![image-20230623185609113](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623185609113.png)
+
+###### 任务分解
+
+比任务分配更复杂。
+
+![image-20230623185719052](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623185719052.png)
+
+![image-20230623185800257](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623185800257.png)
+
+微信
+
+![image-20230623185852983](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623185852983.png)
+
+数据库读写分离 就是为了提升读的性能。
+
+![image-20230623190206061](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623190206061.png)
+
+投入产出比，拆分之后更容易优化
+
+### 高可用
+
+![image-20230623191601056](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623191601056.png)
+
+单机架构没有高可用。
+
+#### 鸡蛋篮子第三法则 冗余法则
+
+高可用方案必然是集群方案。
+
+##### 计算高可用
+
+任务分配
+
+![image-20230623192249296](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623192249296.png)
+
+任务分配器 需要监控业务服务器的状态。，在故障时进行切换。
+
+![image-20230623192545645](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623192545645.png)
+
+下面 运行形态，配置获取，分配算法和高性能是一样的。
+
+![image-20230623193051146](media/16998392019999/image-2media/16998392019999/0230623193051146.png)
+
+![image-20230623193401329](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623193401329.png)
+
+##### 存储高可用
+
+![image-20230623193457263](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623193457263.png)
+
+复制格式
+
+![image-20230623193930628](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623193930628.png)
+
+复制方式
+
+![image-20230623194256427](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623194256427.png)
+
+![image-20230623194512858](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623194512858.png)
+
+![image-20230623194723801](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623194723801.png)
+
+![image-20230623195436951](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623195436951.png)
+
+![image-20230623195511122](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623195511122.png)
+
+![image-20230623195704168](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2023/11/14/image20230623195704168.png)

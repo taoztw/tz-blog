@@ -1,0 +1,104 @@
+---
+title: 小牛论坛笔记（2021）
+date: 2022-02-21
+lastmod: 2022-02-21
+tags: ['AI']
+draft: false
+summary: 这篇文章主要讨论了神经机器翻译领域的几个研究方向,包括模型压缩、质量评估和训练策略等。文章介绍了减少模型冗余的方法,如深编码器-浅解码器结构和知识蒸馏等。同时还探讨了翻译模型的学习规律,提出了基于课程学习的训练策略。
+layout: PostSimple
+---
+
+## 小牛
+
+模型压缩，加速
+
+结构冗余，参数冗余，计算冗余
+
+### 结构冗余
+
+模型容量和性能通常是正向关系。
+
+深度增加能够增强网络的表示能力，逐层对特征进行加工。
+
+宽度受限于计算机指数级增长，受限于计算资源
+
+**深编码器-浅解码器结构**：性能和速度权衡 选择12层编码器 2层解码器结构。系统运行速度会提升2倍，而且不会损失性能。
+
+Sharing Attention Weights for fast transformer
+
+An Efficient Transformer Decoder with Compressed Sub-layers
+
+Learning Light-Weight Translation Models from Deep Transformer
+
+### 参数冗余
+
+知识蒸馏
+
+weight Distillation: Transferring the Knowledge in Neural Network Parameters ACL 2021
+
+### 计算冗余
+
+解决INT8计算不兼容问题。
+
+## 华为分享
+
+![](https://www.tzer.top/usr/uploads/2022/02/3088709109.png)
+
+翻译平台架构，
+
+### NMT Quality Estimation
+
+神经机器翻译的三个大方向：
+
+- 更大双语的NMT
+- 多语言 NMT（部署一个模型就可以使用所有语言对，在工程上具有很大优势）
+- 多模态NMT
+
+注意力机制，提升长句效果
+
+Transformer架构，Attention is all you need VS attention is not all you need
+
+![](https://www.tzer.top/usr/uploads/2022/02/672550480.png)
+
+KoBE：knowledge-based machine translation evaluation，减少漏译，有没有实体差别，实体对齐与否。
+
+## 澳门大学
+
+翻译模型的学习规律和训练策略
+
+课程学习，先从简单样本开始学习，逐渐进不到复杂样本学习。如何确定模型学好了，什么时候需要更近一步学习？
+
+- 定义句子的难易。句长，词频
+- 课程设计
+- 模型学习进度
+
+模型不确定性 uncertainty-aware Couuiculum learning for NMT
+
+vector Norm，Norm-based Curriculum learning for NMT，norm随着BLEU的增加而增加
+
+self-spaces for learning，影响模型（难易）更新权重
+
+达到baseline训练时间缩短了，
+
+## 科大讯飞
+
+多语种语音
+
+混度
+
+## 南京大学
+
+黄书剑博士
+
+基于协同关系的非自回归生成研究
+
+优势：
+
+- 生成并行有助于提升翻译效率
+- 减少翻译过程中的错误累积
+
+劣势：
+
+- 过强的独立性假设可能影响翻译质量
+
+复杂关联关系建模 linear-CRF

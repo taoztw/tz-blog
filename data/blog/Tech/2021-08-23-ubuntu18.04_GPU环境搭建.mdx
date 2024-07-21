@@ -1,0 +1,170 @@
+---
+title: ubuntu18.04_GPU环境搭建
+date: 2021-08-23
+lastmod: 2021-08-23
+tags: ['Tech']
+draft: false
+summary: 在Linux系统上安装GPU驱动、CUDA和PyTorch的步骤和注意事项。文章详细说明了安装NVIDIA驱动、CUDA工具包的过程,以及可能遇到的问题和解决方法。此外,还提供了验证安装是否成功的方法,以及更换pip源和apt源的相关信息。
+layout: PostSimple
+---
+
+## 安装GPU驱动
+
+> pytorch 1.6.0 cuda 10.2
+
+### 安装驱动
+
+在如下网站找到对应驱动
+
+https://www.nvidia.cn/Download/index.aspx?lang=cn
+
+`chmod +x 文件名`获取执行权限
+
+`./NVIDIA-Linux-xxxxxx.run –no-opengl-files –no-x-check`
+
+–no-opengl-files：表示只安装驱动文件，不安装OpenGL文件。这个参数不可省略，否则会导致登陆界面死循环；
+
+–no-x-check：表示安装驱动时不检查X服务，建议使用。
+
+> 问题：
+>
+> ```
+> ERROR: The Nouveau kernel driver is currently in use by your system.  This driver is incompatible with the NVIDIA driver, and must be disabled before proceeding.  Please consult the NVIDIA driver README and your Linux distribution's documentation for details on how to correctly disable the Nouveau kernel driver.
+> ```
+>
+> 解决：
+>
+> 删除nvidia相关packages：`apt-get remove nvidia* && sudo apt autoremove`
+>
+> 安装部分依赖： `apt-get install dkms build-essential linux-headers-generic`
+>
+> 禁用nouveau kernel driver `vim /etc/modprobe.d/blacklist.conf`
+>
+> ```
+> blacklist nouveau
+> blacklist lbm-nouveau
+> options nouveau modeset=0
+> alias nouveau off
+> alias lbm-nouveau off
+> ```
+>
+> 更新文件系统
+>
+> `echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf`
+>
+> 最后更新并且重启： `update-initramfs -u` `reboot`
+
+其他问题：
+
+gcc版本不匹配，参考https://zhuanlan.zhihu.com/p/115755960
+
+安装过程建议：
+
+Would you like to register the kernel module souces with DKMS? This will allow DKMS to automatically build a new module, if you install a different kernel later? 选择no
+
+Would you like to run the nvidia-xconfigutility to automatically update your x configuration so that the NVIDIA x driver will be used when you restart x? Any pre-existing x confile will be backed up. 选择yes ，
+
+更多错误查看：https://zhuanlan.zhihu.com/p/115758882
+
+### 检查驱动是否安装成功
+
+挂载nvidia驱动：`modprobe nvidia`
+
+`nvidia-smi`
+
+### 安装CUDA
+
+cuda toolkit 10.2 download:
+
+https://developer.nvidia.com/cuda-10.2-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal
+
+cuda toolkit 11.2 download :
+
+https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal
+
+![image-20210129150133562.png](https://www.tzer.top/usr/uploads/2021/08/894982091.png)
+
+选择对应的方式，这里采用runfile方式安装。官网给吃的安装指令
+
+```shell
+wget https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run
+
+sudo sh cuda_10.2.89_440.33.01_linux.run
+```
+
+accept 协议
+
+安装cuda时把driver去掉，
+
+![image-20210129150955396.png](https://www.tzer.top/usr/uploads/2021/08/1100106193.png)
+
+配置环境变量：
+
+```bash
+# 在/etc/profile 文件中加入如下配置
+export PATH="/usr/local/cuda-11.0/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-11.0/lib64:$LD_LIBRARY_PATH"
+
+# 使配置生效
+source /etc/profile
+
+# 查看CUDA版本
+nvcc -V
+
+# 其他命令
+# 查看驱动版本
+cat /proc/driver/nvidia/version
+```
+
+### 其他错误
+
+安装yaml报错：ERROR: Cannot uninstall 'PyYAML'.
+
+ERROR: Cannot uninstall 'PyYAML'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
+
+解决`pip install --ignore-installed PyYAML`
+
+### pytorch
+
+直接使用 pip install pytorch==1.6.0
+
+验证
+
+```python
+import torch
+torch.cuda.is_availabel() # 返回True即为安装成功
+```
+
+pip源更换：
+
+在user目录 mkdir .pip 目录，在.pip目录下创建pip.conf文件
+
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=pypi.tuna.tsinghua.edu.cn
+
+apt源更换：
+
+查看codename `lsb_release -a`
+
+选择对应的源文件：这里我是bionic, 阿里源
+
+```
+deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+```
+
+anaconda 和python对应版本关系：
+
+https://repo.anaconda.com/archive/
+
+[Anaconda3-5.3.0-Linux-x86_64.sh](https://repo.anaconda.com/archive/Anaconda3-5.3.0-Linux-x86_64.sh) 对应python3.7

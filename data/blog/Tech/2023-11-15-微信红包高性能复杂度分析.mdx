@@ -1,0 +1,84 @@
+---
+title: 微信红包高性能复杂度分析
+date: 2023-11-15
+lastmod: 2023-11-15
+tags: ['Tech']
+draft: false
+summary: 这篇文章主要讨论了微信红包系统的高性能复杂度分析和成本约束。文章介绍了2014年微信红包的使用数据，并详细分析了发红包、抢红包和看红包的架构设计。同时，文章还探讨了整体架构的设计思路，以及如何在保证高性能的同时进行成本优化。
+layout: PostSimple
+---
+
+- 高性能复杂度分析
+- 成本对高性能的约束
+
+## 2014年的微信红包
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000514007567.jpg)
+
+系统的复杂度主要集中在业务复杂度，和质量复杂度。
+红包本身业务复杂度不高，质量复杂度高，在如上图左上位置。
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000516801827.jpg)
+
+一天：428万人抢红包
+零点：2.5万个红包被拆开（峰值）
+前5分钟有58.5万人参与抢红包，12.1万个红包被领取。
+随机红包
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000520541597.jpg)
+
+> TPS 写事务
+> QPS 读事务
+
+## 成本对高性能方案的约束
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000523157957.jpg)
+
+### 发红包
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000525895093.jpg)
+
+发红包简单的架构图
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000527585377.jpg)
+
+### 抢红包
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000529810508.jpg)
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000530548287.jpg)
+
+hash任务分配，将抢同一个红包的请求分配到一台服务器上。 不考虑分布式锁了。
+
+### 看红包
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000531282747.jpg)
+
+> QPS的业务很大程度依赖于TPS
+
+## 整体架构
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000532610823.jpg)
+
+增量业务开发，架构自顶向下
+从0到1业务，自底向上
+
+## 红包整体架构图-单机房
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000535040913.jpg)
+
+### 更高一级的架构决策
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000536128418.jpg)
+
+独立要考虑什么？
+
+- 成本,团队，等等
+
+## 成本优化思路
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000537327957.jpg)
+
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000538791540.jpg)
+
+发红包拆分
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/2024/07/20/17000540203282.jpg)

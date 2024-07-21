@@ -1,0 +1,25 @@
+---
+title: 对比学习-减少翻译漏词错误
+date: 2021-11-02
+lastmod: 2021-11-02
+tags: ['AI']
+draft: false
+summary: 一种基于对比学习的方法来减少神经机器翻译中的词语遗漏错误。通过随机遗漏、按词频遗漏和按词性遗漏三种方式构建负例，并使用最大边际损失来微调翻译模型，从而提高翻译质量。
+layout: PostSimple
+---
+
+> Reducing Word Omission Errors in Neural Machine Translation: A Contrastive Learning Approach
+
+根据如下三个方法，省略一个或多个词，构建负例。
+
+• 随机遗漏。
+
+• 按词频遗漏。
+
+• 按词性遗漏。
+
+定义最大边际损失(max-margin loss)来微调翻译模型。
+
+![max-margin loss](https://www.tzer.top/usr/uploads/2021/11/2216998325.png)
+
+有点提升。
