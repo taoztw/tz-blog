@@ -1,4 +1,5 @@
 const { withContentlayer } = require('next-contentlayer2')
+const { prototype } = require('postcss/lib/previous-map')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -70,6 +71,10 @@ module.exports = () => {
         {
           protocol: 'https',
           hostname: 'picsum.photos',
+        },
+        {
+          protocol: 'https',
+          hostname: 'tz-1256822507.cos.ap-hongkong.myqcloud.com',
         },
       ],
     },

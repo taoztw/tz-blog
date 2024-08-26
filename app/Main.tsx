@@ -30,7 +30,7 @@ export default function Home({ posts }) {
             const { slug, date, title, summary, tags } = post
             return (
               <li key={slug} className="py-12">
-                <article className="text-gray-900 duration-500 hover:-translate-y-0.5 hover:scale-110 dark:text-gray-100">
+                <article className="text-gray-900 duration-500  hover:-translate-y-2 dark:text-gray-100">
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
                       <dt className="sr-only">Published on</dt>

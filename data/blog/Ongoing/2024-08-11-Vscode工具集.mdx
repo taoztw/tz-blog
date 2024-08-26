@@ -1,0 +1,32 @@
+---
+title: Vscode工具集
+date: 2024-08-11
+lastmod: 2024-08-11
+tags: ['Ongoing']
+draft: false
+summary: 记录vscode的一些常用的工具集
+layout: PostSimple
+---
+
+## Snippet-generator mdx文档模板
+
+```js
+"Init mdx file": {
+"prefix": "imdx",
+"body": [
+"---",
+"title: $1",
+    "date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+    "lastmod: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+"tags: ['$2']",
+"draft: false",
+"summary: $3",
+"layout: PostSimple",
+"---",
+"",
+"",
+"$0"
+],
+"description": "Init mdx file"
+}
+```

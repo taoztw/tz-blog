@@ -1,0 +1,74 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Tz Blog</title>
+      <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
+      <description>博客记录学习和生活。</description>
+      <language>zh-cn</language>
+      <managingEditor>tztw4723@gmail.com (Tz)</managingEditor>
+      <webMaster>tztw4723@gmail.com (Tz)</webMaster>
+      <lastBuildDate>Tue, 17 Aug 2021 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/tags/ongoing/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-08-17-linux常用命令</guid>
+    <title>linux常用命令</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-08-17-linux常用命令</link>
+    <description>这篇文章主要介绍了一些常用的Linux命令行操作。文章涵盖了端口管理、文件处理、压缩解压、FTP下载等多个方面的命令示例。此外,还包含了一个简短的Python代码片段,用于修改目录下的文件名。</description>
+    <pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Ongoing</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-11-22-常用正则_python_re</guid>
+    <title>常用正则_python_re</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-11-22-常用正则_python_re</link>
+    <description>这篇文章介绍了使用Python的re模块进行文本处理的几个实用技巧。主要包括移除标点符号、拆分连在一起的英文句子、匹配特殊符号以及替换多余空格等操作，展示了正则表达式在文本清理和格式化中的应用。</description>
+    <pubDate>Mon, 22 Nov 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Ongoing</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-12-24-MAC问题列表</guid>
+    <title>MAC问题列表</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2021-12-24-MAC问题列表</link>
+    <description>这篇文章介绍了两个技术问题的解决方法。第一个是解决Mac系统上文件损坏的问题，通过在终端中输入特定命令来移除应用程序的隔离属性。第二个是关于Docker中docker.raw文件占用空间过大的问题，文章提供了一张图片展示如何调整相关设置。</description>
+    <pubDate>Fri, 24 Dec 2021 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Ongoing</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2022-04-20-python_cookbook</guid>
+    <title>python_cookbook</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2022-04-20-python_cookbook</link>
+    <description>Python文件操作和多进程编程的一些技巧。文章讨论了如何处理文件读取时的换行符和编码错误，介绍了Python的-u选项用于关闭输出缓冲，并提供了设置pip源的方法。最后，文章展示了一个使用多进程写文件的Python代码示例。</description>
+    <pubDate>Wed, 20 Apr 2022 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Ongoing</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2023-08-14-设计资源网站</guid>
+    <title>设计资源网站</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2023-08-14-设计资源网站</link>
+    <description>这篇文章介绍了多个有用的设计资源网站,包括占位符图片、用户头像、图标和网站配色等。文章还提到了一些CSS相关的资源链接,为网页设计和开发提供了便利工具。</description>
+    <pubDate>Mon, 14 Aug 2023 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Ongoing</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2024-08-11-Vscode工具集</guid>
+    <title>Vscode工具集</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2024-08-11-Vscode工具集</link>
+    <description>记录vscode的一些常用的工具集</description>
+    <pubDate>Sun, 11 Aug 2024 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Ongoing</category>
+  </item>
+
+    </channel>
+  </rss>
