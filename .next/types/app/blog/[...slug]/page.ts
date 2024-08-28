@@ -1,4 +1,4 @@
-// File: /Users/tz/Desktop/react_project/tz-life-blog/app/blog/[...slug]/page.tsx
+// File: /Users/dip/tz-blog/app/blog/[...slug]/page.tsx
 import * as entry from '../../../../../app/blog/[...slug]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

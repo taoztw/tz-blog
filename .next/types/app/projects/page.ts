@@ -1,4 +1,4 @@
-// File: /Users/tz/Desktop/react_project/tz-life-blog/app/projects/page.tsx
+// File: /Users/dip/tz-blog/app/projects/page.tsx
 import * as entry from '../../../../app/projects/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
