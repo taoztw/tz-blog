@@ -21,16 +21,6 @@
   </item>
 
   <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2024-08-11-Vscode工具集</guid>
-    <title>Vscode工具集</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2024-08-11-Vscode工具集</link>
-    <description>记录vscode的一些常用的工具集</description>
-    <pubDate>Sun, 11 Aug 2024 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>Ongoing</category>
-  </item>
-
-  <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Projects/fastapi-开发模板</guid>
     <title>fastapi 开发模板</title>
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Projects/fastapi-开发模板</link>
@@ -38,6 +28,16 @@
     <pubDate>Sun, 11 Aug 2024 00:00:00 GMT</pubDate>
     <author>tztw4723@gmail.com (Tz)</author>
     <category>Project</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2024-08-11-Vscode工具集</guid>
+    <title>Vscode工具集</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/Ongoing/2024-08-11-Vscode工具集</link>
+    <description>记录vscode的一些常用的工具集</description>
+    <pubDate>Sun, 11 Aug 2024 00:00:00 GMT</pubDate>
+    <author>tztw4723@gmail.com (Tz)</author>
+    <category>Ongoing</category>
   </item>
 
   <item>
