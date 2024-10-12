@@ -19,6 +19,8 @@ const space_grotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
 })
 
+export const runtime = 'edge'
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
