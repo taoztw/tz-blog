@@ -36,7 +36,7 @@ NMT中预训练模型使用
 
 back-translation
 
-看这篇文章：[理解大规模反向翻译](http://tzer.top/index.php/archives/41/)
+看这篇文章：[理解大规模反向翻译]
 
 Unsupervised Cross-lingual Representation Learning at Scale这篇工作通过组合PT和BT取得了较好的性能。
 
@@ -60,7 +60,7 @@ length penalty 1.0 beam size:5 , sacreBLEU和TER
 
 ## 理解PT和BT
 
-![Y代表参数被激活，N意味无效操作](https://www.tzer.top/usr/uploads/2021/11/821458514.png)
+![Y代表参数被激活，N意味无效操作](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-821458514.png)
 
 PT中，N代表不使用预训练模型初始化。可以看出，YN的组合明显的提高了BLEU。所以说PT作用在模型Encoder上。
 
@@ -72,7 +72,7 @@ BT中，N代表参数冻结，Y代表参数更新。可以看到，encoder参数
 
 ## 使用BT和PT提升
 
-![](https://www.tzer.top/usr/uploads/2021/11/1867551569.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-1867551569.png)
 
 > Tagged BT: Tagged Back-translation Revisited: Why Does It Really Work? BT合成语料会让模型过度拟合机器翻译的一些特征，导致翻译质量下降。提出了对BT数据加一个tag区分真实数据和合成数据，可以防止这种质量下降。Tagged Back-translation Revisited: Why Does It Really Work?
 
@@ -80,7 +80,7 @@ BT中，N代表参数冻结，Y代表参数更新。可以看到，encoder参数
 
 分析：
 
-![](https://www.tzer.top/usr/uploads/2021/11/3421711702.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-3421711702.png)
 
 有研究表明BT对句子类型是敏感的。作者对 src tgt的翻译 分别做了测试（正常的，我们更关注src的翻译）。PT在src-Ori上比BT表现更好。（33.8 vs 31.9）。但BT在tgt-Ori上表现更好。
 
@@ -91,7 +91,7 @@ takeaway：
 - PT和BT在句子原创性(originality)方面的互补性
 - Tag BT可以减轻翻译Tgt-Ori句子的偏差
 
-![](https://www.tzer.top/usr/uploads/2021/11/1605084617.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-1605084617.png)
 
 低频高频词的翻译质量。PT对低频词的翻译质量提高更明显。BT对高频词的提升更明显。BT和PT在词频翻译上互补。
 

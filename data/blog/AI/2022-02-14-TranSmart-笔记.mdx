@@ -57,13 +57,13 @@ layout: PostSimple
 
 作者改进了抽样过程，大概率选择不确定性较高的句子，进行抽样。不确定性较低的句子通常对应简单的翻译模型，不会带来额外的收益。**Self-Training Sampling with Monolingual Data Uncertainty for Neural Machine Translation**
 
-![](https://www.tzer.top/usr/uploads/2022/02/3079654073.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3079654073.png)
 
 ### 3.2 General Word-level Autocompletion
 
 作者将单词自动补全分解为两个部分，基于原序列x和翻译上下文c对单词w的分布进行建模$P(w|x,c_l,c_r;\theta)=softmax(\phi(h))[w]$h是[MASK]的变量，然后线性映射到词表大小，然后基于该分布和人类键入的序列s找到最可能的单词w（这个训练数据通过训练样本生成，非标注）。
 
-![](https://www.tzer.top/usr/uploads/2022/02/1052690595.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-1052690595.png)
 
 ### 3.3 Sentence-level Autocompletion by Lexical Constraints
 
@@ -75,7 +75,7 @@ layout: PostSimple
 
 **Graph Based Translation Memory for Neural Machine Translation**
 
-![](https://www.tzer.top/usr/uploads/2022/02/2410965545.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-2410965545.png)
 
 ### 3.5 others
 
@@ -83,11 +83,11 @@ layout: PostSimple
 
 由于GIZA++内存消耗问题，作者使用HMM-based word alignment
 
-![](https://www.tzer.top/usr/uploads/2022/02/1055289732.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-1055289732.png)
 
 ## 5 System Evaluation
 
-![](https://www.tzer.top/usr/uploads/2022/02/257505432.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-257505432.png)
 
 word-level 准确率有提升。
 

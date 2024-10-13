@@ -38,7 +38,7 @@ NMT的缺陷：
 
 提到：encoder and decoder RNNs 需要足够的深才能捕获src和tgt语言中的细微不规则性，以提升准确率。即深层LSTM效果明显优于浅层LSTM。每增加一层LSTM就减少10%的困惑度
 
-![](https://www.tzer.top/usr/uploads/2022/01/2040603506.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-2040603506.png)
 
 ### 3.1 Residual Connections
 
@@ -74,7 +74,7 @@ NMT的缺陷：
 
 在大数据上训练的MT model，使用任务奖励依旧能够提高模型
 
-![](https://www.tzer.top/usr/uploads/2022/01/1441896782.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-1441896782.png)
 
 函数是单句话的score，BLEU在单句表现不好，它是一个语料库的衡量标准。
 
@@ -82,7 +82,7 @@ NMT的缺陷：
 
 线性组合ML，和RL的目标函数如下：
 
-![](https://www.tzer.top/usr/uploads/2022/01/3523324821.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-3523324821.png)
 
 先使用ML进行训练直到收敛。然后使用组合函数进行训练，直到BLEU值不提高。
 
@@ -100,7 +100,7 @@ beam search倾向较短的结果，并且在decoder中需要比较长度不同�
 
 覆盖机制coverage penalty，使注意力模块完全覆盖源句。
 
-![](https://www.tzer.top/usr/uploads/2022/01/432906896.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-432906896.png)
 
 $p_{ij}$使第j个target word在第i个source word上的概率。
 
@@ -140,21 +140,21 @@ newstest2014测试集
 
 优化器测试：
 
-![](https://www.tzer.top/usr/uploads/2022/01/3400925543.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-3400925543.png)
 
 ### Evaluation after Maximum Likelihood Training
 
-![](https://www.tzer.top/usr/uploads/2022/01/2089096161.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-2089096161.png)
 
 character表现得很接近最好的，但是输入输出序列过长。
 
-![](https://www.tzer.top/usr/uploads/2022/01/743006499.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-743006499.png)
 
 > En-Fr数据36M，En-De 5M，BLEU差距很大。所以数据很关键
 
 ### 8.5 Evaliation of RL-refined Models
 
-![](https://www.tzer.top/usr/uploads/2022/01/3611738785.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-3611738785.png)
 
 这里 beam search 算法的优化和RL的微调存在重叠。
 
@@ -162,16 +162,16 @@ character表现得很接近最好的，但是输入输出序列过长。
 
 ### 8.6 Model Ensemble and Human Evaluation
 
-![](https://www.tzer.top/usr/uploads/2022/01/2358030418.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-2358030418.png)
 
-![](https://www.tzer.top/usr/uploads/2022/01/3919698929.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-3919698929.png)
 
 RL虽然能提高BLEU评分，但是人工评价没有提升。BLEU或许和人工评测不匹配。
 
 ### 8.7 Results on Production Data
 
-![](https://www.tzer.top/usr/uploads/2022/01/9662961.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-9662961.png)
 
 模型减少了60%以上的翻译错误
 
-![](https://www.tzer.top/usr/uploads/2022/01/1136068316.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-01-1136068316.png)

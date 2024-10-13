@@ -24,11 +24,11 @@ Step4: 根据对齐模型在source sentence对应的target sentence中找对对�
 
 Step5: 分别用领域字典的src和tgt替换OOD句子中的指定位置。
 
-![](https://www.tzer.top/usr/uploads/2021/08/290704997.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-08-290704997.png)
 
 思路比较简单，算法如下：
 
-![](https://www.tzer.top/usr/uploads/2021/08/3314189538.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-08-3314189538.png)
 
 ### Phrase and Sentence Embedding
 
@@ -56,10 +56,10 @@ Model details: a 12-layer encoder stack, 768-hidden, 12-heads, 110M parameters. 
 
 DALI NMT模型训练使用非领域数据和DALI(短语翻译模型)生成的伪领域数据（100万数据量）
 
-![](https://www.tzer.top/usr/uploads/2021/08/3556006157.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-08-3556006157.png)
 
 ## Further Analysis
 
 使用1-5唯一的ngram来表示领域覆盖，下图可以看到DDA-G可以提供更有效的覆盖增强
 
-![](https://www.tzer.top/usr/uploads/2021/08/4252242400.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-08-4252242400.png)

@@ -38,11 +38,11 @@ Transformer的变体从以下几方面提高：
 
 分析self attention和position-wise FFN。假设模型隐层维度是D，输入序列长度是T，FFN的内部隐层维度是4D，多头keys values的维度是D/H。
 
-![复杂度分析](https://www.tzer.top/usr/uploads/2021/11/2651890526.png)
+![复杂度分析](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2651890526.png)
 
-![Attention计算](https://www.tzer.top/usr/uploads/2021/11/4191193788.png)
+![Attention计算](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-4191193788.png)
 
-![FFN计算](https://www.tzer.top/usr/uploads/2021/11/3174339028.png)
+![FFN计算](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-3174339028.png)
 
 > 矩阵相乘，复杂度是乘法操作的次数。NM\*MP 复杂度为 O(NMP)
 
@@ -58,7 +58,7 @@ $AV$的复杂度为$T \times T * T \times D$，$O(T^2D)$，所以self attention�
 
 将$T \times D$维度的Q，K矩阵拆分转置为$T \times h \times m$其中$m=D/h$。$QK^T$的复杂度为$h \times T \times m * h \times m \times T$复杂度为$O(h^2T^2m)$换算一下，去掉常数复杂度为$O(T^2D)$
 
-![多头注意力计算公式](https://www.tzer.top/usr/uploads/2021/11/928640717.png)
+![多头注意力计算公式](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-928640717.png)
 
 之后还有一个concat操作，$T \times D * D \times D$,$O(D^2T)$,最后多头注意力的复杂度为$O(T^2D+TD^2)$
 
@@ -74,7 +74,7 @@ FFN有两个$4D^2$的参数矩阵$W^1,W^2$
 
 #### self attention分析
 
-![不同层的一些信息](https://www.tzer.top/usr/uploads/2021/11/2434977715.png)
+![不同层的一些信息](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2434977715.png)
 
 通过上表可以看出，在可变长序列处理和长依赖，并行计算，全局信息具有优势。
 
@@ -90,7 +90,7 @@ Transformer没有对数据结构进行假设。这使得Transformer成为一个�
 
 ## 3. Transformer分类
 
-![transformer优化分类](https://www.tzer.top/usr/uploads/2021/11/1674555156.png)
+![transformer优化分类](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-1674555156.png)
 
 ## 4. Attention
 
@@ -120,17 +120,17 @@ https://kexue.fm/archives/6853 这个角度理解比较好。
 
 有五个基础的稀疏注意力模式。
 
-![基础稀疏注意力模式](https://www.tzer.top/usr/uploads/2021/11/398204688.png)
+![基础稀疏注意力模式](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-398204688.png)
 
 可以对以上的基础模式进行复合，形成新的不同的注意力。
 
-![基础模式复合](https://www.tzer.top/usr/uploads/2021/11/1108752270.png)
+![基础模式复合](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-1108752270.png)
 
 其他扩展的稀疏注意力模型：
 
 BPT的基于二叉树的注意力模式。还有视觉方面的一些操作。
 
-![其他扩展](https://www.tzer.top/usr/uploads/2021/11/2566504886.png)
+![其他扩展](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2566504886.png)
 
 #### 基于内容
 

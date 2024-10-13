@@ -52,7 +52,6 @@ beam和greedy注意力集中在模型的头部分布，只取概率最大的，�
 
 分别加入不同量的合成数据进行测试，训练步数也随着合成数据而增加，sampling和beam + noise的效果比较好。top10比原始的beam和greedy效果好。
 
-![image-20210805183802955.png](http://tzer.top/usr/uploads/2021/08/812787494.png)
 
 ### 生成方法分析
 
@@ -62,7 +61,6 @@ beam search和argmax只寻求最有可能的输出，结果缺乏多样性，丰
 
 比较了每种方法在训练数据上的损失，并且区分合成数据和真实文本数据。
 
-![image-20210806102627498.png](http://tzer.top/usr/uploads/2021/08/34183303.png)
 
 上图说明，greedy beam与beam noise，sampling，top10相比更容易训练。
 
@@ -72,7 +70,6 @@ beam search和argmax只寻求最有可能的输出，结果缺乏多样性，丰
 
 同时上面可以观察到beam noise和sampling的，因为抽样有时会选择非常不可能的输出，很难拟合。
 
-![image-20210806104857839.png](http://tzer.top/usr/uploads/2021/08/1282872367.png)
 
 使用真实文本训练出来的语言模型在不同数据下的困惑度。beam的困惑度是最低的，所以可能在一定程度上可以解释，beam提供的训练信号弱。
 
@@ -80,7 +77,6 @@ beam search和argmax只寻求最有可能的输出，结果缺乏多样性，丰
 
 在低资源的语料下 NON-MAP的方法还是否有效？
 
-![image-20210806111156742.png](http://tzer.top/usr/uploads/2021/08/3628797852.png)
 
 当低资源时候，beam的效果较好，而sampling生成噪音数据会对训练造成不好的结果。
 
@@ -88,7 +84,6 @@ beam search和argmax只寻求最有可能的输出，结果缺乏多样性，丰
 
 真实数据和合成数据相比在模型准确率如何？ 领域单语数据影响如何？
 
-![image-20210806112204830.png](http://tzer.top/usr/uploads/2021/08/2607832324.png)
 
 图a看到，在新闻领域的测试集下，2.56m数据情况，BT-news效果比真实文本的要好。
 
@@ -98,7 +93,6 @@ beam search和argmax只寻求最有可能的输出，结果缺乏多样性，丰
 
 上采样的比率为2，就说明 合成数据量是 真实数据的两倍。
 
-![image-20210806140205677.png](http://tzer.top/usr/uploads/2021/08/1905824674.png)
 
 从上图可以看出，Beam和greedy从更高的速率中受益很多，这导致对文本数据进行更多的训练。beam noise和sampling不需要对文本进行上采样，他们的增长很少，这可能是合成数据已经足够难拟合。
 
@@ -106,13 +100,9 @@ beam search和argmax只寻求最有可能的输出，结果缺乏多样性，丰
 
 作者增强了35.7M句子。通过sampling 31M newscrawl 句子。
 
-![image-20210806140604562.png](http://tzer.top/usr/uploads/2021/08/3713159251.png)
 
 ## WMT18
 
-![image-20210806141236071.png](http://tzer.top/usr/uploads/2021/08/11272435.png)
-
-![image-20210806142133107.png](http://tzer.top/usr/uploads/2021/08/195912777.png)
 
 Analyzing Uncertainty in Neural Machine Translation这篇论文指出beam search有时会输出原句子的复制而不是目标的翻译。文章中说：**任务本身固有的不确定性**同一个语句存在几个语义等价的翻译，**数据收集过程引起的伪翻译（spurious artifacts）导致的不确定性（extrinsic 不确定性）** 目标语句可能只是源语句的部分翻译，或者目标可能包含源中不存在的信息。
 

@@ -60,7 +60,7 @@ WMT14 EN-Fr 36.3M En-De4.5M
 
 ## RNMT+
 
-![RNMT+模型架构](https://www.tzer.top/usr/uploads/2021/09/3118539119.png)
+![RNMT+模型架构](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3118539119.png)
 
 如图，在embedding和每一层上都使用了Dropout。
 
@@ -78,23 +78,23 @@ RNMT+ 4096 sents batch。convS2S Transformer采用65536 tokens batch（一个句
 
 对于En-Fr数据集上的训练：
 
-![En-Fr test BLEU](https://www.tzer.top/usr/uploads/2021/09/1530106400.png)
+![En-Fr test BLEU](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1530106400.png)
 
 En-De数据集训练：
 
-![En-De test BLEU](https://www.tzer.top/usr/uploads/2021/09/4021625620.png)
+![En-De test BLEU](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-4021625620.png)
 
 上面两次训练，RNMT+都取得了较好的BLEU分数，并且收敛后标准差很小。
 
 性能比较：
 
-![模型性能比较](https://www.tzer.top/usr/uploads/2021/09/1643035177.png)
+![模型性能比较](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1643035177.png)
 
 ## 消融研究
 
 对label smoothing, multi-head attention, layer norm, sync Training.四个技术在RNMT+和Transformer模型上进行消融分析。 `*`表示训练不稳定
 
-![消融研究分析RNMT+&Transformer](https://www.tzer.top/usr/uploads/2021/09/3400296103.png)
+![消融研究分析RNMT+&Transformer](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3400296103.png)
 
 Layer norm是稳定训练模型的关键。
 
@@ -104,19 +104,19 @@ Layer norm是稳定训练模型的关键。
 
 混合RNMT+模型和Transformer模型的编码器和解码器
 
-![混合编码器解码器En-Fr test BLEU](https://www.tzer.top/usr/uploads/2021/09/2672979706.png)
+![混合编码器解码器En-Fr test BLEU](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-2672979706.png)
 
 Transformer编码器特征提取的能力更强。RNMT+的解码器更强。证明了直觉，有状态的Decoder生成效果较好。
 
 下一步解码器确定为RNMT+，垂直水平混合编码器。
 
-![不同混合方式](https://www.tzer.top/usr/uploads/2021/09/1058408684.png)
+![不同混合方式](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1058408684.png)
 
 Cascaded Encoder冻结了RNMT+ Encoder（避免优化困难），微调Transformer Encoder。BLEU得到提升，说明使用RNN结构提取序列信息后，Transformer能够提取到更丰富的表示。
 
 Multi-Column，主要在于如何合并两个模型的信息到统一的表示上。实验表明concat的效果最好。
 
-![垂直水平混合比较](https://www.tzer.top/usr/uploads/2021/09/3488055788.png)
+![垂直水平混合比较](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3488055788.png)
 
 ## Conclusion
 
@@ -128,7 +128,7 @@ RNMT+：
 
 hidden size，embedding size=1024，将双向输出2048投影为1024.使用4个注意力头
 
-![RNMT+ learning rate schedule](https://www.tzer.top/usr/uploads/2021/09/508990219.png)
+![RNMT+ learning rate schedule](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-508990219.png)
 
 EN-DE:p=500,s=600000,e=1200000,所有dropout=0.3，$\lambda=10^{-5}$
 
@@ -138,7 +138,7 @@ EN-Fr:p=500,s=1200000,e=3600000,dp=0.2
 
 Transformer Big ：
 
-![Transformer learning rate schedule](https://www.tzer.top/usr/uploads/2021/09/1444399149.png)
+![Transformer learning rate schedule](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1444399149.png)
 
 dimension 1024, hidden dimension 8192 and 16 attention heads.
 

@@ -17,7 +17,7 @@ layout: PostSimple
 
 **梯度消失的原因**，如图`双曲正切函数tanh`将**负无穷大到正无穷大的输入压缩到-1，1**之间，当输入值较大或较小时，梯度非常接近0，导致该结点系数的变化对网络的输出影响极小，造成训练的困难
 
-![](https://www.tzer.top/usr/uploads/2021/11/2455053015.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2455053015.png)
 
 Gradient Vanishing解决方案：
 
@@ -54,11 +54,11 @@ normalization基本思想：
 
 这里我们采用Normalization方式，但是均值方差一致并不说明就是相同的分布了，normalizaiton并不是直接解决ICS问题，更多的是**面向梯度消失，和加速收敛的**。类似covariance shift比较直接的解决思路应该是，通过学习训练集和测试机的分布对样本附加权重，来学习最终的模型。
 
-![](https://www.tzer.top/usr/uploads/2021/11/2161979573.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2161979573.png)
 
-![](https://www.tzer.top/usr/uploads/2021/11/2746945787.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2746945787.png)
 
-![](https://www.tzer.top/usr/uploads/2021/11/4248426945.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-4248426945.png)
 
 > https://blog.csdn.net/zxyhhjs2017/article/details/79405591
 
@@ -78,7 +78,7 @@ g再平移参数，b再缩放参数，得到一个均值为b，方差为$g^2$的
 
 ### BN
 
-![](https://www.tzer.top/usr/uploads/2021/11/3867902724.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-3867902724.png)
 
 > BN针对每个样本x的单个维度$x_i$,计算大小为m的mini-batch的均值和方差。
 
@@ -88,35 +88,35 @@ BN是对一个batch进行一阶统计量和二阶统计量的计算，这就要�
 
 BN是对单个维度进行标准化，而LN则是对所有维度同时进行标准化，这就需要注意不同维度对应的特征的关系，假如各个维度表示的特征的纲量不一致（比如颜色和大小），那么会导致模型的表达能力下降。
 
-![](https://www.tzer.top/usr/uploads/2021/11/2477108819.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2477108819.png)
 
 ### WN
 
 > https://zhuanlan.zhihu.com/p/3317324
 
-![](https://www.tzer.top/usr/uploads/2021/11/3002735051.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-3002735051.png)
 
-![](https://www.tzer.top/usr/uploads/2021/11/4237975285.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-4237975285.png)
 
 ### CN-Cosine Normalization
 
 向量的点积是无界的(权重向量w和数据x)，向量点积是衡量两个向量相似度的方法之一。同样的夹角余弦也可以这这样做。并且夹角余弦的取值范围是[-1,1],所以我们可以改变线性变换的函数为：
 
-![](https://www.tzer.top/usr/uploads/2021/11/2973802925.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2973802925.png)
 
 CN再WN的基础上，scale加上了向量的模
 
 ## Normalization为什么有效
 
-![](https://www.tzer.top/usr/uploads/2021/11/3930488381.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-3930488381.png)
 
 权重的伸缩变化不会影响反向梯度的 Jacobian 矩阵，因此也就对反向传播没有影响**，避免了反向传播时因为权重过大或过小导致的梯度消失或梯度爆炸问题**，从而加速了神经网络的训练。
 
-![](https://www.tzer.top/usr/uploads/2021/11/402274951.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-402274951.png)
 
 权重伸缩不变性还有参数正则化的效果：下层的权重值越大，梯度就越小($1/\lambda$),**参数变化稳定**，实现了正则化的效果，可以**使用更高的学习率**，避免参数大幅震荡，提高网络的泛化能力。
 
-![](https://www.tzer.top/usr/uploads/2021/11/549736829.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-549736829.png)
 
 2. **数据伸缩性不变**
 

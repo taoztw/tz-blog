@@ -43,7 +43,7 @@ n-gram模型提高目标单语句子的句子流畅性。
 
 介绍了RNN和log linear Models
 
-![](https://www.tzer.top/usr/uploads/2021/09/507693888.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-507693888.png)
 
 $H_i()$是特征方程，$\lambda_i$是权重
 
@@ -55,29 +55,29 @@ $H_i()$是特征方程，$\lambda_i$是权重
 
 1. RNN encoder-decoder feature，就是NMT根据源语言信息和上一步解码信息生成当前token的一个条件概率估计。
 
-![](https://www.tzer.top/usr/uploads/2021/09/3842544963.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3842544963.png)
 
 2. 双向单词翻译概率表，在每一步的解码过程中，估计目标单词语与源单词的翻译概率。
 
-![](https://www.tzer.top/usr/uploads/2021/09/3109195648.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3109195648.png)
 
 $\alpha_{ji}$是源语言和目标语言单词软对齐的权重,由RNN给出,$P(y|x),P(x|y)$是单词对齐双语语料(使用GIAZ++)中单词翻译概率。通过共现的次数作为分子，计算概率
 
-![](https://www.tzer.top/usr/uploads/2021/09/1419107182.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1419107182.png)
 
 3. n-gram语言模型，通过目标单语数据进行训练，
 
-![](https://www.tzer.top/usr/uploads/2021/09/641479838.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-641479838.png)
 
 4. 单词奖励特征，就是目标句子中的词数
 
-![](https://www.tzer.top/usr/uploads/2021/09/1728068013.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1728068013.png)
 
 ### Handling the OOV problem
 
 解决OOV的问题，作者首先根据根据RNN的对齐估计概率找出相应的source word，然后根据单词翻译表获得对应的翻译。最后的翻译结果根据log-linear 模型决定。
 
-![](https://www.tzer.top/usr/uploads/2021/09/2736389823.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-2736389823.png)
 
 如图，其中$\alpha_{13},\alpha_{23}等$概率由RNN （注意力生成），对注意力最大的hengliu在翻译表中找到对应的最大概率的翻译。
 
@@ -87,14 +87,14 @@ $\alpha_{ji}$是源语言和目标语言单词软对齐的权重,由RNN给出,$P
 
 ## Experiments
 
-![](https://www.tzer.top/usr/uploads/2021/09/4210895667.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-4210895667.png)
 
 在单词翻译，OOV翻译，和候选列表三方面展示了作者的翻译系统
 
-![](https://www.tzer.top/usr/uploads/2021/09/2551822907.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-2551822907.png)
 
 第二个图做了简单的消融，去掉单词翻译表之后，性能下降了。
 
-![](https://www.tzer.top/usr/uploads/2021/09/3000464377.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3000464377.png)
 
 增大beam size，BLEU增加明显，说明使用更多的feature产生了更好的候选项。

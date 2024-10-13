@@ -18,7 +18,7 @@ layout: PostSimple
 
 句子级检索不容易找到和测试实例足够相似的实例，这会带来噪音。并且完全的非参数容易对检索到的实例过拟合。尽管KNN-MT提高了领域的翻译能力，但是泛化能力不行。
 
-![](https://www.tzer.top/usr/uploads/2022/02/1560564643.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-1560564643.png)
 
 作者提出了一个可学习的kernel动态的计算当前上下文检索实例的相关性。
 
@@ -46,7 +46,7 @@ token level KNN-MT
 
 **Base Model for Neural Machine Translation**
 
-![](https://www.tzer.top/usr/uploads/2022/02/1179284269.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-1179284269.png)
 
 **Kernel Smoothing with Retrieved Examples**
 
@@ -62,13 +62,13 @@ k可以看做为v的上下文表示，通过模型decoding来获得k，v
 
 使用检索的样本计算出如下概率：
 
-![](https://www.tzer.top/usr/uploads/2022/02/1100166702.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-1100166702.png)
 
 K就是kernem function $\sigma$是kernel的参数。
 
 然后将这两个概率分布加权，$\lambda$的计算在下面3.3
 
-![](https://www.tzer.top/usr/uploads/2022/02/2571454218.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-2571454218.png)
 
 ### 3.2 Learnable Kernel Function
 
@@ -76,13 +76,13 @@ K就是kernem function $\sigma$是kernel的参数。
 
 使用了一个network来估计bandwidth
 
-![](https://www.tzer.top/usr/uploads/2022/02/3576642973.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3576642973.png)
 
-![bandwidth控制分布的平滑程度](https://www.tzer.top/usr/uploads/2022/02/2591803769.png)
+![bandwidth控制分布的平滑程度](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-2591803769.png)
 
 ### 3.3 Adaptive Mixing of Base Prediction andRetrieved Examples
 
-![](https://www.tzer.top/usr/uploads/2022/02/3556613213.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3556613213.png)
 
 Knn-MT可以被看做拥有固定的高斯核和权重的KSTER。
 
@@ -100,7 +100,7 @@ Knn-MT可以被看做拥有固定的高斯核和权重的KSTER。
 
 WMT14 En-De De-En 4.5M训练数据 和 newtest2013验证集 newstest2014测试数据
 
-![](https://www.tzer.top/usr/uploads/2022/02/3165371016.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3165371016.png)
 
 实施细节：
 
@@ -156,7 +156,7 @@ learning rate 0.0002
 
 ### 4.2 Domain Adaptation for MachineTranslation
 
-![](https://www.tzer.top/usr/uploads/2022/02/2133831367.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-2133831367.png)
 
 Finetuning在domain数据下，效果最好，但是general性能不好。
 
@@ -164,17 +164,17 @@ Finetuning在domain数据下，效果最好，但是general性能不好。
 
 使用EDA造噪音数据。
 
-![](https://www.tzer.top/usr/uploads/2022/02/817634491.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-817634491.png)
 
 目标端噪音比源端噪音对翻译性能的负面影响更大。
 
 ### 4.3 Multi-Domain Machine Translation
 
-![](https://www.tzer.top/usr/uploads/2022/02/960109189.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-960109189.png)
 
 **General-specific domain performance trade-off**
 
-![](https://www.tzer.top/usr/uploads/2022/02/2383835344.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-2383835344.png)
 
 当系统预测更多地依赖于搜索的例子(低带宽和高混合权重)时，KNN-MT在特定领域内的翻译性能更好，相反，当系统预测更多地依赖于NMT预测(高带宽和低混合权重)时，可以获得更好的通用域翻译性能。
 
@@ -182,11 +182,11 @@ KSTER采用自适应核和混合权重在一般领域和特定领域都取得了
 
 如下，领域之间有不同的权重和bandwidth。
 
-![](https://www.tzer.top/usr/uploads/2022/02/3422512372.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3422512372.png)
 
 未见领域的泛化能力，KKSTER要好
 
-![](https://www.tzer.top/usr/uploads/2022/02/3556756746.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3556756746.png)
 
 ### 4.4 推理速度
 
@@ -198,15 +198,15 @@ KSTER采用自适应核和混合权重在一般领域和特定领域都取得了
 
 learnable kernel和mixing weight 都会带来提升。
 
-![](https://www.tzer.top/usr/uploads/2022/02/3196891018.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3196891018.png)
 
 KSTER outperforms kNN-MT with all k selections
 
-![](https://www.tzer.top/usr/uploads/2022/02/3507498066.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3507498066.png)
 
 Retrieval dropout improves generalization
 
-![](https://www.tzer.top/usr/uploads/2022/02/2620773503.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-2620773503.png)
 
 ### 5.2 对翻译的细粒度影响
 
@@ -214,13 +214,13 @@ Retrieval dropout improves generalization
 
 通过单词是否有模型生成来确定kernel-smoothing的影响
 
-![](https://www.tzer.top/usr/uploads/2022/02/3574880607.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-3574880607.png)
 
 **核平滑有助于词义消歧**
 
 使用ContraWSD，通过sentence embedding选择300个与领域数据最相似的作测试。
 
-![](https://www.tzer.top/usr/uploads/2022/02/2778579935.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-02-2778579935.png)
 
 ## **论文复现结果**
 

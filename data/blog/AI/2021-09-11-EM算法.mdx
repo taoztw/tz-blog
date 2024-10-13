@@ -22,8 +22,6 @@ $f(\sum_i\lambda_jx_j) \geq\sum_j\lambda_jf(x_j)\quad f()\,and\,\lambda_j\geq0,\
 
 ### 例子
 
-![](https://www.tzer.top/usr/uploads/2021/09/3702871856.png)
-
 如图：$x_t=(1-t)a + tb\quad where\,0\leq t\leq1$,代入第2个式子。
 
 $f((1-t)a + tb)\geq (1-t)f(a)+tf(b)$，如果所示，只有当$a=b=x_t$时，不等式取等号。
@@ -80,13 +78,13 @@ $\theta=argmax_\theta\sum_{i=1}^m\sum_{z^{(i)}}Q_i(z^{(i)})log\frac{p(x^{(i)},z^
 
 如下图：随机初始化$\theta$为$\theta^{(t)}$,在E-step，构建了$g_t$的函数，M-step最大化$g_t$得到新的参数$\theta^{(t+1)}$,如此反复。
 
-![](https://www.tzer.top/usr/uploads/2021/09/305494921.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-305494921.png)
 
 ## 硬币的例子
 
 两枚硬币A，B，每次独立随机抛掷，在已知每次抛掷的硬币情况下，可以很轻松的通过极大似然估计(频率)的方式，计算出A，B硬币正面朝上的概率。
 
-![](https://www.tzer.top/usr/uploads/2021/09/4252090064.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-4252090064.png)
 
 现在，每一轮硬币抛掷是A或B是未知的，如何计算A，B硬币正面朝上的概率？z为隐变量，代表每一轮抛的硬币。
 
@@ -94,21 +92,13 @@ $\theta=argmax_\theta\sum_{i=1}^m\sum_{z^{(i)}}Q_i(z^{(i)})log\frac{p(x^{(i)},z^
 
 E-step： $Q_i(z^{(i)})=p(z^{(i)}|x^{(i)};\theta)$，根据硬币正面朝上的概率，估计出，每轮抛掷A或B硬币的概率，
 
-![](https://www.tzer.top/usr/uploads/2021/09/1391106071.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1391106071.png)
 
 根据抛硬币A，B硬币的概率，就可以得到，A或B硬币每轮抛掷的期望次数。通过次数的频率估计出A，B硬币正面朝上的概率。
 
 例如：在第一轮的抛A硬币的概率是0.45，出现正面反面都是5词，那么正面反面的期望次数都等于0.45\*5（每一次抛硬币都是独立的），计算完成之后
 
 M-step：$\theta=argmax_\theta\sum_{i=1}^m\sum_{z^{(i)}}Q_i(z^{(i)})log\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$
-
-![](https://www.tzer.top/usr/uploads/2021/09/1065015742.png)
-
-简单补充：
-
-**收敛证明：**
-
-![](https://www.tzer.top/usr/uploads/2021/09/3077475497.png)
 
 **需要注意**迭代一定会收敛，但不一定会收敛到真实的参数值，因为可能会陷入局部最优。所以 EM 算法的结果很受初始值的影响。
 

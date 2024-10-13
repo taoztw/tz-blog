@@ -58,13 +58,13 @@ EOS token 映射等方法将模型改变为分类器
 
 ## BPE影响记忆实验
 
-![](https://www.tzer.top/usr/uploads/2021/10/2417897024.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-2417897024.png)
 
 Memorizing random Labels：a,b两图模型随着BPE词表的大小增加，对随机标签拟合的更好。
 
 Membership inference: c图中看到，(M)LM的检验精度具有不同的增长区域，表明：泛化与记忆并不直接矛盾，有一定程度的粒度可以实现更好的记忆的更好的泛化
 
-![](https://www.tzer.top/usr/uploads/2021/10/782379925.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-782379925.png)
 
 Question answer recovery: 任务采用了两个不同的模型，transformer-large和base。可以看出large的效果总比base好，这说明模型大小对记忆力影响较大。并且随着vocab size的提升，准确度也提升。在参数控制上效果也是如此。
 
@@ -74,7 +74,7 @@ Question answer recovery: 任务采用了两个不同的模型，transformer-lar
 
 作者进行了实验，去除了冗余假设。如下图a在不压缩数据上，vocab越大，记忆越强。
 
-![](https://www.tzer.top/usr/uploads/2021/10/4136876816.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-4136876816.png)
 
 作者通过对两个新token替换一个等概率替换一个旧token，增大了两倍词汇量，如上图b，观测出vocab增加相对较大，记忆力增强效果，并且在一开始对记忆力是有害的。去除词汇量假设。
 

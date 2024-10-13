@@ -12,7 +12,7 @@ layout: PostSimple
 
 在输入中通过replace和append两种方式增加目标端术语信息（annotations），让模型学到一种“复制机制”，从而提高术语翻译能力，同时该方法对也可以考虑到术语的形态变化。
 
-![](https://www.tzer.top/usr/uploads/2022/03/162435048.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-162435048.png)
 
 - 希望模型在一般情况和有注解情况下性能都好，所以限制注解的数量。（通过随机忽略一些匹配）
 - 在术语重叠的情况下保留最长匹配。使用近似匹配来允许术语的形态变化。作者使用简单的字符序列匹配，允许将基本单词形式视为匹配，即使是变形的或者作为复合词的一部分。
@@ -20,10 +20,10 @@ layout: PostSimple
 
 **术语约束的解码方式BLEU下降**
 
-![image-20220330171913081.png](https://www.tzer.top/usr/uploads/2022/03/3711669738.png)
+![image-20220330171913081.png](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-3711669738.png)
 
 **结果**
 
-![image-20220330172619090.png](https://www.tzer.top/usr/uploads/2022/03/2862243651.png)
+![image-20220330172619090.png](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-2862243651.png)
 
 > 没有通用性。

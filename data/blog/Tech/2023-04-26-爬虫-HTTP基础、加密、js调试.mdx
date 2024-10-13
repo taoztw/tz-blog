@@ -37,8 +37,7 @@ layout: PostSimple
 1.0版本发布的一年后，就发布了HTTP 1.1版本，1.1版本就是对1.0版本的优化和完善，主要更新的特性有:
 
 新增长连接:新增Connection字段，可以设置keep-alive值保持连接不断开，即 TCP 连接默认不关闭，可以被多个请求复 用，这也是1.1版本很重要的优化。
-
-更 更 多 多 的 的 请 请 求 求 方 方 法 法 : 新 增 P ATC H、 O P TI O N S 、 DELETE等 方 法 。
+新 增 P ATC H、 O P TI O N S 、 DELETE等 方 法 。
 
 **host**字段 :Host字段用来指定服务器的域名，这样就可以将多种请求发往同一台服务器上的不同网站，提高了机器的复 用，这个也是重要的优化。
 
@@ -78,8 +77,6 @@ HTTPS：
 (5)Web服务器利用自己的私钥解密出会话密钥。
 
 (6)Web服务器利用会话密钥加密与客户端之间的通信。
-
-![image-20230326213004435](/Users/dip/Library/Application Support/typora-user-images/image-20230326213004435.png)
 
 **为什么不采用非对称加密？**
 

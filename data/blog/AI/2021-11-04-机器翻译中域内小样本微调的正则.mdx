@@ -14,7 +14,7 @@ layout: PostSimple
 
 微调的领域数据和BLEU评分有对数关系...如下图
 
-![](https://www.tzer.top/usr/uploads/2021/11/3322896005.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-3322896005.png)
 
 > 微调的其他方式还有使用域内数据在通用模型上继续训练。
 
@@ -24,33 +24,33 @@ layout: PostSimple
 
 ### Dropout
 
-![](https://www.tzer.top/usr/uploads/2021/11/4274355559.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-4274355559.png)
 
-$M_{W,i,j}$ ：bayesian dropout mask
+$M_\{W,i,j\}$ ：bayesian dropout mask
 
 ### MAP-L2
 
-![](https://www.tzer.top/usr/uploads/2021/11/3954203332.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-3954203332.png)
 
 W是域内参数矩阵，W帽是固定的通用模型参数矩阵。
 
 ### Tuneout
 
-![](https://www.tzer.top/usr/uploads/2021/11/2196264585.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-2196264585.png)
 
 W冒：固定的域外模型参数
 
 △W：参数变化矩阵
 
-$M_{△W,i,j}$ ：bayesian dropout mask
+$M_\{△W,i,j\}$ ：bayesian dropout mask
 
 ## 结果
 
-![English->German训练中验证集下BLEU变化](https://www.tzer.top/usr/uploads/2021/11/1336400430.png)
+![English->German训练中验证集下BLEU变化](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-1336400430.png)
 
 可以看到随着训练增多，单纯使用fine-tune的翻译能力下降。而正则化不然，是训练更加稳定
 
-![](https://www.tzer.top/usr/uploads/2021/11/4288823380.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-11-4288823380.png)
 
 作者的方法并没有提升。dropout+MAP-L2的提升比较明显
 

@@ -31,7 +31,7 @@ github：https://github.com/grammarly/gector
 
 ## 2. 数据
 
-![](https://www.tzer.top/usr/uploads/2022/03/3356921847.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-3356921847.png)
 
 合成数据：https://github.com/awasthiabhijeet/PIE/tree/master/errorify
 
@@ -65,11 +65,11 @@ Eg: go*goes, $toekn*{0}\_token_1$表示token0到token1的转换。VB_VBZ，同�
 
 所有的token变化类型：
 
-![](https://www.tzer.top/usr/uploads/2022/03/3044824659.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-3044824659.png)
 
 在CoNLL-2014上验证变化类型的错误覆盖率
 
-![image-20220331112632389.png](https://www.tzer.top/usr/uploads/2022/03/174381353.png)
+![image-20220331112632389.png](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-174381353.png)
 
 ### 预处理
 
@@ -118,11 +118,11 @@ bert类似的模型上面加两层线性层和softmax。
 
 上面例子中，years先是变为year然后再通过连字符链接。所以模型也是迭代预测。
 
-![](https://www.tzer.top/usr/uploads/2022/03/1133324501.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-1133324501.png)
 
 通常大部分错误在前两次tagging中已经纠正了。
 
-![](https://www.tzer.top/usr/uploads/2022/03/280686000.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-280686000.png)
 
 ## 6. Experiments
 
@@ -132,7 +132,7 @@ bert类似的模型上面加两层线性层和softmax。
 
 两步微调对性能的提升是很大的。
 
-![](https://www.tzer.top/usr/uploads/2022/03/3621958060.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-3621958060.png)
 
 early stop 条件：3epoch 或10k没有提升的更新。
 
@@ -140,7 +140,7 @@ early stop 条件：3epoch 或10k没有提升的更新。
 
 ### 不同预训练模型作为encoder
 
-![](https://www.tzer.top/usr/uploads/2022/03/3054651973.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-3054651973.png)
 
 RoBERTa和XLNet效果最好。
 
@@ -150,11 +150,11 @@ RoBERTa和XLNet效果最好。
 
 添加了句子级最小错误概率，减少召回率来实现更好的F_0.5 score,如上上表（Table5）
 
-![](https://www.tzer.top/usr/uploads/2022/03/3652065672.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-3652065672.png)
 
 ### 推理速度
 
-![](https://www.tzer.top/usr/uploads/2022/03/1857827445.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2022-03-1857827445.png)
 
 ## M2输出为incor cor文件脚本
 

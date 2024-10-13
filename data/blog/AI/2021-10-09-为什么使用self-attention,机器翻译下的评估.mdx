@@ -52,7 +52,7 @@ Comparative study of cnn and rnn for natural language processing. 2017在几个N
 
 table1：一个对比的例子
 
-![](https://www.tzer.top/usr/uploads/2021/10/2553144813.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-2553144813.png)
 
 词义消歧，使用ContraWSD,German->English翻译，ContraWSD使用德语对应歧义词替换英语。
 
@@ -60,21 +60,21 @@ table1：一个对比的例子
 
 ## 主谓一致
 
-![](https://www.tzer.top/usr/uploads/2021/10/1235318782.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-1235318782.png)
 
 Transformer长距离依赖的评分最高。RNN-bideep与之很接近。
 
-![](https://www.tzer.top/usr/uploads/2021/10/1349902472.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-1349902472.png)
 
 RNN-bideep在13距离之后，捕获长距离依赖能力大于Transformer
 
 ### 针对CNNs研究
 
-![](https://www.tzer.top/usr/uploads/2021/10/1973246227.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-1973246227.png)
 
 随着layer增加，BLEU获得了提升，随着Kernel增加，长距离捕获能力增加，但BLEU反而没有提升。
 
-![](https://www.tzer.top/usr/uploads/2021/10/1688504391.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-1688504391.png)
 
 CNNs的长距离捕获能力没有RNNs好。
 
@@ -82,13 +82,13 @@ CNNs受限的context size可能是影响性能的主要原因，参数之间的�
 
 ### RNNs vs. Transformer
 
-![](https://www.tzer.top/usr/uploads/2021/10/4176198085.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-4176198085.png)
 
 作者调整了参数，并且使用小的训练数据对RNNs和Transformer进行了对比，发现多头数量对长依赖能力的影响。
 
 ## WSD词义消歧
 
-![](https://www.tzer.top/usr/uploads/2021/10/4144459600.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-10-4144459600.png)
 
 可以看到Transformer的Acc比RNNs和CNNs都高出很多。并且作者做了TransRNN（使用Tranformer的encode和RNN的decoder）的实验，发现BLEU和WSD高于RNN低于原始Tranformer。语义特征的影响不只是Encoder，还有decoder。
 

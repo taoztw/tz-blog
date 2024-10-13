@@ -26,7 +26,7 @@ layout: PostSimple
 
 数据：使用2017 新闻领域 German-English数据，并且使用与双语数据等量的单语新闻领域数据（对领域单语数据进行下采样）。
 
-![训练数据信息](https://www.tzer.top/usr/uploads/2021/09/1304727988.png)
+![训练数据信息](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-1304727988.png)
 
 back translation模型：
 
@@ -34,13 +34,13 @@ back translation模型：
 - 100k iterations，1.5 epoch
 - concergence，10 epoch
 
-![](https://www.tzer.top/usr/uploads/2021/09/3736147928.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3736147928.png)
 
 可以看到100k和convergence模型BLEU都获得了增加。**可以看出回译系统的质量是影响翻译效果的重要因素。**
 
 迭代回译的步骤：
 
-![迭代回译算法](https://www.tzer.top/usr/uploads/2021/09/3865619659.png)
+![迭代回译算法](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-3865619659.png)
 
 ## 高资源数据实验
 
@@ -54,7 +54,7 @@ T
 
 （模型使用的都是RNN Seq2seq架构）
 
-![回译与迭代回译比较](https://www.tzer.top/usr/uploads/2021/09/799743891.png)
+![回译与迭代回译比较](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-799743891.png)
 
 可以看到，迭代回译的提升效果。
 
@@ -62,7 +62,7 @@ T
 
 如图是在10万条数据双语数据上进行实验。English-French 翻译BLEU提升较高。但在Farsi-English上BLEU增加不明显。作者给出的原因是波斯语翻译比法语难，或训练数据中不同领域混合的结果（作者引出了一个新问题，迭代翻译数据和双语数据不同域的影响？）使用Moses短语翻译模型回译的效果在English-French上翻译较好（这个原因是不是需要分析一下？）。
 
-![低资源不同回译效果](https://www.tzer.top/usr/uploads/2021/09/4164768566.png)
+![低资源不同回译效果](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-09-4164768566.png)
 
 对真实和合成语料的比例进行了研究，发现更多的合成数据是有用的。（1:1 ，1:2 1:3）
 

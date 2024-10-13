@@ -25,15 +25,15 @@ Annoy通过将海量数据建立成一个二叉树来使得每个数据查找时
 
 - 随机两点进行切分，得到左右子树
 
-![](https://www.tzer.top/usr/uploads/2021/12/1070358186.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-1070358186.png)
 
-![](https://www.tzer.top/usr/uploads/2021/12/286097665.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-286097665.png)
 
-![](https://www.tzer.top/usr/uploads/2021/12/3880731725.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-3880731725.png)
 
 - 在划分的子空间中不停的递归迭代继续划分，直到每个子空间最多只剩下K个数据节点。K值由自己指定
 
-![](https://www.tzer.top/usr/uploads/2021/12/3061488913.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-3061488913.png)
 
 - 查找：不断查看此点在分割超平面的哪一边。从二叉树索引结构来看，即从根节点不停的往叶子节点遍历的过程。
 
@@ -49,11 +49,11 @@ Annoy通过将海量数据建立成一个二叉树来使得每个数据查找时
 
 trick1： 两边都遍历
 
-![](https://www.tzer.top/usr/uploads/2021/12/2601541573.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-2601541573.png)
 
 trick2：多棵树，多次随机过程生成多个树
 
-![](https://www.tzer.top/usr/uploads/2021/12/80460565.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-80460565.png)
 
 【案例：腾讯词向量实战，通过Annoy进行索引和快速查询
 
@@ -69,7 +69,7 @@ Hierarchical navigable Smalll World graphs
 
 思路： 构建一张图，每一个顶点连接着最近的N个顶点，Target(红点)是待查询的向量。在搜索时，选择任意一个定点出发，首先遍历它的相邻节点，找到距离和Target最近的某一节点，将其设置为起始节点，再从新的起始节点出发进行遍历，反复迭代，不断逼近，最后找到与target距离最近的节点时搜索结束。
 
-![](https://www.tzer.top/usr/uploads/2021/12/2084729989.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-2084729989.png)
 
 存在的缺点：
 
@@ -94,7 +94,7 @@ Hierarchical navigable Smalll World graphs
 
 HNSW =NSW + 跳表
 
-![](https://www.tzer.top/usr/uploads/2021/12/1625053504.png)
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/typora/2021-12-1625053504.png)
 
 依次增加节点构建图，将较少节点构建的结果当做索引。寻找一个节点最近的节点时，先从节点数最少的图开始找(最上层图)最近的点。
 
