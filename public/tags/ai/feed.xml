@@ -11,71 +11,11 @@
       <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/tags/ai/feed.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-Atman机器翻译模型笔记</guid>
-    <title>Atman机器翻译模型笔记</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-Atman机器翻译模型笔记</link>
-    <description>这篇文章主要介绍了机器翻译模型的训练过程和数据处理方法。文章详细描述了从大规模语料训练基础模型到领域精调的完整流程,包括使用平行语料和单语回译语料进行训练,以及采用联合训练、EWC约束等技术来优化模型性能。此外,文章还讨论了语料清洗和数据增强的方法,如使用语言模型、句对相似度和统计规则进行数据筛选,以及通过反向翻译和对偶学习等技术来扩充训练数据。</description>
-    <pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-WMT2020-生物医学-华为</guid>
-    <title>WMT2020-生物医学-华为</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-WMT2020-生物医学-华为</link>
-    <description>华为在WMT20生物医学翻译任务中的方法。研究者探讨了领域内字典对提高跨领域神经机器翻译性能的影响,并利用预训练机器翻译模型进行迁移学习。通过领域数据增强、重排序等技术,在英-法、英-德、英-意大利语对上取得了最先进的结果。</description>
-    <pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-理解大规模反向翻译</guid>
     <title>理解大规模反向翻译</title>
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-13-理解大规模反向翻译</link>
     <description>1. 研究发现在反向翻译中,使用采样(sampling)或带噪声的束搜索(noised beam search)生成合成数据比标准束搜索或贪心搜索更有效,可以提供更强的训练信号。2. 通过大规模实验比较了合成数据和真实双语数据的效果,以及不同领域数据的影响,在WMT14英德翻译任务上达到了35 BLEU的最佳结果。</description>
     <pubDate>Fri, 13 Aug 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-CCMT2020-OPPO</guid>
-    <title>CCMT2020-OPPO</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-CCMT2020-OPPO</link>
-    <description>这篇文章主要介绍了OPPO在CCMT 2020机器翻译比赛中的系统设计和发现。OPPO在7个任务方向中的6个排名第一,主要采用了Transformer模型,并使用了回译、领域微调、知识蒸馏等技术。文章还发现,在低资源语料上简单应用不同的中文分词工具,可以在多个任务中带来明显的性能提升。</description>
-    <pubDate>Sun, 15 Aug 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-WMT2020-新闻-小牛</guid>
-    <title>WMT2020-新闻-小牛</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-15-WMT2020-新闻-小牛</link>
-    <description>这篇文章介绍了NiuTrans团队在WMT20机器翻译评测中的系统。该系统在日英和英日翻译方向上排名第一,主要应用了迭代回译、宽深Transformer模型、迭代知识蒸馏和迭代微调等技术。系统的训练步骤包括数据预处理、生成伪数据、多样化翻译模型、知识蒸馏、领域微调和后处理等。</description>
-    <pubDate>Sun, 15 Aug 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-16-WMT2019-新闻-Facebook</guid>
-    <title>WMT2019-新闻-Facebook</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-16-WMT2019-新闻-Facebook</link>
-    <description>这篇文章介绍了一个机器翻译系统,主要针对英德和英俄翻译方向。系统采用了大规模反向翻译、数据过滤、模型集成和噪声信道模型重排等技术,相比2018年提升了4.5个BLEU分。文章详细描述了数据预处理、模型训练和解码等各个环节的具体做法。</description>
-    <pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-18-WMT2021-新闻-wechat</guid>
-    <title>WMT2021-新闻-wechat</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-08-18-WMT2021-新闻-wechat</link>
-    <description>这篇文章介绍了WeChat在WMT21机器翻译比赛中使用的神经机器翻译系统。主要通过改进模型架构(如Pre-Norm和Post-Norm Transformer、AAN等)和大规模合成数据生成(如反向翻译、知识蒸馏等)来提高翻译性能。文章还探讨了一些先进的微调技术和基于Self-BLEU的模型集成方法,以进一步提升系统效果。</description>
-    <pubDate>Wed, 18 Aug 2021 00:00:00 GMT</pubDate>
     <author>tztw4723@gmail.com (Tz)</author>
     <category>AI</category>
   </item>
@@ -161,16 +101,6 @@
   </item>
 
   <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-27-机器翻译的理解</guid>
-    <title>机器翻译的理解</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-27-机器翻译的理解</link>
-    <description>这篇文章主要讨论了机器翻译和大规模预训练语言模型在语义理解和系统性知识利用方面的不足。文章指出,当前机器翻译主要依赖于数据和统计规则,缺乏深层语义理解和世界知识的应用,导致翻译质量受限。同时,大规模预训练语言模型虽然规模庞大,但在语义和知识利用方面仍存在不足,需要更合理的内部结构和机制支撑。</description>
-    <pubDate>Mon, 27 Sep 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-28-2018_ACL_The_Best_of_Both_Worlds:_Combining_Recent_Advances_in_Neural_Machine_翻译笔记</guid>
     <title>2018_ACL_The_Best_of_Both_Worlds:_Combining_Recent_Advances_in_Neural_Machine_翻译笔记</title>
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-09-28-2018_ACL_The_Best_of_Both_Worlds:_Combining_Recent_Advances_in_Neural_Machine_翻译笔记</link>
@@ -206,16 +136,6 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-09-为什么使用self-attention,机器翻译下的评估</link>
     <description>这篇文章主要比较了RNNs、CNNs和self-attention网络在机器翻译中的表现。实验发现,在长距离主谓一致任务中,RNNs的表现优于CNNs和self-attention网络;而在词义消歧任务中,self-attention网络(Transformer)的语义特征提取能力最强。文章指出评估神经机器翻译模型架构需要考虑内在因素的权衡,而不仅仅关注BLEU分数。</description>
     <pubDate>Sat, 09 Oct 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-13-2018-2019_Tecent_AI_Lab_machine_translation_相关内容</guid>
-    <title>2018-2019_Tecent_AI_Lab_machine_translation_相关内容</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-10-13-2018-2019_Tecent_AI_Lab_machine_translation_相关内容</link>
-    <description>这篇文章主要介绍了机器翻译中的语言理解和条件生成两个关键问题。文章讨论了深度网络、多头注意力机制和自注意力网络等方面的改进,以提高语言理解能力。在条件生成方面,文章提出了鲁棒transformer、全面转换和信息流等方法来优化生成过程。</description>
-    <pubDate>Wed, 13 Oct 2021 00:00:00 GMT</pubDate>
     <author>tztw4723@gmail.com (Tz)</author>
     <category>AI</category>
   </item>
@@ -271,16 +191,6 @@
   </item>
 
   <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-10-Transformer模型训练技巧</guid>
-    <title>Transformer模型训练技巧</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-10-Transformer模型训练技巧</link>
-    <description>这篇文章主要探讨了影响Transformer模型训练质量和效率的各种参数设置。作者通过大量实验分析了batch size、学习率、warmup steps、最大句子长度等参数对模型性能的影响,并给出了一些实用的调参建议。文章还比较了不同GPU配置下的训练效果,以及checkpoint averaging等技巧对提升BLEU分数的作用。</description>
-    <pubDate>Wed, 10 Nov 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-15-Facebook_AI_2021_WMT论文笔记</guid>
     <title>Facebook_AI_2021_WMT论文笔记</title>
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-15-Facebook_AI_2021_WMT论文笔记</link>
@@ -306,16 +216,6 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-18-不同数据噪音对SMT_NMT模型的影响</link>
     <description>这篇文章研究了不同类型噪音数据对神经机器翻译(NMT)和统计机器翻译(SMT)的影响。结果表明，NMT对噪音数据更敏感，特别是未翻译句子对NMT影响最大；而SMT对噪音数据的抵抗力较强。短句段(2-5个词)对两种模型都有轻微的增强作用。</description>
     <pubDate>Thu, 18 Nov 2021 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-23-生物医学BERT</guid>
-    <title>生物医学BERT</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2021-11-23-生物医学BERT</link>
-    <description>这篇文章介绍了几个生物医学领域的预训练语言模型,包括BioBERT、中文MC-BERT、Clinical BERT和Med-BERT。这些模型都是在大规模生物医学文本数据上进行预训练,以适应生物医学文本挖掘任务。文章还比较了不同模型的训练数据、训练策略和下游任务表现。</description>
-    <pubDate>Tue, 23 Nov 2021 00:00:00 GMT</pubDate>
     <author>tztw4723@gmail.com (Tz)</author>
     <category>AI</category>
   </item>
@@ -421,16 +321,6 @@
   </item>
 
   <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-opennmt-tf_验证</guid>
-    <title>opennmt-tf_验证</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-opennmt-tf_验证</link>
-    <description>这篇文章介绍了使用OpenNMT-tf进行机器翻译模型训练的步骤,包括创建词汇表、配置训练参数、开始训练、模型推理和BLEU评分计算。文章还比较了不同模型平均数量和beam search参数对BLEU评分的影响,最终得到最佳的模型配置。</description>
-    <pubDate>Thu, 10 Feb 2022 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-频率派vs贝叶斯派</guid>
     <title>频率派vs贝叶斯派</title>
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-10-频率派vs贝叶斯派</link>
@@ -456,16 +346,6 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-17-笔记-Improving_Neural_Machine_Translation_by_Bidirectional_Training</link>
     <description>这篇文章提出了一种名为BiT的新方法,通过使用双向模型作为单向模型的初始化来提高机器翻译性能。BiT方法在训练早期阶段将源语言到目标语言的数据组合为源语言+目标语言到目标语言+源语言的形式进行预训练,然后再使用常规的源语言到目标语言数据进行训练。实验表明,BiT方法在8个语言对上都取得了优于现有最佳方法的性能提升,并且能提高模型的对齐质量和低资源场景下的效果。</description>
     <pubDate>Thu, 17 Feb 2022 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-21-小牛论坛笔记（2021）</guid>
-    <title>小牛论坛笔记（2021）</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-02-21-小牛论坛笔记（2021）</link>
-    <description>这篇文章主要讨论了神经机器翻译领域的几个研究方向,包括模型压缩、质量评估和训练策略等。文章介绍了减少模型冗余的方法,如深编码器-浅解码器结构和知识蒸馏等。同时还探讨了翻译模型的学习规律,提出了基于课程学习的训练策略。</description>
-    <pubDate>Mon, 21 Feb 2022 00:00:00 GMT</pubDate>
     <author>tztw4723@gmail.com (Tz)</author>
     <category>AI</category>
   </item>
@@ -551,16 +431,6 @@
   </item>
 
   <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-06-05-逻辑回归_BASE</guid>
-    <title>逻辑回归_BASE</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2022-06-05-逻辑回归_BASE</link>
-    <description>这篇文章介绍了逻辑回归的核心概念,包括最大似然估计、sigmoid函数和交叉熵。文章通过抛硬币和银行放款的例子来解释这些概念,并提供了一个训练逻辑回归模型的代码notebook。</description>
-    <pubDate>Sun, 05 Jun 2022 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-04-Reinforcement_Learning</guid>
     <title>Reinforcement_Learning</title>
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-01-04-Reinforcement_Learning</link>
@@ -616,16 +486,6 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-03-05-Generate_AI_model一些评价角度</link>
     <description>总结了ChatGPT在多个领域的局限性和失败案例,包括推理、逻辑、数学、事实准确性等方面。同时,文章也探讨了ChatGPT对社会的影响,如隐私、抄袭、环境影响等问题,并指出了未来研究的方向。</description>
     <pubDate>Sun, 05 Mar 2023 00:00:00 GMT</pubDate>
-    <author>tztw4723@gmail.com (Tz)</author>
-    <category>AI</category>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-04-26-LLaMA_记录</guid>
-    <title>LLaMA_记录</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/AI/2023-04-26-LLaMA_记录</link>
-    <description>这篇文章介绍了LLaMA模型的训练方法和性能评估结果。LLaMA采用开源数据训练了7B到65B参数的模型,在多个任务上表现优异,13B模型超过GPT-3,65B模型与PaLM 540B相当。文章还指出,在给定计算预算下,在更多数据上训练较小模型比训练最大模型能获得更好的性能。</description>
-    <pubDate>Wed, 26 Apr 2023 00:00:00 GMT</pubDate>
     <author>tztw4723@gmail.com (Tz)</author>
     <category>AI</category>
   </item>

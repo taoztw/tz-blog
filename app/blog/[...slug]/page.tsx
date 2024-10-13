@@ -15,7 +15,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 
 export const runtime = 'edge'
-
+export const dynamicParams = false
 const defaultLayout = 'PostLayout'
 const layouts = {
   PostSimple,
