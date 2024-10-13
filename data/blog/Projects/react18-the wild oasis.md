@@ -43,12 +43,7 @@ layout: PostSimple
 用户应该能够定义一些应用程序范围的设置：早餐价格、最少和最多住宿天数/预订、最多客人/预订
 应用程序需要深色模式
 
-<CenterImage
-  src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/nextblog/20240813020521.png"
-  alt="分析图"
-  width={600}
-  height={400}
-/>
+![](https://tz-1256822507.cos.ap-hongkong.myqcloud.com/nextblog/20240813020521.png)
 
 ## 后台API接口开发
 

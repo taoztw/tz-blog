@@ -67,18 +67,9 @@ import sqlmodel
 - 验证码邮件 html模板
 - 忘记密码邮件
 
-<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'spack-between' }}>
-  <img
-    src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/nextblog/20240813014209.png"
-    alt="重置密码"
-    style={{ width: '46%', marginRight: '2%' }}
-  />
-  <img
-    src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/nextblog/20240813014245.png"
-    alt="收取验证码"
-    style={{ width: '46%', marginRight: '2%' }}
-  />
-
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <img src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/nextblog/20240813014209.png" alt="Image 1" style="width: 40%; height: auto;" />
+    <img src="https://tz-1256822507.cos.ap-hongkong.myqcloud.com/nextblog/20240813014209.png" alt="Image 2" style="width: 40%; height: auto;" />
 </div>
 
 ## SQLModel

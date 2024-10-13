@@ -3,8 +3,11 @@ import 'katex/dist/katex.css'
 
 import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer'
+// import { MDXLayoutRenderer } from 'pliny/mdx-components'
+import { compareDesc, format, parseISO } from 'date-fns'
+// import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer'
+// import { coreContent } from 'pliny/utils/contentlayer'
+import { coreContent } from 'lib/contentlayer'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
 import PostSimple from '@/layouts/PostSimple'
@@ -13,6 +16,8 @@ import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
+import Markdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
 export const runtime = 'edge'
 export const dynamicParams = false
@@ -85,7 +90,11 @@ export const generateStaticParams = async () => {
 export default async function Page({ params }: { params: { slug: string[] } }) {
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
-  const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
+  // const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
+  const sortedCoreContents = allBlogs.sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date))
+  )
+
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
   if (postIndex === -1) {
     return notFound()
@@ -117,7 +126,8 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-        <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
+        {/* <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} /> */}
+        <Markdown rehypePlugins={[rehypeRaw]}>{post.body.raw}</Markdown>
       </Layout>
     </>
   )

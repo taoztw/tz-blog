@@ -1,6 +1,7 @@
 import ListLayout from '@/layouts/ListLayoutWithTags'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
+import { compareDesc } from 'date-fns'
 
 const POSTS_PER_PAGE = 5
 export const runtime = 'edge'
@@ -14,7 +15,8 @@ export const generateStaticParams = async () => {
 }
 
 export default function Page({ params }: { params: { page: string } }) {
-  const posts = allCoreContent(sortPosts(allBlogs))
+  // const posts = allCoreContent(sortPosts(allBlogs))
+  const posts = allBlogs.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
   const pageNumber = parseInt(params.page as string)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
